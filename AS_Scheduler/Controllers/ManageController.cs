@@ -11,7 +11,7 @@ using Scheduler.Models;
 namespace Scheduler.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : UserNames
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

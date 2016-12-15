@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scheduler.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Scheduler.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : UserNames
     {
         public ActionResult Index()
         {
