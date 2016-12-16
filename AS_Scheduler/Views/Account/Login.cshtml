@@ -2,62 +2,81 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/Login_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
-<div class="row">
+<div class="row" style="height: 100%; margin-right: 0px">
     <div class="col-md-8">
+        <div class="row" style="margin-top: 3em">
+            <div class="col-md-offset-1 col-md-10">
+                <img src="~/assets/images/Anomaly_Sponsored_Wifi_page-07.png" style="width: 60%" />
+                <h1 style="color: white; margin-left: 40px; margin-top: 0px; margin-bottom: 0px">To the Anomaly Scheduler</h1>
+                <h3 style="color: white; margin-left: 40px; margin-top: 0px">It's a free tool to help you get around at the conference a little easier</h3>
+                <h2><strong style="color: #29AAE3; margin-left: 40px">It includes:</strong></h2>
+            </div>
+        </div>   
+        <div class="row">
+            <img class="col-md-offset-1 col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-08.png" />
+            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-09.png" />
+            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-10.png" />
+            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-11.png" />
+            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-12.png" />
+        </div>
+        <div class="col-md-offset-1 col-md-10" style="text-align: center; margin-top: 40px;">
+            <button class="btn-anomaly" style="width: 100%"><h2 style="margin-top: 5px; margin-bottom: 5px; font-size: 40px"><strong>REGISTER HERE</strong></h2></button>
+        </div>
+    </div>
+    <div class="col-md-4" style="background-color: white; height: 100%; padding-top: 6em">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h2 class="col-md-offset-2" style="padding-left: 15px">or login</h2>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    <div class="col-md-offset-2 col-md-8">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder=" email", style="width: 100%" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div><br /><br />
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    <div class="col-md-offset-2 col-md-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = " password", style = "width: 100%" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
+                </div><br /><br /><br />
+                @*<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                </div>*@
+                <div class="form-group row">
+                    <div class="col-md-offset-2 col-md-3" style="padding-left: 25px">
+                        <button type="submit" class="btn btn-anomaly-sm" style="padding-left: 40px; padding-right: 40px"><h2 style="margin-bottom: 5px; margin-top: 5px; font-size: 20px;"><strong>LOGIN</strong></h2></button>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="text-nowrap" style="margin-left: 20px">@Html.ActionLink("Forgot your password?", "ForgotPassword")</span>
                     </div>
                 </div>
-                <p>
+                @*<p>
                     @Html.ActionLink("Register as a new user", "Register")
-                </p>
+                </p>*@
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
             }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
+        </section><br />
+        <section id="socialLoginForm" style="margin-top: 100px">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

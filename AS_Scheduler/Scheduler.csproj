@@ -247,6 +247,7 @@
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\cform.css" />
     <Content Include="assets\css\cms-style.css" />
+    <Content Include="assets\css\Custom.css" />
     <Content Include="assets\css\fancybox_loading%402x.html" />
     <Content Include="assets\css\fancybox_loading.html" />
     <Content Include="assets\css\fancybox_overlay.html" />
@@ -280,7 +281,15 @@
     <Content Include="assets\fonts\playfairdisplay-webfont.svg" />
     <Content Include="assets\fonts\Sweetly-Broken.svg" />
     <Content Include="assets\images\ajax-loader.html" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-07.png" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-08.png" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-09.png" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-10.png" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-11.png" />
+    <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-12.png" />
     <Content Include="assets\images\flickr.png" />
+    <Content Include="assets\images\highlighted-grey-background.jpg" />
+    <Content Include="assets\images\highlighted-grey-background_test.jpg" />
     <Content Include="assets\images\icon-close.png" />
     <Content Include="assets\images\icons\address-book.png" />
     <Content Include="assets\images\icons\alarm-clock.png" />
@@ -288,6 +297,7 @@
     <Content Include="assets\images\icons\application-image.png" />
     <Content Include="assets\images\icons\arrow.png" />
     <Content Include="assets\images\icons\asterisk.png" />
+    <Content Include="assets\images\icons\AS_logo.png" />
     <Content Include="assets\images\icons\auction-hammer.png" />
     <Content Include="assets\images\icons\balloon-buzz.png" />
     <Content Include="assets\images\icons\balloon-facebook.png" />
@@ -834,6 +844,7 @@
     <Content Include="TemplatePages\services.html" />
     <Content Include="TemplatePages\services2.html" />
     <Content Include="TemplatePages\shop.html" />
+    <Content Include="Views\Shared\Login_Layout.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
