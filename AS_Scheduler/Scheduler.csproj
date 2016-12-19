@@ -243,6 +243,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
+    <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
+    <Content Include="assets\images\Anom_Logo_Wifi-06.png" />
     <Content Include="assets\css\blank.html" />
     <Content Include="assets\css\bootstrap.min.css" />
     <Content Include="assets\css\cform.css" />
@@ -287,6 +290,8 @@
     <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-10.png" />
     <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-11.png" />
     <Content Include="assets\images\Anomaly_Sponsored_Wifi_page-12.png" />
+    <Content Include="assets\images\Anom_Logo_Wifi-02.png" />
+    <Content Include="assets\images\Anom_Logo_Wifi-03.png" />
     <Content Include="assets\images\flickr.png" />
     <Content Include="assets\images\highlighted-grey-background.jpg" />
     <Content Include="assets\images\highlighted-grey-background_test.jpg" />
@@ -531,6 +536,7 @@
     <Content Include="assets\upload\8-dirk-sebregts.jpg" />
     <Content Include="assets\upload\a-guy-smiling.png" />
     <Content Include="assets\upload\about-1-slideshow.jpg" />
+    <Content Include="assets\upload\Anom_Logo_Wifi.png" />
     <Content Include="assets\upload\architecture-banner.jpg" />
     <Content Include="assets\upload\audio.mp3" />
     <Content Include="assets\upload\audio230a.html" />

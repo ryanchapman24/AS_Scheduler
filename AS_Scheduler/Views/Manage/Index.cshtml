@@ -85,3 +85,12 @@
         </dd>
     </dl>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#profile-tab').addClass("current-menu-item");
+        });
+    </script>
+}

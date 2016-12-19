@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Scheduler.Controllers
 {
+    [Authorize]
     public class HomeController : UserNames
     {
         public ActionResult Index()

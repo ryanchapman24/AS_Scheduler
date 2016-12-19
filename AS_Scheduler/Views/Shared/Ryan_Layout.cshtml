@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -34,6 +36,7 @@
 <link rel='stylesheet' href='~/assets/css/owl.carousel.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/js/mediaelement/mediaelementplayer.min.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/js/mediaelement/wp-mediaelement.css' type='text/css' media='all' />
+<link rel='stylesheet' href='~/assets/css/Custom.css' type='text/css' media='all' />
 
 </head>
 <body class="home page page-id-20 page-template page-template-page-templates page-template-page page-template-page-templatespage-php wpb-js-composer js-comp-ver-4.5.1 vc_responsive">
@@ -45,11 +48,11 @@
                     <div class="header-top-left pull-left">
                         <aside id="cms_social_widget-2" class="widget widget_cms_social_widget"><span class="widget-title">Socialize with us:</span>
                             <ul class='cms-social default text-center'>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Rss" href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="YouTube" href="#"><i class="fa fa-youtube"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Google" href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="https://www.facebook.com/anomaly.squared/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="https://twitter.com/anomaly_squared"><i class="fa fa-twitter"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Linkedin" href="https://www.linkedin.com/company/anomaly-squared"><i class="fa fa-linkedin"></i></a></li>
+                                @*<li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="YouTube" href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Google" href="#"><i class="fa fa-pinterest"></i></a></li>*@
                             </ul>
                         </aside>
                     </div>
@@ -59,19 +62,21 @@
                         <aside id="text-3" class="widget widget_text">
                             <div class="textwidget">
                                 <ul>
-                                    <li><span><i class="fa fa-phone"> </i>0 800 22 55 66 123 </span></li>
+                                    @*<li><span><i class="fa fa-phone"> </i>0 800 22 55 66 123 </span></li>*@
                                     <li>
-                                        <span><i class="fa fa-envelope-o"></i>info@bulletdomain.com </span></li>
+                                        <span><i class="fa fa-user"></i><strong style="letter-spacing: 0.05em">@ViewBag.DisplayName</strong></span></li>
                                 </ul>
                             </div>
                         </aside>
                         <aside id="widget_cart_search-2" class="widget widget_widget_cart_search">
+                            
                             <div class="widget_cart_search_wrap">
                                 <div class="header">
-                                    <a href="javascript:void(0)" class="icon_cart_wrap" data-display=".shopping_cart_dropdown" data-no_display=".widget_searchform_content"><i class="fa fa-shopping-cart cart-icon"></i><span class="cart_total"> 0</span></a>
-                                    <a href="javascript:void(0)" class="icon_search_wrap" data-display=".widget_searchform_content" data-no_display=".shopping_cart_dropdown"><i class="fa fa-search search-icon"></i> <span class="widget-title">Search</span></a>
+                                    @Html.Partial("_LoginPartial")
+                                    @*<a href="javascript:void(0)" class="icon_cart_wrap" data-display=".shopping_cart_dropdown" data-no_display=".widget_searchform_content"><i class="fa fa-shopping-cart cart-icon"></i><span class="cart_total"> 0</span></a>
+                                    <a href="javascript:void(0)" class="icon_search_wrap" data-display=".widget_searchform_content" data-no_display=".shopping_cart_dropdown"><i class="fa fa-search search-icon"></i> <span class="widget-title">Search</span></a>*@
                                 </div>
-                                <div class="shopping_cart_dropdown">
+                                @*<div class="shopping_cart_dropdown">
                                     <div class="shopping_cart_dropdown_inner">
                                         <ul class="cart_list product_list_widget">
 
@@ -94,7 +99,7 @@
                                         <input type="text" value="" name="s" placeholder="Search" />
                                         <input type="submit" value="Search" />
                                     </form>
-                                </div>
+                                </div>*@
                             </div>
                         </aside>
                     </div>
@@ -109,7 +114,7 @@
 
                 <div id="cs-header" class="header ">
                     <div id="header-logo" class="header-left">
-                        <a href="#"><img alt="" src="~/assets/upload/logo.png"></a>
+                        <a href="@Url.Action("Index","Home")"><img alt="" src="~/assets/upload/Anom_Logo_Wifi.png"></a>
                         <div class="mobile-search-icon hidden-lg hidden-md">
                             <aside id="widget_cart_search-3" class="widget widget_widget_cart_search">
                                 <div class="widget_cart_search_wrap">
@@ -150,8 +155,8 @@
                         <nav id="site-navigation" class="main-navigation" role="navigation">
                             <div class="menu-menu-1-container">
                                 <ul class="nav-menu menu-main-menu">
-                                    <li class="menu-item current-menu-item current_page_item menu-item-has-children" data-depth="0"><a href="index.html"><span class="menu-title">Home</span></a>
-                                        <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_0">
+                                    <li id="home-tab" class="menu-item" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a>
+                                        @*<ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_0">
                                             <li class="menu-item no_group" data-depth="1"><a href="home-bloger.html"><span class="menu-title">Home Bloggers</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="home-photography.html"><span class="menu-title">Home Photography</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="home-mechanic.html"><span class="menu-title">Home skin auto mechanic</span></a></li>
@@ -164,25 +169,25 @@
                                             <li class="menu-item no_group" data-depth="1"><a href="home-patterm4.html"><span class="menu-title">Home Pattern 4</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="home-color3.html"><span class="menu-title">Home Color 3</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="home-color4.html"><span class="menu-title">Home Color 4</span></a></li>
+                                        </ul>*@
+                                    </li>
+                                    <li id="profile-tab" @*id="menu-item-98"*@ class="menu-item menu-item-has-children no_group" data-depth="0"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a>
+                                        <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_2">
+                                            @*<li class="menu-item no_group" data-depth="1"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a></li>*@
+                                            <li class="menu-item no_group" data-depth="1"><a href="@Url.Action("Index","Manage")"><span class="menu-title">Manage Account</span></a></li>
+                                            @*<li class="menu-item no_group" data-depth="1"><a href="portfolio3.html"><span class="menu-title">Portfolio 3</span></a></li>
+                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio4.html"><span class="menu-title">Portfolio 4</span></a></li>
+                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio5.html"><span class="menu-title">Portfolio 5 Circles</span></a></li>
+                                            <li class="menu-item menu-item-type-custom menu-item-object-custom no_group" data-depth="1"><a href="portfolio-single.html"><span class="menu-title">Portfolio single</span></a></li>*@
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="services.html"><span class="menu-title">Services</span></a>
+                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="services.html"><span class="menu-title">My Schedule</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_1">
                                             <li class="menu-item no_group" data-depth="1"><a href="services.html"><span class="menu-title">Services 1</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="services2.html"><span class="menu-title">Services 2</span></a></li>
                                         </ul>
                                     </li>
-                                    <li id="menu-item-98" class="menu-item menu-item-has-children no_group" data-depth="0"><a href="portfolio1.html"><span class="menu-title">Portfolio</span></a>
-                                        <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_2">
-                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio1.html"><span class="menu-title">Portfolio 1</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio2.html"><span class="menu-title">Portfolio 2</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio3.html"><span class="menu-title">Portfolio 3</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio4.html"><span class="menu-title">Portfolio 4</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="portfolio5.html"><span class="menu-title">Portfolio 5 Circles</span></a></li>
-                                            <li class="menu-item menu-item-type-custom menu-item-object-custom no_group" data-depth="1"><a href="portfolio-single.html"><span class="menu-title">Portfolio single</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="blog.html"><span class="menu-title">Blog</span></a>
+                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="blog.html"><span class="menu-title">Agenda</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_3">
                                             <li class="menu-item no_group" data-depth="1"><a href="blog-1column.html"><span class="menu-title">Blog 1 column</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="blog-1columnalt.html"><span class="menu-title">Blog 1 column alternative</span></a></li>
@@ -190,18 +195,18 @@
                                             <li class="menu-item menu-item-type-custom menu-item-object-custom no_group" data-depth="1"><a href="blog-single.html"><span class="menu-title">Blog single</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="about.html"><span class="menu-title">About</span></a>
+                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="about.html"><span class="menu-title">Map & Venue</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_4">
                                             <li class="menu-item no_group" data-depth="1"><a href="about.html"><span class="menu-title">About 1</span></a></li>
                                             <li class="menu-item no_group" data-depth="1"><a href="about2.html"><span class="menu-title">About 2</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="contact.html"><span class="menu-title">Contact</span></a>
+                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="contact.html"><span class="menu-title">Notes</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_5">
                                             <li class="menu-item no_group" data-depth="1"><a href="error.html"><span class="menu-title">Error 404</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat no_group" data-depth="0"><a href="shop.html"><span class="menu-title">Shop</span></a></li>
+                                    <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat no_group" data-depth="0"><a href="http://www.anomalysquared.com/" target="_blank"><span class="menu-title">About Anomaly</span></a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -238,11 +243,11 @@
                         <aside id="cms_social_widget-3" class="widget widget_cms_social_widget sidebar-left">
                             <h3 class="widget-title widget-left">SOCIALIZE WITH US</h3>
                             <ul class='cms-social social-circle text-left'>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Rss" href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="YouTube" href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Google" href="#"><i class="fa fa-tumblr"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="https://www.facebook.com/anomaly.squared/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="https://twitter.com/anomaly_squared"><i class="fa fa-twitter"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Linkedin" href="https://www.linkedin.com/company/anomaly-squared"><i class="fa fa-linkedin"></i></a></li>
+                                @*<li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="YouTube" href="#"><i class="fa fa-rss"></i></a></li>
+                                <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Google" href="#"><i class="fa fa-tumblr"></i></a></li>*@
                             </ul>
                         </aside>
                         <aside id="cs_recent_post_v2-2" class="widget widget_cs_recent_post_v2 sidebar-left">
@@ -316,16 +321,16 @@
                             <div class="wrapper clearfix">
                                 <div>
                                     <aside id="cms_social_widget-4" class="widget widget_cms_social_widget">
-                                        <h3 class="widget-title pull-left">CONNECT SOCIALY WITH US</h3>
+                                        <h3 class="widget-title pull-left">CONNECT SOCIALLY WITH US</h3>
                                         <ul class='cms-social social-box-style text-left'>
-                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Rss" href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="YouTube" href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="#"><i class="fa fa-skype"></i></a></li>
+                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Facebook" href="https://www.facebook.com/anomaly.squared/"><i class="fa fa-facebook-square"></i></a></li>
+                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="https://twitter.com/anomaly_squared"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Linkedin" href="https://www.linkedin.com/company/anomaly-squared"><i class="fa fa-linkedin-square"></i></a></li>
+                                            @*<li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Twitter" href="#"><i class="fa fa-skype"></i></a></li>
                                             <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Google" href="#"><i class="fa fa-pinterest-square"></i></a></li>
                                             <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Skype" href="#"><i class="fa fa-google-plus-square"></i></a></li>
                                             <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Yahoo" href="#"><i class="fa fa-youtube-play"></i></a></li>
-                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Dribbble" href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a target="_blank" data-rel="tooltip" data-placement="bottom" data-original-title="Dribbble" href="#"><i class="fa fa-instagram"></i></a></li>*@
                                         </ul>
                                     </aside>
                                 </div>
@@ -336,7 +341,7 @@
                                 <div class="footer-top-sidebar-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <aside id="text-5" class="widget widget_text">
                                         <h3 class="widget-title">About Us</h3>
-                                        <div class="textwidget"><img src="~/assets/images/logo-footer.png" alt="" />
+                                        <div class="textwidget"><img src="~/assets/upload/Anom_Logo_Wifi.png" alt="" />
                                             <p>Stubb whistlingly gathers up the coil of the warp in one hand, so as to secure its free end in his grasp, leaving the rest unobstructed. Then holding the lance full before his waistband's middle.</p>
                                             <a class="readmore" href="#">READ MORE <i class="fa fa-long-arrow-right"></i></a></div>
                                     </aside>
@@ -460,6 +465,7 @@
 <script type='text/javascript' src='~/assets/js/placeholders.min.js'></script>
 <script type='text/javascript' src='~/assets/js/jquery.mousewheel.min.js'></script>
 <script type='text/javascript' src='~/assets/js/widgets.js'></script>
+@RenderSection("scripts", required: false)
 <script type="text/javascript">
     /******************************************
                         -   PREPARE PLACEHOLDER FOR SLIDER  -
