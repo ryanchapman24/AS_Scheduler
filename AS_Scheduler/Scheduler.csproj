@@ -224,6 +224,7 @@
     <Compile Include="Models\AdminUserListModels.cs" />
     <Compile Include="Models\AdminUserViewModels.cs" />
     <Compile Include="Models\Code First\Announcement.cs" />
+    <Compile Include="Models\Code First\Chapter.cs" />
     <Compile Include="Models\Code First\Day.cs" />
     <Compile Include="Models\Code First\Event.cs" />
     <Compile Include="Models\Code First\GalleryPhoto.cs" />
