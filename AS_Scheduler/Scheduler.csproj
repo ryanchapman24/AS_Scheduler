@@ -878,6 +878,7 @@
     <Content Include="TemplatePages\services2.html" />
     <Content Include="TemplatePages\shop.html" />
     <Content Include="Views\Shared\Login_Layout.cshtml" />
+    <Content Include="Views\Home\Agenda.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

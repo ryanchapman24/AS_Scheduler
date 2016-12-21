@@ -14,8 +14,10 @@ namespace Scheduler.Models.Code_First
         public string Description { get; set; }
         public int DayId { get; set; }
         public string AuthorId { get; set; }
+        public int ChapterId { get; set; }
 
         public virtual Day Day { get; set; }
         public virtual ApplicationUser Author { get; set; }
+        public virtual Chapter Chapter { get; set; }
     }
 }

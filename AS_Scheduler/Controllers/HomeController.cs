@@ -53,6 +53,14 @@ namespace Scheduler.Controllers
             return View();
         }
 
+        public ActionResult Agenda()
+        {
+            ViewBag.Day1 = db.Events.Where(e => e.DayId == 1).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day2 = db.Events.Where(e => e.DayId == 2).OrderBy(e => e.StartTime).ToList();
+
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendMessage(string name, string email, string subject, string message)
