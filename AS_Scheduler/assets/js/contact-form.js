@@ -14,20 +14,48 @@ $(document).ready(function($) {
         e.preventDefault();
 
         var $this = $(this);
-        
+
+        var errorOptions = {
+            rules: {
+                // no quoting necessary
+                name: {
+                    required: true
+                },
+                email: {
+                    required: true
+                },
+                subject: {
+                    required: true
+                },
+                message: {
+                    required: true
+                }
+            },
+            messages: {
+                name: "Name is required.",
+                email: "Email is required.",
+                subject: "Subject is required.",
+                message: "Message is required."
+            }
+        };
+
+        var validator = $("#contact-form").validate(errorOptions);
+        if (!validator.form()) {
+            return false;
+        }
         $.ajax({
             type: "POST",
-            url: 'contact.php',
+            url: $('#contact-form').attr('action'),
             dataType: 'json',
             cache: false,
             data: $('#contact-form').serialize(),
-            success: function(data) {
+            success: function (data) {
 
-                if(data.info !== 'error'){
+                if (data.Message === "Success! " + "<i class='fa fa-check'></i>") {
                     $this.parents('form').find('input[type=text],textarea,select').filter(':visible').val('');
-                    message.hide().removeClass('success').removeClass('error').addClass('success').html(data.msg).fadeIn('slow').delay(5000).fadeOut('slow');
+                    message.hide().removeClass('success').removeClass('error').addClass('success').html(data.Message).fadeIn('slow').delay(5000).fadeOut('slow');
                 } else {
-                    message.hide().removeClass('success').removeClass('error').addClass('error').html(data.msg).fadeIn('slow').delay(5000).fadeOut('slow');
+                    message.hide().removeClass('success').removeClass('error').addClass('error').html(data.Message).fadeIn('slow').delay(5000).fadeOut('slow');
                 }
             }
         });
@@ -81,6 +109,7 @@ $(document).ready(function($) {
             */
         });
 
-    } catch(err) {
+    } catch (err) {
+        //console.log(err);
     }
 });
