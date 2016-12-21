@@ -188,6 +188,7 @@ footer {
     min-height: 60px;
     /*ul.menu*/ }
     footer #footer-bottom #back_to_top {
+      cursor: pointer;
       position: absolute;
       width: 35px;
       height: 35px;
