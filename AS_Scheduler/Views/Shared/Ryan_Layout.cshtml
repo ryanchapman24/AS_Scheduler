@@ -30,6 +30,7 @@
 <link rel='stylesheet' href='~/assets/css/woocommerce.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/jquery.fancybox.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/static.css' type='text/css' media='all' />
+<link rel='stylesheet' href="~/assets/css/datatables.css" type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/fonts.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/widgets.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/js_composer.css' type='text/css' media='all' />
@@ -155,22 +156,19 @@
                         <nav id="site-navigation" class="main-navigation" role="navigation">
                             <div class="menu-menu-1-container">
                                 <ul class="nav-menu menu-main-menu">
-                                    <li id="home-tab" class="menu-item" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a>
-                                        @*<ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_0">
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-bloger.html"><span class="menu-title">Home Bloggers</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-photography.html"><span class="menu-title">Home Photography</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-mechanic.html"><span class="menu-title">Home skin auto mechanic</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-construction.html"><span class="menu-title">Home Skin Construction</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-medical.html"><span class="menu-title">Home Skin Medical</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-dark.html"><span class="menu-title">Home Dark Mode</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-pattern1.html"><span class="menu-title">Home Pattern 1</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-pattern2.html"><span class="menu-title">Home Pattern 2</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-pattern3.html"><span class="menu-title">Home Pattern 3</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-patterm4.html"><span class="menu-title">Home Pattern 4</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-color3.html"><span class="menu-title">Home Color 3</span></a></li>
-                                            <li class="menu-item no_group" data-depth="1"><a href="home-color4.html"><span class="menu-title">Home Color 4</span></a></li>
-                                        </ul>*@
-                                    </li>
+                                    @if (User.IsInRole("Administrator"))
+                                    {
+                                        <li id="home-tab" class="menu-item menu-item-has-children no_group" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a>
+                                            <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_0">
+                                                <li class="menu-item no_group" data-depth="1"><a href="@Url.Action("Admin","Home")"><span class="menu-title">Admin Tools</span></a></li>                                          
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li id="home-tab" class="menu-item" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a>
+                                        </li>
+                                    }
                                     <li id="profile-tab" @*id="menu-item-98"*@ class="menu-item menu-item-has-children no_group" data-depth="0"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_2">
                                             @*<li class="menu-item no_group" data-depth="1"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a></li>*@
@@ -480,6 +478,8 @@
 <script type='text/javascript' src='~/assets/js/placeholders.min.js'></script>
 <script type='text/javascript' src='~/assets/js/jquery.mousewheel.min.js'></script>
 <script type='text/javascript' src='~/assets/js/widgets.js'></script>
+<script src="~/assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
+<script src="~/assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
 @RenderSection("scripts", required: false)
 <script type="text/javascript">
     /******************************************

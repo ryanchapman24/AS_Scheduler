@@ -11,7 +11,7 @@ using System.Data.Entity;
 using System.Net;
 using System.IO;
 using Microsoft.AspNet.Identity.Owin;
-
+using Scheduler.Models.Helpers;
 
 namespace Scheduler.Controllers
 {
@@ -39,24 +39,60 @@ namespace Scheduler.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Admin()
         {
-            ViewBag.Message = "Your application description page.";
+            var admins = new List<ApplicationUser>();
+            var regulars = new List<ApplicationUser>();
+            var adminUsers = new List<AdminUserListModels>();
+            var regularUsers = new List<AdminUserListModels>();
+            UserRolesHelper helper = new UserRolesHelper(db);
+            foreach (var x in db.Users)
+            {
+                foreach (var role in x.Roles)
+                {
+                    if (role.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2")
+                    {
+                        admins.Add(x);
+                    }
+                    else
+                    {
+                        regulars.Add(x);
+                    }
+                }
+            }
+            foreach (var user in admins)
+            {
+                var eachUser = new AdminUserListModels();
+                eachUser.roles = new List<string>();
+                eachUser.user = user;
+                eachUser.roles = helper.ListUserRoles(user.Id).ToList();
 
-            return View();
-        }
+                adminUsers.Add(eachUser);
+            }
+            foreach (var user in regulars)
+            {
+                var eachUser = new AdminUserListModels();
+                eachUser.roles = new List<string>();
+                eachUser.user = user;
+                eachUser.roles = helper.ListUserRoles(user.Id).ToList();
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
+                regularUsers.Add(eachUser);
+            }
+            ViewBag.Admins = adminUsers.OrderBy(a => a.user.FirstName).ToList();
+            ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
+            ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
             return View();
         }
 
         public ActionResult Agenda()
         {
-            ViewBag.Day1 = db.Events.Where(e => e.DayId == 1).OrderBy(e => e.StartTime).ToList();
-            ViewBag.Day2 = db.Events.Where(e => e.DayId == 2).OrderBy(e => e.StartTime).ToList();
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            ViewBag.ChapterName = currentChapter.ChapterName;
+            ViewBag.ChapterYear = currentChapter.ChapterYear;
+
+            ViewBag.Day1 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 1).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day2 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 2).OrderBy(e => e.StartTime).ToList();
 
             return View();
         }

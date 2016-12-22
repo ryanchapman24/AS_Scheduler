@@ -9,5 +9,7 @@ namespace Scheduler.Models.Code_First
     {
         public int Id { get; set; }
         public string ChapterName { get; set; }
+        public int ChapterYear { get; set; }
+        public bool CurrentChapter { get; set; }
     }
 }

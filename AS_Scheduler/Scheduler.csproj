@@ -49,8 +49,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -244,6 +244,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\datatables.css" />
     <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-06.png" />
@@ -418,6 +419,22 @@
     <Content Include="assets\js\owl.carousel.cms.js" />
     <Content Include="assets\js\owl.carousel.min.js" />
     <Content Include="assets\js\placeholders.min.js" />
+    <Content Include="assets\js\plugins\datatable\dataTables.bootstrap.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.colReorder.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.colReorder.min.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.colVis.bootstrap.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.colVis.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.colVis.min.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.tableTools.js" />
+    <Content Include="assets\js\plugins\datatable\exts\dataTables.tableTools.min.js" />
+    <Content Include="assets\js\plugins\datatable\exts\swf\copy_csv_xls.swf" />
+    <Content Include="assets\js\plugins\datatable\exts\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="assets\js\plugins\datatable\jquery.dataTables.js" />
+    <Content Include="assets\js\plugins\datatable\jquery.dataTables.min.js" />
+    <Content Include="assets\js\plugins\datatable\plugins\sorting\date-uk.js" />
+    <Content Include="assets\js\plugins\datatable\plugins\sorting\file-size.js" />
+    <Content Include="assets\js\plugins\datatable\plugins\type-detection\date-uk.js" />
+    <Content Include="assets\js\plugins\datatable\plugins\type-detection\file-size.js" />
     <Content Include="assets\js\prettyPhoto\jquery.prettyPhoto.init.min.js" />
     <Content Include="assets\js\prettyPhoto\jquery.prettyPhoto.min.js" />
     <Content Include="assets\js\ProgressCircle.js" />
@@ -879,6 +896,7 @@
     <Content Include="TemplatePages\shop.html" />
     <Content Include="Views\Shared\Login_Layout.cshtml" />
     <Content Include="Views\Home\Agenda.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -891,8 +909,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

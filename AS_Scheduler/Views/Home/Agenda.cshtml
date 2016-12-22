@@ -13,10 +13,10 @@
                                             <div class="table-responsive">
                                                 <div class="table">
                                                     <div class="table-cell">
-                                                        <h2>Contact</h2>
+                                                        <h2>@ViewBag.ChapterName</h2>
                                                     </div>
                                                     <div class="table-cell" style="text-align: right">
-                                                        2017
+                                                        @ViewBag.ChapterYear
                                                     </div>
                                                 </div>
                                             </div>
@@ -28,8 +28,8 @@
                                             <div class="wpb_tabs wpb_content_element" data-interval="0">
                                                 <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">
                                                     <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-                                                        <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Day1" class="ui-tabs-anchor" role="presentation">Day 1</a></li>
-                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day2" class="ui-tabs-anchor" role="presentation">Day 2</a></li>
+                                                        <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Day1" class="ui-tabs-anchor" role="presentation">February 6th</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day2" class="ui-tabs-anchor" role="presentation">February 7th</a></li>
                                                         @*<li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day3" class="ui-tabs-anchor" role="presentation">Day 3</a></li>*@                                               
                                                     </ul>
                                                     <div id="Day1" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
@@ -40,9 +40,37 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
-                                                                            <p>
-                                                                                Day 1
-                                                                            </p>
+                                                                            @foreach (var item in ViewBag.Day1)
+                                                                            {
+                                                                            <div class="row vc_row-fluid" style="">
+                                                                                <div class="cms-bg-overlay" style=""></div>
+                                                                                <div class="vc_col-sm-10 wpb_column vc_column_container">
+                                                                                    <div class="wpb_wrapper">
+                                                                                        <div class="cms-fancyboxes-wraper template-cms_fancybox--vertical content-align-default container-fluid" id="cms-fancy-box-2">
+                                                                                            <div class="row cms-fancyboxes-body">
+                                                                                                <div class="cms-fancyboxes-vertical-item clearfix" onclick="">
+                                                                                                    <div class="cms-fancyboxes-vertical-item-icon">
+                                                                                                        <div class="fancy-box-icon">
+                                                                                                            <i class="fa fa-calendar" style="color: #29AAE3"></i>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="cms-fancyboxes-vertical-item-desc">
+                                                                                                        <h3>@item.Description</h3>
+                                                                                                        <div class="fancy-box-content">
+                                                                                                            <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>                                                                                                                                                                                      
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="vc_col-sm-offset-1 vc_col-sm-1" style="padding-top: 10px">
+                                                                                    <input type="checkbox" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <hr />
+                                                                            }
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -57,9 +85,37 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
-                                                                            <p>
-                                                                                Day 2
-                                                                            </p>
+                                                                            @foreach (var item in ViewBag.Day2)
+                                                                            {
+                                                                                <div class="row vc_row-fluid" style="">
+                                                                                    <div class="cms-bg-overlay" style=""></div>
+                                                                                    <div class="vc_col-sm-10 wpb_column vc_column_container">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <div class="cms-fancyboxes-wraper template-cms_fancybox--vertical content-align-default container-fluid" id="cms-fancy-box-2">
+                                                                                                <div class="row cms-fancyboxes-body">
+                                                                                                    <div class="cms-fancyboxes-vertical-item clearfix" onclick="">
+                                                                                                        <div class="cms-fancyboxes-vertical-item-icon">
+                                                                                                            <div class="fancy-box-icon">
+                                                                                                                <i class="fa fa-calendar" style="color: #29AAE3"></i>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="cms-fancyboxes-vertical-item-desc">
+                                                                                                            <h3>@item.Description</h3>
+                                                                                                            <div class="fancy-box-content">
+                                                                                                                <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="vc_col-sm-offset-1 vc_col-sm-1" style="padding-top: 10px">
+                                                                                        <input type="checkbox" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr />
+                                                                            }
                                                                         </div>
                                                                     </div>
                                                                 </div>

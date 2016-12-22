@@ -1,0 +1,211 @@
+﻿<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>@ViewBag.ChapterName</h2>
+                                                    </div>
+                                                    <div class="table-cell" style="text-align: right">
+                                                        @ViewBag.ChapterYear
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    <div class="vc_col-sm-12 wpb_column vc_column_container" style="margin-bottom: 30px">
+                                        <div class="wpb_wrapper">
+                                            <div class="wpb_tabs wpb_content_element" data-interval="0">
+                                                <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">
+                                                    <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                                                        <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Users" class="ui-tabs-anchor" role="presentation">Users</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Chapters" class="ui-tabs-anchor" role="presentation">Chapters</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Announcements" class="ui-tabs-anchor" role="presentation">Announcements</a></li>
+                                                    </ul>
+                                                    <div id="Users" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <div class="table-responsive">
+                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>First Name</th>
+                                                                                            <th>Last Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Job Title</th>
+                                                                                            <th>Email</th>
+                                                                                            <th>Phone Number</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Admins)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName</td>
+                                                                                                <td>@item.user.LastName</td>
+                                                                                                <td>@item.user.Company</td>
+                                                                                                <td>@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email</td>
+                                                                                                <td>@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <p style="color: #29AAE3"><strong>@role</strong></p>
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td class="text-nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Manage Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="table-responsive" style="margin-top: 30px">
+                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>First Name</th>
+                                                                                            <th>Last Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Job Title</th>
+                                                                                            <th>Email</th>
+                                                                                            <th>Phone Number</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Users)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName</td>
+                                                                                                <td>@item.user.LastName</td>
+                                                                                                <td>@item.user.Company</td>
+                                                                                                <td>@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email</td>
+                                                                                                <td>@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <p style="color: #29AAE3"><strong>@role</strong></p>
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td class="text-nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Manage Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Chapters" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <div class="table-responsive">
+                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Chapter Name</th>
+                                                                                            <th>Year</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Chapters)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.ChapterName</td>
+                                                                                                <td>@item.ChapterYear</td>
+                                                                                                <td class="text-nowrap">
+                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
+                                                                                                    <a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Announcements" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style=""></div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <p>
+                                                                                Announcements
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#home-tab').addClass("current-menu-item");
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.admin-tables').DataTable({
+                "iDisplayLength": 10,
+                "bSort": false,
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+            });
+        });
+    </script>
+}
