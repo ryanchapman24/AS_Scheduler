@@ -13,10 +13,9 @@
                                             <div class="table-responsive">
                                                 <div class="table">
                                                     <div class="table-cell">
-                                                        <h2>@ViewBag.ChapterName</h2>
+                                                        <h2>Administrator Panel</h2>
                                                     </div>
                                                     <div class="table-cell" style="text-align: right">
-                                                        @ViewBag.ChapterYear
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,16 +39,14 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
+                                                                            <h3>Administrators</h3>
                                                                             <div class="table-responsive">
-                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                <table id="datatable-basic-scrolling1" class="table table-hover datatable admin-tables">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                            <th>First Name</th>
-                                                                                            <th>Last Name</th>
+                                                                                            <th>Name</th>
                                                                                             <th>Company</th>
-                                                                                            <th>Job Title</th>
-                                                                                            <th>Email</th>
-                                                                                            <th>Phone Number</th>
+                                                                                            <th>Contact</th>
                                                                                             <th>Roles</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
@@ -58,20 +55,17 @@
                                                                                         @foreach (var item in ViewBag.Admins)
                                                                                         {
                                                                                             <tr>
-                                                                                                <td>@item.user.FirstName</td>
-                                                                                                <td>@item.user.LastName</td>
-                                                                                                <td>@item.user.Company</td>
-                                                                                                <td>@item.user.JobTitle</td>
-                                                                                                <td>@item.user.Email</td>
-                                                                                                <td>@item.user.PhoneNumber</td>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
                                                                                                 <td>
                                                                                                     @foreach (var role in item.roles)
                                                                                                     {
-                                                                                                        <p style="color: #29AAE3"><strong>@role</strong></p>
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
                                                                                                     }
                                                                                                 </td>
-                                                                                                <td class="text-nowrap">
-                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Manage Roles</a><br />
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
                                                                                                     <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
                                                                                                 </td>
                                                                                             </tr>
@@ -79,16 +73,15 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
+                                                                            <hr />
+                                                                            <h3>Users</h3>
                                                                             <div class="table-responsive" style="margin-top: 30px">
-                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                <table id="datatable-basic-scrolling2" class="table table-hover datatable admin-tables">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                            <th>First Name</th>
-                                                                                            <th>Last Name</th>
+                                                                                            <th>Name</th>
                                                                                             <th>Company</th>
-                                                                                            <th>Job Title</th>
-                                                                                            <th>Email</th>
-                                                                                            <th>Phone Number</th>
+                                                                                            <th>Contact</th>
                                                                                             <th>Roles</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
@@ -97,20 +90,17 @@
                                                                                         @foreach (var item in ViewBag.Users)
                                                                                         {
                                                                                             <tr>
-                                                                                                <td>@item.user.FirstName</td>
-                                                                                                <td>@item.user.LastName</td>
-                                                                                                <td>@item.user.Company</td>
-                                                                                                <td>@item.user.JobTitle</td>
-                                                                                                <td>@item.user.Email</td>
-                                                                                                <td>@item.user.PhoneNumber</td>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
                                                                                                 <td>
                                                                                                     @foreach (var role in item.roles)
                                                                                                     {
-                                                                                                        <p style="color: #29AAE3"><strong>@role</strong></p>
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
                                                                                                     }
                                                                                                 </td>
-                                                                                                <td class="text-nowrap">
-                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Manage Roles</a><br />
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Admin", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
                                                                                                     <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
                                                                                                 </td>
                                                                                             </tr>
@@ -133,11 +123,12 @@
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
                                                                             <div class="table-responsive">
-                                                                                <table id="datatable-basic-scrolling" class="table table-hover datatable admin-tables">
+                                                                                <table id="datatable-basic-scrolling3" class="table table-hover datatable admin-tables">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                            <th>Chapter Name</th>
+                                                                                            <th>Name</th>
                                                                                             <th>Year</th>
+                                                                                            <th>Current</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -145,11 +136,12 @@
                                                                                         @foreach (var item in ViewBag.Chapters)
                                                                                         {
                                                                                             <tr>
-                                                                                                <td>@item.ChapterName</td>
+                                                                                                <td class="text-nowrap">@item.ChapterName</td>
                                                                                                 <td>@item.ChapterYear</td>
+                                                                                                <td>@item.CurrentChapter</td>
                                                                                                 <td class="text-nowrap">
-                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
-                                                                                                    <a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>
+                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a>@*<br />*@
+                                                                                                    @*<a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>*@
                                                                                                 </td>
                                                                                             </tr>
                                                                                         }
@@ -202,9 +194,9 @@
     <script>
         $(document).ready(function () {
             $('.admin-tables').DataTable({
-                "iDisplayLength": 10,
+                "iDisplayLength": 50,
                 "bSort": false,
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
         });
     </script>

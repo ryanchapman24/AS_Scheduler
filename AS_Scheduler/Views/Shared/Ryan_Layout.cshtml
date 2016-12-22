@@ -30,7 +30,9 @@
 <link rel='stylesheet' href='~/assets/css/woocommerce.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/jquery.fancybox.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/static.css' type='text/css' media='all' />
-<link rel='stylesheet' href="~/assets/css/datatables.css" type='text/css' media='all' />
+<link rel='stylesheet' href="~/assets/css/dataTables.min.css" type='text/css' media='all' />
+@*<link rel='stylesheet' href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" type='text/css' media='all' />*@
+<link rel='stylesheet' href="~/assets/css/table-responsive.css" type='text/css' media='all'/>    
 <link rel='stylesheet' href='~/assets/css/fonts.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/widgets.css' type='text/css' media='all' />
 <link rel='stylesheet' href='~/assets/css/js_composer.css' type='text/css' media='all' />
@@ -247,7 +249,7 @@
                                 <ul>
                                     <li><i class="fa fa-building"></i><span>Anomaly Squared<br />2nd Floor, 2 Centerview Dr<br />Greensboro, NC 27407</span></li>
                                     <li><i class="fa fa-phone"></i><span>(866) 289-0101</span></li>
-                                    <li><i class="fa fa-envelope-o"></i><span>hello@anomalysquared.com</span></li>
+                                    @*<li><i class="fa fa-envelope-o"></i><span>hello@anomalysquared.com</span></li>*@
                                 </ul>
                             </div>
                         </aside>
@@ -478,6 +480,7 @@
 <script type='text/javascript' src='~/assets/js/placeholders.min.js'></script>
 <script type='text/javascript' src='~/assets/js/jquery.mousewheel.min.js'></script>
 <script type='text/javascript' src='~/assets/js/widgets.js'></script>
+@*<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>*@  
 <script src="~/assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
 <script src="~/assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
 @RenderSection("scripts", required: false)

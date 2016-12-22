@@ -244,7 +244,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\datatables.css" />
+    <Content Include="assets\css\dataTables.min.css" />
+    <Content Include="assets\css\table-responsive.css" />
     <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-06.png" />
@@ -365,6 +366,9 @@
     <Content Include="assets\images\patterns\8.png" />
     <Content Include="assets\images\patterns\9.png" />
     <Content Include="assets\images\patterns\pattern.png" />
+    <Content Include="assets\images\sort_asc.png" />
+    <Content Include="assets\images\sort_both.png" />
+    <Content Include="assets\images\sort_desc.png" />
     <Content Include="assets\images\toggle_close.png" />
     <Content Include="assets\images\toggle_open.png" />
     <Content Include="assets\js\background.video.js" />

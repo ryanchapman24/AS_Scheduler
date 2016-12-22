@@ -42,26 +42,15 @@ namespace Scheduler.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Admin()
         {
-            var admins = new List<ApplicationUser>();
-            var regulars = new List<ApplicationUser>();
             var adminUsers = new List<AdminUserListModels>();
             var regularUsers = new List<AdminUserListModels>();
             UserRolesHelper helper = new UserRolesHelper(db);
-            foreach (var x in db.Users)
-            {
-                foreach (var role in x.Roles)
-                {
-                    if (role.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2")
-                    {
-                        admins.Add(x);
-                    }
-                    else
-                    {
-                        regulars.Add(x);
-                    }
-                }
-            }
-            foreach (var user in admins)
+
+            var ryan = db.Users.Find("61cd4463-7283-4241-bfc5-04f0a4a11902").Id;
+            var taylor = db.Users.Find("619856cf-24df-4ccf-bbba-1d38bab527a8").Id;
+            var clarissa = db.Users.Find("dd1b1885-c104-4835-8c0a-19e75643d900").Id;
+
+            foreach (var user in db.Users.Where(u => u.Id == ryan || u.Id == taylor || u.Id == clarissa))
             {
                 var eachUser = new AdminUserListModels();
                 eachUser.roles = new List<string>();
@@ -70,7 +59,7 @@ namespace Scheduler.Controllers
 
                 adminUsers.Add(eachUser);
             }
-            foreach (var user in regulars)
+            foreach (var user in db.Users.Where(u => u.Id != ryan && u.Id != taylor && u.Id != clarissa))
             {
                 var eachUser = new AdminUserListModels();
                 eachUser.roles = new List<string>();
