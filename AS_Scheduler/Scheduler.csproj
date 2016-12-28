@@ -830,6 +830,20 @@
     <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-2" />
     <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-3" />
     <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-4" />
+    <Content Include="Multiselect PlugIn\.gitignore" />
+    <Content Include="Multiselect PlugIn\css\multi-select.css" />
+    <Content Include="Multiselect PlugIn\img\switch.png" />
+    <Content Include="Multiselect PlugIn\js\jquery.multi-select.js" />
+    <Content Include="Multiselect PlugIn\js\jquery.quicksearch.js" />
+    <Content Include="Multiselect PlugIn\LICENSE.txt" />
+    <Content Include="Multiselect PlugIn\test\lib\jasmine-1.2.0\jasmine-html.js" />
+    <Content Include="Multiselect PlugIn\test\lib\jasmine-1.2.0\jasmine.css" />
+    <Content Include="Multiselect PlugIn\test\lib\jasmine-1.2.0\jasmine.js" />
+    <Content Include="Multiselect PlugIn\test\lib\jasmine-jquery.js" />
+    <Content Include="Multiselect PlugIn\test\SpecRunner.html" />
+    <Content Include="Multiselect PlugIn\test\spec\multiSelectSpec.js" />
+    <Content Include="Multiselect PlugIn\test\spec\SpecHelper.js" />
+    <Content Include="Multiselect PlugIn\test\src\jquery.js" />
     <Content Include="private.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -846,6 +860,10 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Multiselect PlugIn\bower.json" />
+    <Content Include="Multiselect PlugIn\multi-select.jquery.json" />
+    <Content Include="Multiselect PlugIn\README.markdown" />
+    <Content Include="Multiselect PlugIn\test\lib\jasmine-1.2.0\MIT.LICENSE" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -859,6 +877,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MultiSelect.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -901,6 +920,7 @@
     <Content Include="Views\Shared\Login_Layout.cshtml" />
     <Content Include="Views\Home\Agenda.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\EditUserRoles.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

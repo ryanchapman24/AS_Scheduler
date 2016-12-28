@@ -74,6 +74,49 @@ namespace Scheduler.Controllers
             return View();
         }
 
+        // Get: EditUserRoles
+        [Authorize(Roles = "Administrator")]
+        public ActionResult EditUserRoles(string id)
+        {
+            var user = db.Users.Find(id);
+            UserRolesHelper helper = new UserRolesHelper(db);
+            var model = new AdminUserViewModels();
+            model.Name = user.DisplayName;
+            model.Id = user.Id;
+            model.SelectedRoles = helper.ListUserRoles(id).ToArray();
+            model.Roles = new MultiSelectList(db.Roles, "Name", "Name", model.SelectedRoles);
+
+            return View(model);
+        }
+
+        // Post: EditUserRoles
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult EditUserRoles(AdminUserViewModels model)
+        {
+            var user = db.Users.Find(model.Id);
+            UserRolesHelper helper = new UserRolesHelper(db);
+
+            foreach (var role in db.Roles.Select(r => r.Name).ToList())
+            {
+                helper.RemoveUserFromRole(user.Id, role);
+            }
+
+            if (model.SelectedRoles != null)
+            {
+                foreach (var role in model.SelectedRoles)
+                {
+                    helper.AddUserToRole(user.Id, role);
+                }
+
+                return RedirectToAction("Admin", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Admin", "Home");
+            }
+        }
+
         public ActionResult Agenda()
         {
             var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
