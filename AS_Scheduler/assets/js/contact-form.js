@@ -71,7 +71,7 @@ $(document).ready(function($) {
             {
                 "latitude": "40.7127",       // latitude
                 "longitude":"-74.0059",       // longitude
-                "icon": "~/assets/upload/map_pin_1.png"  // Pin icon
+                "icon": "assets/upload/map_pin_1.png"  // Pin icon
             }
              
 

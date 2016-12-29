@@ -246,6 +246,7 @@
   <ItemGroup>
     <Content Include="assets\css\dataTables.min.css" />
     <Content Include="assets\css\table-responsive.css" />
+    <Content Include="assets\images\announcement-image.jpg" />
     <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-06.png" />

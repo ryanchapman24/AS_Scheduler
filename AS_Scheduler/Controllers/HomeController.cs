@@ -12,6 +12,7 @@ using System.Net;
 using System.IO;
 using Microsoft.AspNet.Identity.Owin;
 using Scheduler.Models.Helpers;
+using Scheduler.Models.Code_First;
 
 namespace Scheduler.Controllers
 {
@@ -36,6 +37,7 @@ namespace Scheduler.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
             return View();
         }
 
@@ -71,6 +73,7 @@ namespace Scheduler.Controllers
             ViewBag.Admins = adminUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
             return View();
         }
 
@@ -115,6 +118,45 @@ namespace Scheduler.Controllers
             {
                 return RedirectToAction("Admin", "Home");
             }
+        }
+
+        // Post: CreateChapter
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CreateChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter")] Chapter chapter)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            db.Chapters.Add(chapter);
+            db.SaveChanges();
+            return RedirectToAction("Admin", "Home");
+        }
+        // Post: CreateChapter
+        [Authorize(Roles = "Administrator")]
+        public ActionResult MakeCurrentChapter(int id)
+        {
+            foreach (var item in db.Chapters)
+            {
+                item.CurrentChapter = false;
+            }
+            var chapter = db.Chapters.Find(id);
+            chapter.CurrentChapter = true;
+            db.SaveChanges();
+            return RedirectToAction("Admin", "Home");
+        }
+
+        // Post: CreateAnnouncement
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CreateAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created")] Announcement announcement)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            announcement.AuthorId = user.Id;
+            announcement.Created = System.DateTime.Now;
+            db.Announcments.Add(announcement);
+            db.SaveChanges();
+            return RedirectToAction("Admin", "Home");
         }
 
         public ActionResult Agenda()

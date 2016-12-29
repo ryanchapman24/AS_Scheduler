@@ -22,6 +22,9 @@ namespace Scheduler.Models
                 ViewBag.LastName = user.LastName;
                 ViewBag.Company = user.Company;
                 ViewBag.JobTitle = user.JobTitle;
+
+                ViewBag.RecentAnnouncements = db.Announcments.OrderByDescending(a => a.Id).ToList();
+
                 base.OnActionExecuting(filterContext);
             }
         }
