@@ -171,6 +171,105 @@ namespace Scheduler.Controllers
             return View();
         }
 
+        public ActionResult Notes()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var chapters = new List<Chapter>();
+            foreach (var chapter in db.Chapters)
+            {
+                if (user.Notes.Where(n => n.ChapterId == chapter.Id).Count() > 0)
+                {
+                    chapters.Add(chapter);
+                }
+            }
+            ViewBag.Chapters = chapters.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Notes = user.Notes.OrderByDescending(n => n.Id).ToList();
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            ViewBag.ChapterName = currentChapter.ChapterName;
+            ViewBag.ChapterYear = currentChapter.ChapterYear;
+            return View();
+        }
+
+        // POST: Home/CreateNote
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNote([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Note note)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            if (ModelState.IsValid)
+            {
+                note.AuthorId = user.Id;
+                note.ChapterId = currentChapter.Id;
+                note.Created = System.DateTime.Now;
+                db.Notes.Add(note);
+                db.SaveChanges();
+                return RedirectToAction("Notes", "Home");
+            }
+            return View(note);
+        }
+
+        // GET: Home/EditNote/5
+        public ActionResult EditNote(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Note note = db.Notes.Find(id);
+            if (note == null)
+            {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        // POST: Home/EditNote/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditNote([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Note note)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Notes.Attach(note);                
+                db.Entry(note).Property("Title").IsModified = true;
+                db.Entry(note).Property("Body").IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Notes", "Home");
+            }
+            return View(note);
+        }
+
+        // GET: Home/DeleteNote/5
+        public ActionResult DeleteNote(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Note note = db.Notes.Find(id);
+            if (note == null)
+            {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        // POST: Home/DeleteNote/5
+        [HttpPost, ActionName("DeleteNote")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteNoteConfirmed(int id)
+        {
+            Note note = db.Notes.Find(id);
+            db.Notes.Remove(note);
+            db.SaveChanges();
+            return RedirectToAction("Notes", "Home");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendMessage(string name, string email, string subject, string message)

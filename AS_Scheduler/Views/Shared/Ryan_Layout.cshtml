@@ -157,7 +157,7 @@
                                         <li id="home-tab" class="menu-item" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a>
                                         </li>
                                     }
-                                    <li id="profile-tab" @*id="menu-item-98"*@ class="menu-item menu-item-has-children no_group" data-depth="0"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a>
+                                    <li id="profile-tab" @*id="menu-item-98"*@ class="menu-item menu-item-has-children no_group" data-depth="0"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">Profile</span></a>
                                         <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_2">
                                             @*<li class="menu-item no_group" data-depth="1"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a></li>*@
                                             <li class="menu-item no_group" data-depth="1"><a href="@Url.Action("Index","Manage")"><span class="menu-title">Manage Account</span></a></li>
@@ -187,10 +187,10 @@
                                             <li class="menu-item no_group" data-depth="1"><a href="about2.html"><span class="menu-title">About 2</span></a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item menu-item-has-children no_group" data-depth="0"><a href="contact.html"><span class="menu-title">Notes</span></a>
-                                        <ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_5">
+                                    <li id ="notes-tab" class="menu-item" data-depth="0"><a href="@Url.Action("Notes","Home")"><span class="menu-title">Notes</span></a>
+                                        @*<ul class='standar-dropdown standard autodrop_submenu sub-menu' id="ul_e266_5">
                                             <li class="menu-item no_group" data-depth="1"><a href="error.html"><span class="menu-title">Error 404</span></a></li>
-                                        </ul>
+                                        </ul>*@
                                     </li>
                                     <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat no_group" data-depth="0"><a href="http://www.anomalysquared.com/" target="_blank"><span class="menu-title">About Anomaly</span></a></li>
                                 </ul>

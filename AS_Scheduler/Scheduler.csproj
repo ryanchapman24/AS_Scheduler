@@ -345,6 +345,8 @@
     <Content Include="assets\images\icons\video.png" />
     <Content Include="assets\images\logo-footer.png" />
     <Content Include="assets\images\newsletter-buttm.png" />
+    <Content Include="assets\images\notepad.png" />
+    <Content Include="assets\images\notes-wallpaper.jpg" />
     <Content Include="assets\images\overlay.png" />
     <Content Include="assets\images\patterns\1.png" />
     <Content Include="assets\images\patterns\10.png" />
@@ -367,9 +369,11 @@
     <Content Include="assets\images\patterns\8.png" />
     <Content Include="assets\images\patterns\9.png" />
     <Content Include="assets\images\patterns\pattern.png" />
+    <Content Include="assets\images\Post-It-Note-with-Push-Pin-500x354.png" />
     <Content Include="assets\images\sort_asc.png" />
     <Content Include="assets\images\sort_both.png" />
     <Content Include="assets\images\sort_desc.png" />
+    <Content Include="assets\images\sticky-note-texture.jpg" />
     <Content Include="assets\images\toggle_close.png" />
     <Content Include="assets\images\toggle_open.png" />
     <Content Include="assets\js\background.video.js" />
@@ -922,6 +926,9 @@
     <Content Include="Views\Home\Agenda.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\EditUserRoles.cshtml" />
+    <Content Include="Views\Home\Notes.cshtml" />
+    <Content Include="Views\Home\DeleteNote.cshtml" />
+    <Content Include="Views\Home\EditNote.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
