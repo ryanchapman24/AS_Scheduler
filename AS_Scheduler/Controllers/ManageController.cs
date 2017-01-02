@@ -7,12 +7,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Scheduler.Models;
+using System.IO;
 
 namespace Scheduler.Controllers
 {
     [Authorize]
     public class ManageController : UserNames
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -56,6 +59,7 @@ namespace Scheduler.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.UpdateInformationSuccess ? "Your account information has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -277,6 +281,75 @@ namespace Scheduler.Controllers
         }
 
         //
+        // GET: /Manage/UpdateInformation
+        public ActionResult UpdateInformation()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            var model = new UpdateInformationViewModel();
+            model.FirstName = user.FirstName;
+            model.LastName = user.LastName;
+            model.PhoneNumber = user.PhoneNumber;
+            model.Company = user.Company;
+            model.JobTitle = user.JobTitle;
+            model.ProfilePic = user.ProfilePic;
+
+            return View(model);
+        }
+
+        //
+        // POST: /Manage/UpdateInformation
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateInformation(UpdateInformationViewModel model, HttpPostedFileBase image)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+
+            var pPic = model.ProfilePic;
+            if (ImageUploadValidator.IsWebFriendlyImage(image))
+            {
+                //Counter
+                var num = 0;
+                //Gets Filename without the extension
+                var fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                pPic = Path.Combine("/ProfilePics/", fileName + Path.GetExtension(image.FileName));
+                //Checks if pPic matches any of the current attachments, 
+                //if so it will loop and add a (number) to the end of the filename
+                while (db.Users.Any(u => u.ProfilePic == pPic))
+                {
+                    //Sets "filename" back to the default value
+                    fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                    //Add's parentheses after the name with a number ex. filename(4)
+                    fileName = string.Format(fileName + "(" + ++num + ")");
+                    //Makes sure pPic gets updated with the new filename so it could check
+                    pPic = Path.Combine("/ProfilePics/", fileName + Path.GetExtension(image.FileName));
+                }
+                image.SaveAs(Path.Combine(Server.MapPath("~/ProfilePics/"), fileName + Path.GetExtension(image.FileName)));
+            }
+
+            var defaultMedia = "/assets/images/DefaultProfilePic.png";
+            if (String.IsNullOrWhiteSpace(user.ProfilePic))
+            {
+                pPic = defaultMedia;
+            }
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.DisplayName = model.FirstName + ' ' + model.LastName;
+            user.PhoneNumber = model.PhoneNumber;
+            user.Company = model.Company;
+            user.JobTitle = model.JobTitle;
+            user.ProfilePic = pPic;
+
+            UserManager.Update(user);
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.UpdateInformationSuccess });
+        }
+
+        //
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
@@ -377,6 +450,7 @@ namespace Scheduler.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            UpdateInformationSuccess,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,

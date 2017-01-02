@@ -185,12 +185,13 @@
                                                                                                     <td></td>
                                                                                                 }
                                                                                                 <td class="text-nowrap">
-                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
-                                                                                                    @*<a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>*@
                                                                                                     @if (item.CurrentChapter == false)
                                                                                                     {
-                                                                                                        <a href="@Url.Action("MakeCurrentChapter", "Home", new { id = item.Id })"><i class="fa fa-calendar-check-o" style="margin-right: 3px; font-size: 16px"></i> Make Current</a>
+                                                                                                        <a href="@Url.Action("MakeCurrentChapter", "Home", new { id = item.Id })"><i class="fa fa-calendar-check-o" style="margin-right: 3px; font-size: 16px"></i> Make Current</a><br />
                                                                                                     }
+                                                                                                    <a href="@Url.Action("ChapterStats", "Home", new { id = item.Id })"><i class="fa fa-line-chart" style="margin-right: 3px; font-size: 16px"></i> Statistics</a><br />
+                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
+                                                                                                    @*<a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>*@
                                                                                                 </td>
                                                                                             </tr>
                                                                                         }

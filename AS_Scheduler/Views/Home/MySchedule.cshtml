@@ -1,10 +1,4 @@
-﻿@using Microsoft.AspNet.Identity;
-@using Scheduler.Models;
-@{
-    ApplicationDbContext db = new ApplicationDbContext();
-    var user = db.Users.Find(User.Identity.GetUserId());
-}
-<div id="page-default" class="clearfix">
+﻿<div id="page-default" class="clearfix">
     <div id="primary">
         <div id="content" role="main">
             <div class="page-content">
@@ -19,7 +13,7 @@
                                             <div class="table-responsive">
                                                 <div class="table">
                                                     <div class="table-cell">
-                                                        <h2>@ViewBag.ChapterName AGENDA</h2>
+                                                        <h2>MY SCHEDULE FOR @ViewBag.ChapterName</h2>
                                                     </div>
                                                     <div class="table-cell" style="text-align: right">
                                                         @ViewBag.ChapterYear
@@ -46,7 +40,7 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
-                                                                            @using (Html.BeginForm("AddToSchedule", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                            @using (Html.BeginForm("RemoveFromSchedule", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                                             {
                                                                                 @Html.AntiForgeryToken()
                                                                                 foreach (var item in ViewBag.Day1)
@@ -75,10 +69,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id).Count() == 0)
-                                                                                            {
-                                                                                                <input type="checkbox" name="Schedulize" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">ADD TO SCHEDULE</span>
-                                                                                            }
+                                                                                            <input type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">REMOVE</span>
                                                                                         </div>
                                                                                     </div>
                                                                                     <hr />
@@ -102,7 +93,7 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
-                                                                            @using (Html.BeginForm("AddToSchedule", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                            @using (Html.BeginForm("RemoveFromSchedule", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                                                             {
                                                                                 @Html.AntiForgeryToken()
                                                                                 foreach (var item in ViewBag.Day2)
@@ -131,10 +122,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id).Count() == 0)
-                                                                                            {
-                                                                                                <input type="checkbox" name="Schedulize" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">ADD TO SCHEDULE</span>
-                                                                                            }
+                                                                                            <input type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">REMOVE</span>
                                                                                         </div>
                                                                                     </div>
                                                                                     <hr />
@@ -185,7 +173,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-            $('#agenda-tab').addClass("current-menu-item");
+            $('#schedule-tab').addClass("current-menu-item");
         });
     </script>
 }

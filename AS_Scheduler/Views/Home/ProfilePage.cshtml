@@ -1,0 +1,295 @@
+﻿@model Scheduler.Models.ApplicationUser
+@using Microsoft.AspNet.Identity;
+
+
+    <div id="page-title" class="page-title">
+        <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="breadcrumb-wrap">
+                @*<ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a></li>
+                    <li>About 2</li>
+                </ul>*@
+            </div>
+        </div>
+    </div>
+    <div id="page-default" class="clearfix" style="margin-bottom: 20px">
+        <div id="primary">
+            <div id="content" role="main">
+                <div class="page-content">
+                    <article id="post-45" class="post-45 page type-page status-publish hentry">
+                        <div class="entry-content">
+                            <div class="row vc_row-fluid vc_custom_1433475351746">
+                                <div class="cms-bg-overlay" style="">
+                                </div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="vc_custom_heading layout2" style='text-align:center'>
+                                            <div class="vc_custom_heading-wrap row ">
+                                                <h2>Profile Page</h2>
+                                            </div>
+                                            <div class="custom-heading-driver layout2">
+                                            </div>
+                                        </div>
+                                        <div class="row vc_row-fluid vc_custom_1433327225943">
+                                            <div class="cms-bg-overlay" style="">
+                                            </div>
+                                            <div class="vc_col-sm-6 wpb_column vc_column_container ">
+                                                <div class="wpb_wrapper">
+                                                    <div class="wpb_single_image wpb_content_element vc_align_center">
+                                                        <div class="wpb_wrapper">
+                                                            <div class="vc_single_image-wrapper vc_box_border_grey">
+                                                                <img width="373" height="379" src="@Model.ProfilePic" class="vc_single_image-img attachment-full" alt="image-7" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="vc_col-sm-6 wpb_column vc_column_container ">
+                                                <div class="wpb_wrapper">
+                                                    <div class="wpb_text_column wpb_content_element ">
+                                                        <div class="wpb_wrapper">
+                                                            <h1 class="about-name" style="font-size: 48px; margin-bottom: 0px">@Model.FirstName.ToUpper()</h1>
+                                                            <h1 class="about-name" style="font-size: 48px; margin-top: 0px">@Model.LastName.ToUpper()</h1>
+                                                            <h2 class="about-regency" style="color: #696969"><i class="fa fa-envelope" style="margin-right: 5px"></i>@Model.Email</h2><br />
+                                                            <h2 class="about-regency" style="color: #696969"><i class="fa fa-phone" style="margin-right: 5px"></i>@Model.PhoneNumber</h2>
+                                                            <br />
+                                                            <div class="about-info">
+                                                                <div class="about-info-left">                                                              
+                                                                    <h2 class="about-regency" style="color: #29AAE3">@Model.Company</h2><br />
+                                                                    <span>@Model.JobTitle</span>
+                                                                </div>
+                                                                <div class="about-info-right" style="margin-top: 10px">
+                                                                    <span class="about-signature">@Model.DisplayName</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row vc_row-fluid vc_custom_1433475360243 pt30">
+                                <div class="cms-bg-overlay" style="">
+                                </div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="vc_custom_heading vc_custom_1433327242675 layout2" style='text-align:center'>
+                                            <div class="vc_custom_heading-wrap row ">
+                                                <h2>how bullet works</h2>
+                                            </div>
+                                            <div class="custom-heading-driver layout2">
+                                            </div>
+                                        </div>
+                                        <div class="cms-fancyboxes-wraper template-cms_fancybox--layout-2 content-align-default container-fluid" id="cms-fancy-box">
+                                            <div class="row cms-fancyboxes-body">
+                                                <div class="cms-fancyboxes-layout-2-item col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                                                    <div class="cms-fancyboxes-layout-2-item-wrap">
+                                                        <div class="fancy-box-icon">
+                                                            <a href="#"><i class="fa fa-search"></i></a>
+                                                        </div>
+                                                        <h3>technology</h3>
+                                                        <div class="fancy-box-driver">
+                                                        </div>
+                                                        <div class="fancy-box-content">
+                                                            <p>
+                                                                The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cms-fancyboxes-layout-2-item col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                                                    <div class="cms-fancyboxes-layout-2-item-wrap">
+                                                        <div class="fancy-box-icon">
+                                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                                        </div>
+                                                        <h3>logo branding</h3>
+                                                        <div class="fancy-box-driver">
+                                                        </div>
+                                                        <div class="fancy-box-content">
+                                                            <p>
+                                                                The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cms-fancyboxes-layout-2-item col-xs-12 col-sm-4 col-md-4 col-lg-4 ">
+                                                    <div class="cms-fancyboxes-layout-2-item-wrap">
+                                                        <div class="fancy-box-icon">
+                                                            <a href="#"><i class="fa fa-check"></i></a>
+                                                        </div>
+                                                        <h3>ideas</h3>
+                                                        <div class="fancy-box-driver">
+                                                        </div>
+                                                        <div class="fancy-box-content">
+                                                            <p>
+                                                                The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class="row vc_row-fluid vc_custom_1433475367406" style="position:relative;">
+                                <div class="cms-bg-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;background:rgba(255,255,255,0.6);">
+                                </div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="cms-carousel-layout-clients">
+                                            <h2>our happy clients</h2>
+                                            <div class="cms-carousel template-cms_carousel--layout-clients owl-carousel owl-theme owl-loaded" id="cms-carousel">
+                                                <div class="owl-stage-outer">
+                                                    <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: 1s; width: 2640px;">
+                                                        <div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="104" height="30" src="~/assets/upload/client-51.png" class="attachment-medium-rectangle wp-post-image" alt="client-5">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="97" height="30" src="~/assets/upload/client-411.png" class="attachment-medium-rectangle wp-post-image" alt="client-41">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="88" height="30" src="~/assets/upload/client-21.png" class="attachment-medium-rectangle wp-post-image" alt="client-2">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="102" height="30" src="~/assets/upload/client-31.png" class="attachment-medium-rectangle wp-post-image" alt="client-3">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="73" height="30" src="~/assets/upload/client-11.png" class="attachment-medium-rectangle wp-post-image" alt="client-1">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item active" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="104" height="30" src="~/assets/upload/client-51.png" class="attachment-medium-rectangle wp-post-image" alt="client-5">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item active" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="97" height="30" src="~/assets/upload/client-411.png" class="attachment-medium-rectangle wp-post-image" alt="client-41">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item active" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="88" height="30" src="~/assets/upload/client-21.png" class="attachment-medium-rectangle wp-post-image" alt="client-2">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item active" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="102" height="30" src="~/assets/upload/client-31.png" class="attachment-medium-rectangle wp-post-image" alt="client-3">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item active" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="73" height="30" src="~/assets/upload/client-11.png" class="attachment-medium-rectangle wp-post-image" alt="client-1">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="104" height="30" src="~/assets/upload/client-51.png" class="attachment-medium-rectangle wp-post-image" alt="client-5">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="97" height="30" src="~/assets/upload/client-411.png" class="attachment-medium-rectangle wp-post-image" alt="client-41">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="88" height="30" src="~/assets/upload/client-21.png" class="attachment-medium-rectangle wp-post-image" alt="client-2">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="102" height="30" src="~/assets/upload/client-31.png" class="attachment-medium-rectangle wp-post-image" alt="client-3">
+                                                                </div>
+                                                            </div>
+                                                        </div><div class="owl-item cloned" style="width: 106px; margin-right: 70px;">
+                                                            <div class="cms-clients-item ">
+                                                                <div class="cms-clients-item-wrap">
+                                                                    <img width="73" height="30" src="~/assets/upload/client-11.png" class="attachment-medium-rectangle wp-post-image" alt="client-1">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-arrow-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-arrow-right"></i></div></div><div class="owl-dots" style="display: none;"></div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                            @*<div class="row vc_row-fluid vc_custom_1433475367406" style="position:relative;">
+                                <div class="cms-bg-overlay" style="position:absolute; top:0; left:0; right:0; bottom:0;background:rgba(255,255,255,0.6);">
+                                </div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="cms-carousel-layout-clients">
+                                            <h2>our happy clients</h2>
+                                            <div class="cms-carousel template-cms_carousel--layout-clients" id="cms-carousel">
+                                                <div class="cms-clients-item">
+                                                    <div class="cms-clients-item-wrap">
+                                                        <img width="104" height="30" src="~/assets/upload/client-51.png" class="attachment-medium-rectangle wp-post-image" alt="client-5" />
+                                                    </div>
+                                                </div>
+                                                <div class="cms-clients-item">
+                                                    <div class="cms-clients-item-wrap">
+                                                        <img width="97" height="30" src="~/assets/upload/client-411.png" class="attachment-medium-rectangle wp-post-image" alt="client-41" />
+                                                    </div>
+                                                </div>
+                                                <div class="cms-clients-item">
+                                                    <div class="cms-clients-item-wrap">
+                                                        <img width="88" height="30" src="~/assets/upload/client-21.png" class="attachment-medium-rectangle wp-post-image" alt="client-2" />
+                                                    </div>
+                                                </div>
+                                                <div class="cms-clients-item">
+                                                    <div class="cms-clients-item-wrap">
+                                                        <img width="102" height="30" src="~/assets/upload/client-31.png" class="attachment-medium-rectangle wp-post-image" alt="client-3" />
+                                                    </div>
+                                                </div>
+                                                <div class="cms-clients-item">
+                                                    <div class="cms-clients-item-wrap">
+                                                        <img width="73" height="30" src="~/assets/upload/client-11.png" class="attachment-medium-rectangle wp-post-image" alt="client-1" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                        <!-- .entry-content -->
+                    </article>
+                    <!-- #post -->
+                    <div id="comments" class="comments-area">
+                    </div>
+                    <!-- #comments .comments-area -->
+                </div>
+            </div>
+            <!-- #content -->
+        </div>
+        <!-- #primary -->
+    </div>

@@ -41,6 +41,38 @@ namespace Scheduler.Controllers
             return View();
         }
 
+        public ActionResult ProfilePage(string id)
+        {
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var userCheck = db.Users.Find(id);
+                if (userCheck != null)
+                {
+                    var roleListCheck = new List<string>();
+                    foreach (var role in userCheck.Roles)
+                    {
+                        var roleName = db.Roles.First(u => u.Id == role.RoleId);
+                        roleListCheck.Add(roleName.Name);
+                    }
+                    ViewBag.RoleList = roleListCheck.ToList();
+
+                    return View(userCheck);
+                }
+
+            }
+
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var roleList = new List<string>();
+            foreach (var role in user.Roles)
+            {
+                var roleName = db.Roles.First(u => u.Id == role.RoleId);
+                roleList.Add(roleName.Name);
+            }
+            ViewBag.RoleList = roleList.ToList();
+
+            return View(user);
+        }
+
         [Authorize(Roles = "Administrator")]
         public ActionResult Admin()
         {
@@ -74,6 +106,17 @@ namespace Scheduler.Controllers
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
+            return View();
+        }
+
+        public ActionResult ChapterStats(int id)
+        {
+            var chapter = db.Chapters.Find(id);
+            ViewBag.ChapterName = chapter.ChapterName;
+            ViewBag.ChapterYear = chapter.ChapterYear;
+            ViewBag.GalleryPhotos = db.GalleryPhotos.Where(p => p.ChapterId == id).Count();
+            ViewBag.Notes = db.Notes.Where(n => n.ChapterId == id).Count();
+            ViewBag.ScheduledEvents = db.MyEvents.Where(e => e.ChapterId == id).Count();
             return View();
         }
 
@@ -169,6 +212,66 @@ namespace Scheduler.Controllers
             ViewBag.Day2 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 2).OrderBy(e => e.StartTime).ToList();
 
             return View();
+        }
+
+        public ActionResult MySchedule()
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            ViewBag.ChapterName = currentChapter.ChapterName;
+            ViewBag.ChapterYear = currentChapter.ChapterYear;
+
+            ViewBag.Day1 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 1 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day2 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 2 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToSchedule(List<int> Schedulize)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            if (Schedulize != null)
+            {
+                int count = Schedulize.Count();
+                for (int i = 0; i < count; i++)
+                {
+                    var eVent = db.Events.Find(Schedulize[i]);
+                    var myEvent = new MyEvent();
+                    myEvent.CorrespondingEventId = eVent.Id;
+                    myEvent.AuthorId = user.Id;
+                    myEvent.ChapterId = eVent.ChapterId;
+                    myEvent.DayId = eVent.DayId;
+                    myEvent.StartTime = eVent.StartTime;
+                    myEvent.EndTime = eVent.EndTime;
+                    myEvent.EventName = eVent.EventName;
+                    myEvent.Description = eVent.Description;
+                    db.MyEvents.Add(myEvent);
+                    db.SaveChanges();
+                }
+            }          
+
+            return RedirectToAction("MySchedule", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveFromSchedule(List<int> Remove)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            if (Remove != null) 
+            {
+                int count = Remove.Count();
+                for (int i = 0; i < count; i++)
+                {
+                    var myEvent = db.MyEvents.Find(Remove[i]);
+                    db.MyEvents.Remove(myEvent);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("MySchedule", "Home");
         }
 
         public ActionResult Notes()
