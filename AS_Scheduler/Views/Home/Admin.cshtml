@@ -30,6 +30,7 @@
                                                         <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Users" class="ui-tabs-anchor" role="presentation">Users</a></li>
                                                         <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Chapters" class="ui-tabs-anchor" role="presentation">Chapters</a></li>
                                                         <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Announcements" class="ui-tabs-anchor" role="presentation">Announcements</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Photos" class="ui-tabs-anchor" role="presentation">Unpublished Photos</a></li>
                                                     </ul>
                                                     <div id="Users" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
                                                         <div class="row vc_row-fluid">
@@ -283,6 +284,99 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div id="Photos" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        @using (Html.BeginForm("Publish", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                        {
+                                                        @Html.AntiForgeryToken()
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">                                                                        
+                                                                            <div id="page-blog">
+                                                                                <div id="primary">
+                                                                                    <div id="blog-content" role="main">
+                                                                                        <div class="page-blog-1-column">
+                                                                                            <div class="page-wrapper" style="padding-left: 0px; padding-right: 0px">
+                                                                                                <div class="blog-items">
+                                                                                                    @foreach (var photo in ViewBag.UnpublishedPhotos)
+                                                                                                    {
+                                                                                                        <div class="post-item">
+                                                                                                            <article class="post-12831 post type-post status-publish format-link has-post-thumbnail hentry category-blog-1-column post_format-post-format-link" style="margin-bottom: 0px">
+                                                                                                                <div class="post-item-inner">
+                                                                                                                    <div class="post-media ">
+                                                                                                                        <div class="post-media-image pull-left">
+                                                                                                                            <div class="cms-grid-media has-thumbnail">
+                                                                                                                                <img style="min-height: 350px" src="@photo.File" class="attachment-medium-rectangle-1 wp-post-image"/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <a class="cms-grid-portfolio-item-lightbox" href="@photo.File"><span class="post-format-icon"><i class="fa fa-search"></i></span></a>
+                                                                                                                    </div>
+                                                                                                                    <div class="post-content" style="height: inherit; min-height: 350px">
+                                                                                                                        <div class="post-media-extra">
+                                                                                                                            <div class="post-media-extra-item post-date">
+                                                                                                                                @photo.Created.ToString("g")
+                                                                                                                            </div>
+                                                                                                                            @*<div class="post-media-extra-item post-like">
+                                                                                                                                <span class="cms-post-like" data-id="12831"><span>7 </span><i class="fa fa-thumbs-o-up"></i></span>
+                                                                                                                            </div>*@
+                                                                                                                        </div>
+                                                                                                                        <br /><br />
+                                                                                                                        <div class="post-title">
+                                                                                                                            <h4 style="margin: 0px 0px 4px 0px">
+                                                                                                                                @if (photo.Caption != null)
+                                                                                                                                {
+                                                                                                                                    <em><strong>"@photo.Caption"</strong></em>
+                                                                                                                                }
+                                                                                                                                else
+                                                                                                                                {
+                                                                                                                                    <em><strong>No Caption</strong></em>
+                                                                                                                                }
+                                                                                                                            </h4>
+                                                                                                                            <p class="post-details" style="line-height: 15px">
+                                                                                                                                <em class="detail-comment">Posted by @photo.Author.DisplayName</em><br />
+                                                                                                                                <em class="detail-comment">for @photo.Chapter.ChapterName (@photo.Chapter.ChapterYear)</em>
+                                                                                                                            </p>
+                                                                                                                        </div>
+                                                                                                                        <div class="cms-driver">
+                                                                                                                        </div>
+                                                                                                                        <p style="margin-top: 30px">
+                                                                                                                            <input type="checkbox" name="Publish" value="@photo.Id" /> <span style="margin-right: 20px"> Publish</span>
+                                                                                                                            <input type="checkbox" name="Ignore" value="@photo.Id" /> <span> Ignore</span>
+                                                                                                                        </p>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </article>
+                                                                                                            <!-- #post -->
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                    @*<nav class="navigation paging-navigation" role="navigation">
+                                                                                                        <div class="pagination loop-pagination">
+                                                                                                            <span class='page-numbers current'>1</span>
+                                                                                                            <a class='page-numbers' href='#'>2</a>
+                                                                                                            <a class="next page-numbers" href="#">Next</a>
+                                                                                                        </div>
+                                                                                                        <!-- .pagination -->
+                                                                                                    </nav>*@
+                                                                                                    <!-- .navigation -->
+                                                                                                </div>      
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- #content -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <button type="submit" class="btn btn-theme pull-right">Confirm</button>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>

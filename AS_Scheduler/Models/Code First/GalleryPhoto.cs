@@ -14,6 +14,7 @@ namespace Scheduler.Models.Code_First
         public string AuthorId { get; set; }
         public DateTimeOffset Created { get; set; }
         public bool Published { get; set; }
+        public bool Ignored { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
         public virtual Chapter Chapter { get; set; }

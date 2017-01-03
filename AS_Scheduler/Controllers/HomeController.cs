@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.AspNet.Identity.Owin;
 using Scheduler.Models.Helpers;
 using Scheduler.Models.Code_First;
+using System.Web.Security;
 
 namespace Scheduler.Controllers
 {
@@ -37,12 +38,26 @@ namespace Scheduler.Controllers
 
         public ActionResult Index()
         {
+            var chapters = new List<Chapter>();
+            foreach (var chapter in db.Chapters)
+            {
+                if (db.GalleryPhotos.Where(p => p.ChapterId == chapter.Id && p.Published == true).Count() > 0)
+                {
+                    chapters.Add(chapter);
+                }
+            }
+            ViewBag.Chapters = chapters.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Photos = db.GalleryPhotos.Where(p => p.Published == true).OrderByDescending(n => n.Id).ToList();
             ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
             return View();
         }
 
         public ActionResult ProfilePage(string id)
         {
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            ViewBag.ChapterName = currentChapter.ChapterName;
+            ViewBag.ChapterYear = currentChapter.ChapterYear;
+            var now = System.DateTime.Now;
             if (!string.IsNullOrWhiteSpace(id))
             {
                 var userCheck = db.Users.Find(id);
@@ -54,8 +69,18 @@ namespace Scheduler.Controllers
                         var roleName = db.Roles.First(u => u.Id == role.RoleId);
                         roleListCheck.Add(roleName.Name);
                     }
+                    var chapters = new List<Chapter>();
+                    foreach (var chapter in db.Chapters)
+                    {
+                        if (userCheck.GalleryPhotos.Where(p => p.ChapterId == chapter.Id).Count() > 0)
+                        {
+                            chapters.Add(chapter);
+                        }
+                    }
                     ViewBag.RoleList = roleListCheck.ToList();
-
+                    ViewBag.UpcomingEvents = db.MyEvents.Where(e => e.AuthorId == userCheck.Id && e.ChapterId == currentChapter.Id && e.StartTime > now).OrderBy(e => e.StartTime).ToList();
+                    ViewBag.Chapters = chapters.OrderByDescending(c => c.Id).ToList();
+                    ViewBag.Photos = userCheck.GalleryPhotos.OrderByDescending(n => n.Id).ToList();
                     return View(userCheck);
                 }
 
@@ -68,8 +93,18 @@ namespace Scheduler.Controllers
                 var roleName = db.Roles.First(u => u.Id == role.RoleId);
                 roleList.Add(roleName.Name);
             }
+            var myChapters = new List<Chapter>();
+            foreach (var chapter in db.Chapters)
+            {
+                if (user.GalleryPhotos.Where(p => p.ChapterId == chapter.Id).Count() > 0)
+                {
+                    myChapters.Add(chapter);
+                }
+            }
             ViewBag.RoleList = roleList.ToList();
-
+            ViewBag.UpcomingEvents = db.MyEvents.Where(e => e.AuthorId == user.Id && e.ChapterId == currentChapter.Id).OrderByDescending(e => e.StartTime).ToList();
+            ViewBag.Chapters = myChapters.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Photos = user.GalleryPhotos.OrderByDescending(n => n.Id).ToList();
             return View(user);
         }
 
@@ -80,11 +115,7 @@ namespace Scheduler.Controllers
             var regularUsers = new List<AdminUserListModels>();
             UserRolesHelper helper = new UserRolesHelper(db);
 
-            var ryan = db.Users.Find("61cd4463-7283-4241-bfc5-04f0a4a11902").Id;
-            var taylor = db.Users.Find("619856cf-24df-4ccf-bbba-1d38bab527a8").Id;
-            var clarissa = db.Users.Find("dd1b1885-c104-4835-8c0a-19e75643d900").Id;
-
-            foreach (var user in db.Users.Where(u => u.Id == ryan || u.Id == taylor || u.Id == clarissa))
+            foreach (var user in db.Users.Where(u => u.Roles.Any(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2")))
             {
                 var eachUser = new AdminUserListModels();
                 eachUser.roles = new List<string>();
@@ -93,7 +124,7 @@ namespace Scheduler.Controllers
 
                 adminUsers.Add(eachUser);
             }
-            foreach (var user in db.Users.Where(u => u.Id != ryan && u.Id != taylor && u.Id != clarissa))
+            foreach (var user in db.Users.Where(u => u.Roles.Where(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2").Count() == 0))
             {
                 var eachUser = new AdminUserListModels();
                 eachUser.roles = new List<string>();
@@ -106,6 +137,7 @@ namespace Scheduler.Controllers
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
+            ViewBag.UnpublishedPhotos = db.GalleryPhotos.Where(p => p.Published == false && p.Ignored == false).OrderBy(p => p.Id).ToList();
             return View();
         }
 
@@ -371,6 +403,134 @@ namespace Scheduler.Controllers
             db.Notes.Remove(note);
             db.SaveChanges();
             return RedirectToAction("Notes", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPhoto(GalleryPhoto galleryPhoto, HttpPostedFileBase image)
+        {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            if (ImageUploadValidator.IsWebFriendlyImage(image))
+            {
+                //Counter
+                var num = 0;
+                //Gets Filename without the extension
+                var fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                var gPic = Path.Combine("/GalleryPhotos/", fileName + Path.GetExtension(image.FileName));
+                //Checks if pPic matches any of the current attachments, 
+                //if so it will loop and add a (number) to the end of the filename
+                while (db.GalleryPhotos.Any(p => p.File == gPic))
+                {
+                    //Sets "filename" back to the default value
+                    fileName = Path.GetFileNameWithoutExtension(image.FileName);
+                    //Add's parentheses after the name with a number ex. filename(4)
+                    fileName = string.Format(fileName + "(" + ++num + ")");
+                    //Makes sure pPic gets updated with the new filename so it could check
+                    gPic = Path.Combine("/GalleryPhotos/", fileName + Path.GetExtension(image.FileName));
+                }
+                image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos/"), fileName + Path.GetExtension(image.FileName)));
+                galleryPhoto.File = gPic;
+                db.SaveChanges();
+            }
+
+            galleryPhoto.Created = System.DateTime.Now;
+            galleryPhoto.AuthorId = user.Id;
+            galleryPhoto.Published = false;
+            galleryPhoto.Ignored = false;
+            galleryPhoto.ChapterId = currentChapter.Id;
+            db.GalleryPhotos.Add(galleryPhoto);
+            db.SaveChanges();
+
+            return RedirectToAction("ProfilePage", "Home", new { id = User.Identity.GetUserId() });
+        }
+
+        // GET: Home/EditPhoto/5
+        public ActionResult EditPhoto(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GalleryPhoto galleryPhoto = db.GalleryPhotos.Find(id);
+            if (galleryPhoto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(galleryPhoto);
+        }
+
+        // POST: Home/EditPhoto/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPhoto([Bind(Include = "Id,File,Caption,AuthorId,Created,Published,Ignored,ChapterId")] GalleryPhoto galleryPhoto)
+        {
+            if (ModelState.IsValid)
+            {
+                db.GalleryPhotos.Attach(galleryPhoto);
+                db.Entry(galleryPhoto).Property("Caption").IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("ProfilePage", "Home", new { id = User.Identity.GetUserId() });
+            }
+            return View(galleryPhoto);
+        }
+
+        // GET: Home/DeletePhoto/5
+        public ActionResult DeletePhoto(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GalleryPhoto galleryPhoto = db.GalleryPhotos.Find(id);
+            if (galleryPhoto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(galleryPhoto);
+        }
+
+        // POST: Home/DeleteNote/5
+        [HttpPost, ActionName("DeletePhoto")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePhotoConfirmed(int id)
+        {
+            GalleryPhoto galleryPhoto = db.GalleryPhotos.Find(id);
+            db.GalleryPhotos.Remove(galleryPhoto);
+            db.SaveChanges();
+            return RedirectToAction("ProfilePage", "Home", new { id = User.Identity.GetUserId() });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Publish(List<int> Publish, List<int> Ignore)
+        {
+            if (Publish != null)
+            {
+                int count = Publish.Count();
+                for (int i = 0; i < count; i++)
+                {
+                    var photo = db.GalleryPhotos.Find(Publish[i]);
+                    photo.Published = true;
+                    db.SaveChanges();
+                }
+            }
+
+            if (Ignore != null)
+            {
+                int total = Ignore.Count();
+                for (int i = 0; i < total; i++)
+                {
+                    var photo = db.GalleryPhotos.Find(Ignore[i]);
+                    photo.Ignored = true;
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Admin", "Home");
         }
 
         [HttpPost]

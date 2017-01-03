@@ -192,7 +192,7 @@
                                 </div>
                             </div>
                         </div>*@
-                        <div class="row vc_row-fluid vc_custom_1432886500341" style="">
+                        @*<div class="row vc_row-fluid vc_custom_1432886500341" style="">
                             <div class="cms-bg-overlay" style=""></div>
                             <div class="vc_col-sm-12 wpb_column vc_column_container ">
                                 <div class="wpb_wrapper">
@@ -299,8 +299,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row vc_row-fluid row-backgound-img vc_custom_1437452879315" id="div_93ba_0">
+                        </div>*@
+                        @*<div class="row vc_row-fluid row-backgound-img vc_custom_1437452879315" id="div_93ba_0">
                             <div class="cms-bg-overlay" id="div_93ba_1"></div>
                             <div class="vc_col-sm-12 wpb_column vc_column_container ">
                                 <div class="wpb_wrapper">
@@ -368,7 +368,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="row vc_row-fluid vc_custom_1432886519758" style="">
                             <div class="cms-bg-overlay" style=""></div>
                             <div class="vc_col-sm-12 wpb_column vc_column_container  vc_custom_1431336901728">
@@ -1302,6 +1302,8 @@
                                 </div>
                             </div>
                         </div>*@
+                        @if (ViewBag.Announcements.Count > 0)
+                        {
                         <div class="row vc_row-fluid vc_custom_1432886574737" style="">
                             <div class="cms-bg-overlay" style=""></div>
                             <div class="vc_col-sm-12 wpb_column vc_column_container ">
@@ -1665,145 +1667,68 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row vc_row-fluid vc_custom_1432886561504" style="">
-                            <div class="cms-bg-overlay" style=""></div>
-                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
-                                <div class="wpb_wrapper">
-                                    <div class="vc_custom_heading vc_custom_1433301559967 default">
-                                        <div class="vc_custom_heading-wrap  row ">
-                                            <div class="table-responsive">
-                                                <div class="table">
-                                                    <div class="table-cell">
-                                                        <h2>GALLERY</h2></div>
-                                                    <div class="table-cell">
-                                                        <p>Sights and memories</p>
+                        }
+                        @if (ViewBag.Photos.Count > 0)
+                        {
+                            <div class="row vc_row-fluid vc_custom_1432886561504" style="">
+                                <div class="cms-bg-overlay" style=""></div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="vc_custom_heading vc_custom_1433301559967 default">
+                                            <div class="vc_custom_heading-wrap  row ">
+                                                <div class="table-responsive">
+                                                    <div class="table">
+                                                        <div class="table-cell">
+                                                            <h2>GALLERY</h2></div>
+                                                        <div class="table-cell">
+                                                            <p>Sights and memories</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="custom-heading-driver default"></div>
                                         </div>
-                                        <div class="custom-heading-driver default"></div>
-                                    </div>
-                                    <div class="cms-grid-wraper template-cms_grid--portfolio " id="cms-grid">
-                                        <div class="cms-grid-filter">
-                                            <ul class="cms-filter-category">
-                                                <li><a class="active" href="#" data-group="all">All</a></li>
-                                                <li><a href="#" data-group="category-graphics">graphics </a>
-                                                </li>
-                                                <li><a href="#" data-group="category-illustration">Illustration</a>
-                                                </li>
-                                                <li><a href="#" data-group="category-videos">videos</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="row cms-grid cms-grid-portfolio cms-grid cms-grid-masonry">
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-illustration"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/10472765_1555270574755785_6437854961913525373_n-600x600.jpg" class="attachment-medium-square wp-post-image" alt="10472765_1555270574755785_6437854961913525373_n" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/10472765_1555270574755785_6437854961913525373_n.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
+                                        <div class="cms-grid-wraper template-cms_grid--portfolio " id="cms-grid">
+                                            <div class="cms-grid-filter">
+                                                <ul class="cms-filter-category">
+                                                    <li>
+                                                        <a class="active" href="#" data-group="all">All</a>
+                                                    </li>
+                                                    @foreach (var chapter in ViewBag.Chapters)
+                                                    {
+                                                        <li>
+                                                            <a href="#" data-group="@string.Format("{0}{1}{2}{3}{4}", chapter.ChapterName, "-", chapter.ChapterYear, "-", chapter.Id)">
+                                                                @chapter.ChapterName (@chapter.ChapterYear)
+                                                            </a>
+                                                        </li>
+                                                        }                                       
+                                                </ul>
                                             </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-illustration"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/oreo-hres-600x600.jpg" class="attachment-medium-square wp-post-image" alt="oreo-hres" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/oreo-hres.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
+                                            <div class="row cms-grid cms-grid-portfolio cms-grid cms-grid-masonry">
+                                                @foreach (var photo in ViewBag.Photos)
+                                                {
+                                                    <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all",@string.Format("{0}{1}{2}{3}{4}{5}{6}", '"', photo.Chapter.ChapterName, "-", photo.Chapter.ChapterYear, "-", photo.ChapterId, '"')]'>
+                                                        <div class="cms-grid-item-wrap">
+                                                            <div class="cms-grid-media has-thumbnail">
+                                                                <img width="600" height="600" src="@photo.File" class="attachment-medium-square wp-post-image" alt="@photo.File" style="border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/>
+                                                            </div>
+                                                            <div class="cms-grid-item-icon">
+                                                                <a class="cms-grid-portfolio-item-lightbox" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted by @photo.Author.DisplayName on @photo.Created.ToString("G")</em>" href="@photo.File" style="margin-left: 0px"><i class="fa fa-search"></i></a>
+                                                            </div>
+                                                            <div class="cms-grid-item-overlay">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
+                                                }
                                             </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/posh-zebra-rug-pattern-with-stylish-brown-couch-and-white-tender-sofa-harrow-818-600x600.jpg" class="attachment-medium-square wp-post-image" alt="posh-zebra-rug-pattern-with-stylish-brown-couch-and-white-tender-sofa-harrow-818" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/posh-zebra-rug-pattern-with-stylish-brown-couch-and-white-tender-sofa-harrow-818.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-illustration"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/51-600x600.jpg" class="attachment-medium-square wp-post-image" alt="5" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/51.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/Writing_Tea-600x600.jpg" class="attachment-medium-square wp-post-image" alt="Writing_Tea" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/Writing_Tea.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-illustration","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/wdx1rhpqqc4-oliver-berghold-600x600.jpg" class="attachment-medium-square wp-post-image" alt="wdx1rhpqqc4-oliver-berghold" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/wdx1rhpqqc4-oliver-berghold.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/DeathtoStock_SlowDown6-600x600.jpg" class="attachment-medium-square wp-post-image" alt="DeathtoStock_SlowDown6" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/DeathtoStock_SlowDown6.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/DeathtoStock_SlowDown2-600x600.jpg" class="attachment-medium-square wp-post-image" alt="DeathtoStock_SlowDown2" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/DeathtoStock_SlowDown2.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all","category-graphics","category-videos"]'>
-                                                <div class="cms-grid-item-wrap">
-                                                    <div class="cms-grid-media  has-thumbnail"><img width="600" height="600" src="~/assets/upload/11-600x600.jpg" class="attachment-medium-square wp-post-image" alt="1" /></div>
-                                                    <div class="cms-grid-item-icon">
-                                                        <a class="cms-grid-portfolio-item-lightbox" href="~/assets/upload/11.jpg"> <i class="fa fa-search"></i></a>
-                                                        <a class="cms-grid-portfolio-item-link" href="#"> <i class="fa fa-expand"></i></a>
-                                                    </div>
-                                                    <div class="cms-grid-item-overlay">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cms-grid-footer">
-                                            <a href="#">GO TO FULL GALLERY</a>
+                                            @*<div class="cms-grid-footer">
+                                                <a href="#">GO TO FULL GALLERY</a>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                         @*<div class="row vc_row-fluid row_background_none vc_custom_1432944508035" style="">
                             <div class="cms-bg-overlay" style=""></div>
                             <div class="vc_col-sm-8 row_background_none wpb_column vc_column_container ">

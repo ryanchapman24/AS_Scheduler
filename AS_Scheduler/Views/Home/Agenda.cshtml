@@ -3,6 +3,7 @@
 @{
     ApplicationDbContext db = new ApplicationDbContext();
     var user = db.Users.Find(User.Identity.GetUserId());
+    var now = System.DateTime.Now;
 }
 <div id="page-default" class="clearfix">
     <div id="primary">
@@ -75,7 +76,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id).Count() == 0)
+                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id && e.StartTime > now).Count() == 0)
                                                                                             {
                                                                                                 <input type="checkbox" name="Schedulize" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">ADD TO SCHEDULE</span>
                                                                                             }
@@ -131,7 +132,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id).Count() == 0)
+                                                                                            @if (user.MyEvents.Where(e => e.CorrespondingEventId == item.Id && e.StartTime > now).Count() == 0)
                                                                                             {
                                                                                                 <input type="checkbox" name="Schedulize" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">ADD TO SCHEDULE</span>
                                                                                             }
