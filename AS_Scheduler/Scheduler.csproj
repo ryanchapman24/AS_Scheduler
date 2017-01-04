@@ -940,6 +940,7 @@
     <Content Include="Views\Home\DeletePhoto.cshtml" />
     <Content Include="Views\Home\EditAnnouncement.cshtml" />
     <Content Include="Views\Home\DeleteAnnouncement.cshtml" />
+    <Content Include="Views\Home\EditChapter.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

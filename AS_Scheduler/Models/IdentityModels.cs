@@ -17,6 +17,8 @@ namespace Scheduler.Models
         public string ProfilePic { get; set; }
         public string Company { get; set; }
         public string JobTitle { get; set; }
+        public int JoinChapterId { get; set; }
+        public virtual Chapter JoinChapter { get; set; }
         public ApplicationUser()
         {
             this.MyEvents = new HashSet<MyEvent>();

@@ -154,6 +154,7 @@ namespace Scheduler.Controllers
             ViewBag.Notes = db.Notes.Where(n => n.ChapterId == id).Count();
             ViewBag.ScheduledEvents = db.MyEvents.Where(e => e.ChapterId == id).Count();
             ViewBag.Announcements = db.Announcements.Where(a => a.ChapterId == id).Count();
+            ViewBag.NewUsers = db.Users.Where(u => u.JoinChapterId == id).Count();
             return View();
         }
 
@@ -223,6 +224,39 @@ namespace Scheduler.Controllers
             chapter.CurrentChapter = true;
             db.SaveChanges();
             return RedirectToAction("Admin", "Home");
+        }
+
+        // GET: Home/EditChapter/5
+        public ActionResult EditChapter(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Chapter chapter = db.Chapters.Find(id);
+            if (chapter == null)
+            {
+                return HttpNotFound();
+            }
+            return View(chapter);
+        }
+
+        // POST: Home/EditChapter/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter")] Chapter chapter)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Chapters.Attach(chapter);
+                db.Entry(chapter).Property("ChapterName").IsModified = true;
+                db.Entry(chapter).Property("ChapterYear").IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Admin", "Home");
+            }
+            return View(chapter);
         }
 
         // Post: CreateAnnouncement
