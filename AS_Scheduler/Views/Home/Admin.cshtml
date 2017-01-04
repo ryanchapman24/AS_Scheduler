@@ -109,6 +109,42 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
+                                                                            <hr />
+                                                                            <h3 style="margin-bottom: 5px">Blocked</h3>
+                                                                            <em style="color: #29AAE3; font-size: 12px">need user role for access</em>
+                                                                            <div class="table-responsive" style="margin-top: 30px">
+                                                                                <table id="datatable-basic-scrolling2" class="table table-hover datatable user-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Contact</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Blocked)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Home", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -266,7 +302,8 @@
                                                                                             <tr>
                                                                                                 <td class="text-nowrap" style="white-space: nowrap">
                                                                                                     <strong style="color: #29AAE3">@item.Created.ToString("g")</strong><br />
-                                                                                                    by @item.Author.DisplayName
+                                                                                                    by @item.Author.DisplayName<br />
+                                                                                                    for <strong>@item.Chapter.ChapterName (@item.Chapter.ChapterYear)</strong>
                                                                                                 </td>
                                                                                                 <td>@item.Title</td>
                                                                                                 <td>@item.Body</td>

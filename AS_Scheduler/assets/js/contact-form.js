@@ -69,9 +69,9 @@ $(document).ready(function($) {
     var myMarkers = {
         "markers": [
             {
-                "latitude": "40.7127",       // latitude
-                "longitude":"-74.0059",       // longitude
-                "icon": "assets/upload/map_pin_1.png"  // Pin icon
+                "latitude": "36.050727",       // latitude
+                "longitude":"-79.841125",       // longitude
+                "icon": "/assets/upload/map_pin_1.png"  // Pin icon
             }
              
 
@@ -89,7 +89,7 @@ $(document).ready(function($) {
     try {
         $("#google_map").mapmarker({
             zoom : 14,                          // Zoom
-            center: "40.7127,-74.0059",        // Center of map
+            center: "36.050727,-79.841125",        // Center of map
             type: "ROADMAP",                    // Map Type
             controls: "HORIZONTAL_BAR",         // Controls style
             dragging:1,                         // Allow dragging?

@@ -24,6 +24,8 @@ namespace Scheduler.Models
                 ViewBag.JobTitle = user.JobTitle;
 
                 var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+                ViewBag.ChapterNameLayout = currentChapter.ChapterName;
+                ViewBag.ChapterYearLayout = currentChapter.ChapterYear;
                 ViewBag.RecentAnnouncements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(a => a.Id).ToList();
 
                 base.OnActionExecuting(filterContext);

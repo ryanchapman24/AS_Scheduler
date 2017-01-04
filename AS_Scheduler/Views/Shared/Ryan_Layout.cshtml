@@ -275,6 +275,11 @@
                                                 if (count == 3) { break; };
                                             }
                                         }
+                                        else
+                                        {
+                                            <br />
+                                            <em>no recent announcements to show</em>
+                                        }
                                     </div>
                                 </div>
                                 @*<ul class="news-list cs-popular">
@@ -324,8 +329,11 @@
                                         </div>
                                     </li>
                                 </ul>*@
-                                <hr />
-                                <div class="cs-recent-post-custom-link"><a href="#">ANNOUNCEMENT HUB</a></div>
+                                @if (ViewBag.RecentAnnouncements.Count > 0)
+                                {
+                                    <hr />
+                                    <div class="cs-recent-post-custom-link"><a href="#">ANNOUNCEMENT HUB</a></div>
+                                }                              
                             </div>
                         </aside>
                         <aside id="text-4" class="widget widget_text sidebar-left">
@@ -365,40 +373,55 @@
                             <div class="wrapper clearfix">
                                 <div class="footer-top-sidebar-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <aside id="text-5" class="widget widget_text">
-                                        <h3 class="widget-title">About Us</h3>
+                                        <h3 class="widget-title">Our Role</h3>
                                         <div class="textwidget"><img src="~/assets/upload/Anom_Logo_Wifi.png" alt="" style="border-radius: 0px"/>
-                                            <p>Stubb whistlingly gathers up the coil of the warp in one hand, so as to secure its free end in his grasp, leaving the rest unobstructed. Then holding the lance full before his waistband's middle.</p>
-                                            <a class="readmore" href="#">READ MORE <i class="fa fa-long-arrow-right"></i></a></div>
+                                            <p>We're here to help you navigate <strong>@ViewBag.ChapterNameLayout (@ViewBag.ChapterYearLayout)</strong> safely and efficiently.  All the major details for the associated events can be found here on our Anomaly Scheduler application.  If you have any questions, don't hesitate to ask us via the quick contact form located on your left navigation panel.  We're here to help!</p>
+                                            @*<a class="readmore" href="#">READ MORE <i class="fa fa-long-arrow-right"></i></a>*@
+                                        </div>
                                     </aside>
                                 </div>
                                 <div class="footer-top-sidebar-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <aside id="cs_recent_post_v2-3" class="widget widget_cs_recent_post_v2">
-                                        <h3 class="widget-title">Latest Posts</h3>
+                                        <h3 class="widget-title">Latest Announcement</h3>
                                         <div class="cs-recent-post">
                                             <ul class="news-list cs-popular">
-                                                <li>
+                                                @if (ViewBag.RecentAnnouncements.Count > 0)
+                                                {
+                                                    int count = 0;
+                                                    foreach (var announcement in ViewBag.RecentAnnouncements)
+                                                    {
+                                                        <li>
+                                                            <div class="cs-details">
+                                                                <h3 style="margin-top: 0px; margin-bottom: 0px">@announcement.Title</h3>
+                                                                <div>
+                                                                    <em style="color: #29AAE3">by @announcement.Author.DisplayName</em><br />
+                                                                    <p>
+                                                                        @announcement.Body
+                                                                    </p>                                                             
+                                                                    <p style="margin-top: 10px">
+                                                                        <strong style="color: #29AAE3">@announcement.Created.ToString("g")</strong>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        count++;
+                                                        if (count == 1) { break; };
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <em>no recent announcement to show</em>
+                                                    </li>
+                                                }
+                                                @*<li>
                                                     <div class="cs-media">
                                                         <div class="image">
                                                             <a class="post-featured-img" href="#">
-                                                                <img width="50" height="50" src="~/assets/upload/PalmercarpenterA-50x50.jpg" class="attachment-related-img wp-post-image" alt="PalmercarpenterA" /> </a>
+                                                                <img width="50" height="50" src="~/assets/upload/Polaroid-600-Camera-50x50.jpg" class="attachment-related-img wp-post-image" alt="Polaroid-600-Camera" />
+                                                            </a>
                                                         </div>
                                                     </div>
-
-                                                    <div class="cs-details">
-                                                        <h4><a href="#">A New Way to Think About medicine</a></h4>
-                                                        <div class="date">
-                                                            <span class="post-date">21-July-2015,</span> <span class="post-commnets"><i class="fa fa-comments"></i>0</span>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="cs-media">
-                                                        <div class="image">
-                                                            <a class="post-featured-img" href="#">
-                                                                <img width="50" height="50" src="~/assets/upload/Polaroid-600-Camera-50x50.jpg" class="attachment-related-img wp-post-image" alt="Polaroid-600-Camera" /> </a>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="cs-details">
                                                         <h4><a href="#">Why You Should Care  About health</a></h4>
                                                         <div class="date">
@@ -410,17 +433,17 @@
                                                     <div class="cs-media">
                                                         <div class="image">
                                                             <a class="post-featured-img" href="#">
-                                                                <img width="50" height="50" src="~/assets/upload/DeathtoStock_SlowDown6-50x50.jpg" class="attachment-related-img wp-post-image" alt="DeathtoStock_SlowDown6" /> </a>
+                                                                <img width="50" height="50" src="~/assets/upload/DeathtoStock_SlowDown6-50x50.jpg" class="attachment-related-img wp-post-image" alt="DeathtoStock_SlowDown6" />
+                                                            </a>
                                                         </div>
                                                     </div>
-
                                                     <div class="cs-details">
                                                         <h4><a href="#">Why You Should Care  About health</a></h4>
                                                         <div class="date">
                                                             <span class="post-date">09-June-2015,</span> <span class="post-commnets"><i class="fa fa-comments"></i>0</span>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </li>*@
                                             </ul>
                                         </div>
                                     </aside>
@@ -428,13 +451,7 @@
                                 <div class="footer-top-sidebar-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                     <aside id="newsletterwidget-2" class="widget widget_newsletterwidget">
                                         <h3 class="widget-title">newsletter</h3>Sign up for our mailing list to get latest updates and offers.
-
-
-
-
                                         <div class="newsletter newsletter-widget">
-
-
                                             <form action="http://demo.cmssuperheroes.com/themeforest/wp-bullet/wp-content/plugins/newsletter/do/subscribe.php" onsubmit="return newsletter_check(this)" method="post">
                                                 <input type="hidden" name="nr" value="widget" />
                                                 <p>
@@ -445,7 +462,8 @@
                                                 </p>
                                             </form>
                                         </div>
-                                        We respect your privacy</aside>
+                                        We respect your privacy
+                                    </aside>
                                 </div>
                             </div>
                         </div>
@@ -458,10 +476,10 @@
                                         <ul id="menu-menu-footer" class="menu">
                                             <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home no_group menu-item-12190" data-depth="0"><a href="@Url.Action("Index","Home")"><span class="menu-title">Home</span></a></li>
                                             <li class="menu-item no_group menu-item-12194" data-depth="0"><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })"><span class="menu-title">My Profile</span></a></li>
-                                            <li class="menu-item no_group menu-item-12194" data-depth="0"><a href="#"><span class="menu-title">My Schedule</span></a></li>
+                                            <li class="menu-item no_group menu-item-12194" data-depth="0"><a href="@Url.Action("MySchedule","Home")"><span class="menu-title">My Schedule</span></a></li>
                                             <li class="menu-item no_group menu-item-12191" data-depth="0"><a href="@Url.Action("Agenda","Home")"><span class="menu-title">Agenda</span></a></li>
                                             <li class="menu-item no_group menu-item-13185" data-depth="0"><a href="#"><span class="menu-title">Map & Venue</span></a></li>
-                                            <li class="menu-item no_group menu-item-12193" data-depth="0"><a href="#"><span class="menu-title">Notes</span></a></li>
+                                            <li class="menu-item no_group menu-item-12193" data-depth="0"><a href="@Url.Action("Notes","Home")"><span class="menu-title">Notes</span></a></li>
                                             <li class="menu-item no_group menu-item-12193" data-depth="0"><a href="http://www.anomalysquared.com/" target="_blank"><span class="menu-title">About Anomaly</span></a></li>
                                         </ul>
                                     </div>

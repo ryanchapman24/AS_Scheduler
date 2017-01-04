@@ -17,7 +17,7 @@ using System.Web.Security;
 
 namespace Scheduler.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, User")]
     public class HomeController : UserNames
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -117,6 +117,7 @@ namespace Scheduler.Controllers
             ViewBag.ChapterYear = currentChapter.ChapterYear;
             var adminUsers = new List<AdminUserListModels>();
             var regularUsers = new List<AdminUserListModels>();
+            var blockedUsers = new List<AdminUserListModels>();
             UserRolesHelper helper = new UserRolesHelper(db);
 
             foreach (var user in db.Users.Where(u => u.Roles.Any(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2")))
@@ -128,7 +129,7 @@ namespace Scheduler.Controllers
 
                 adminUsers.Add(eachUser);
             }
-            foreach (var user in db.Users.Where(u => u.Roles.Where(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2").Count() == 0))
+            foreach (var user in db.Users.Where(u => u.Roles.Where(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2").Count() == 0).Where(u => u.Roles.Where(r => r.RoleId == "25dfc3c4-229b-42a5-abe0-2f0016b79aa1").Count() == 1))
             {
                 var eachUser = new AdminUserListModels();
                 eachUser.roles = new List<string>();
@@ -137,8 +138,18 @@ namespace Scheduler.Controllers
 
                 regularUsers.Add(eachUser);
             }
+            foreach (var user in db.Users.Where(u => u.Roles.Where(r => r.RoleId == "e6b05319-7f68-4d67-90a7-764c2ea1bef2" || r.RoleId == "25dfc3c4-229b-42a5-abe0-2f0016b79aa1").Count() == 0))
+            {
+                var eachUser = new AdminUserListModels();
+                eachUser.roles = new List<string>();
+                eachUser.user = user;
+                eachUser.roles = helper.ListUserRoles(user.Id).ToList();
+
+                blockedUsers.Add(eachUser);
+            }
             ViewBag.Admins = adminUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
+            ViewBag.Blocked = blockedUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Announcements = db.Announcements.OrderByDescending(c => c.Id).ToList();
             ViewBag.UnpublishedPhotos = db.GalleryPhotos.Where(p => p.Published == false && p.Ignored == false).OrderBy(p => p.Id).ToList();

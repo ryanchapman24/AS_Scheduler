@@ -33,6 +33,14 @@
                                         <hr />
                                         <div class="row">
                                             <div class="col-md-2">
+                                                Created
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Model.Created.ToString("g")
+                                            </div><br /><br />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
                                                 Chapter
                                             </div>
                                             <div class="col-md-4">
@@ -53,16 +61,8 @@
                                             </div>
                                             <div class="col-md-4">
                                                 @Html.DisplayFor(model => model.Caption)
-                                            </div><br /><br />
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                Created
                                             </div>
-                                            <div class="col-md-4">
-                                                @Model.Created.ToString("g")
-                                            </div>
-                                        </div>
+                                        </div>                                       
                                         <br />
                                         <div class="row">
                                             <div class="col-md-offset-2 col-md-4">

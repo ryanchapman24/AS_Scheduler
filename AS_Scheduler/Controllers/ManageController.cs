@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Scheduler.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, User")]
     public class ManageController : UserNames
     {
         private ApplicationDbContext db = new ApplicationDbContext();
