@@ -23,7 +23,8 @@ namespace Scheduler.Models
                 ViewBag.Company = user.Company;
                 ViewBag.JobTitle = user.JobTitle;
 
-                ViewBag.RecentAnnouncements = db.Announcments.OrderByDescending(a => a.Id).ToList();
+                var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+                ViewBag.RecentAnnouncements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(a => a.Id).ToList();
 
                 base.OnActionExecuting(filterContext);
             }

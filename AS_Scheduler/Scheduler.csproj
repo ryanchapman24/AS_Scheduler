@@ -938,6 +938,8 @@
     <Content Include="Views\Home\ProfilePage.cshtml" />
     <Content Include="Views\Home\EditPhoto.cshtml" />
     <Content Include="Views\Home\DeletePhoto.cshtml" />
+    <Content Include="Views\Home\EditAnnouncement.cshtml" />
+    <Content Include="Views\Home\DeleteAnnouncement.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

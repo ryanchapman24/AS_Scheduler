@@ -12,7 +12,9 @@ namespace Scheduler.Models.Code_First
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime Created { get; set; }
+        public int ChapterId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
+        public virtual Chapter Chapter { get; set; }
     }
 }

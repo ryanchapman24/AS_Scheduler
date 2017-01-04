@@ -38,6 +38,7 @@ namespace Scheduler.Controllers
 
         public ActionResult Index()
         {
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
             var chapters = new List<Chapter>();
             foreach (var chapter in db.Chapters)
             {
@@ -48,7 +49,7 @@ namespace Scheduler.Controllers
             }
             ViewBag.Chapters = chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Photos = db.GalleryPhotos.Where(p => p.Published == true).OrderByDescending(n => n.Id).ToList();
-            ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Announcements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(c => c.Id).ToList();
             return View();
         }
 
@@ -111,6 +112,9 @@ namespace Scheduler.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Admin()
         {
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+            ViewBag.ChapterName = currentChapter.ChapterName;
+            ViewBag.ChapterYear = currentChapter.ChapterYear;
             var adminUsers = new List<AdminUserListModels>();
             var regularUsers = new List<AdminUserListModels>();
             UserRolesHelper helper = new UserRolesHelper(db);
@@ -136,7 +140,7 @@ namespace Scheduler.Controllers
             ViewBag.Admins = adminUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
-            ViewBag.Announcements = db.Announcments.OrderByDescending(c => c.Id).ToList();
+            ViewBag.Announcements = db.Announcements.OrderByDescending(c => c.Id).ToList();
             ViewBag.UnpublishedPhotos = db.GalleryPhotos.Where(p => p.Published == false && p.Ignored == false).OrderBy(p => p.Id).ToList();
             return View();
         }
@@ -149,6 +153,7 @@ namespace Scheduler.Controllers
             ViewBag.GalleryPhotos = db.GalleryPhotos.Where(p => p.ChapterId == id).Count();
             ViewBag.Notes = db.Notes.Where(n => n.ChapterId == id).Count();
             ViewBag.ScheduledEvents = db.MyEvents.Where(e => e.ChapterId == id).Count();
+            ViewBag.Announcements = db.Announcements.Where(a => a.ChapterId == id).Count();
             return View();
         }
 
@@ -223,13 +228,73 @@ namespace Scheduler.Controllers
         // Post: CreateAnnouncement
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public ActionResult CreateAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created")] Announcement announcement)
+        public ActionResult CreateAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Announcement announcement)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
             announcement.AuthorId = user.Id;
             announcement.Created = System.DateTime.Now;
-            db.Announcments.Add(announcement);
+            announcement.ChapterId = currentChapter.Id;
+            db.Announcements.Add(announcement);
+            db.SaveChanges();
+            return RedirectToAction("Admin", "Home");
+        }
+
+        // GET: Home/EditAnnouncement/5
+        public ActionResult EditAnnouncement(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Announcement announcement = db.Announcements.Find(id);
+            if (announcement == null)
+            {
+                return HttpNotFound();
+            }
+            return View(announcement);
+        }
+
+        // POST: Home/EditAnnouncement/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Announcement announcement)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Announcements.Attach(announcement);
+                db.Entry(announcement).Property("Title").IsModified = true;
+                db.Entry(announcement).Property("Body").IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Admin", "Home");
+            }
+            return View(announcement);
+        }
+
+        // GET: Home/DeleteAnnouncement/5
+        public ActionResult DeleteAnnouncement(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Announcement note = db.Announcements.Find(id);
+            if (note == null)
+            {
+                return HttpNotFound();
+            }
+            return View(note);
+        }
+
+        // POST: Home/DeleteAnnouncement/5
+        [HttpPost, ActionName("DeleteAnnouncement")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAnnouncementConfirmed(int id)
+        {
+            Announcement announcement = db.Announcements.Find(id);
+            db.Announcements.Remove(announcement);
             db.SaveChanges();
             return RedirectToAction("Admin", "Home");
         }

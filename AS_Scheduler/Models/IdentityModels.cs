@@ -55,7 +55,7 @@ namespace Scheduler.Models
         public DbSet<MyEvent> MyEvents { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Day> Days { get; set; }
-        public DbSet<Announcement> Announcments { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
         public DbSet<GalleryPhoto> GalleryPhotos { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<Tip> Tips { get; set; }
