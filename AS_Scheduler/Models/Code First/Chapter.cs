@@ -11,5 +11,9 @@ namespace Scheduler.Models.Code_First
         public string ChapterName { get; set; }
         public int ChapterYear { get; set; }
         public bool CurrentChapter { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

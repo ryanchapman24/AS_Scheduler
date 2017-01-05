@@ -179,12 +179,35 @@
                                                                                                         <div class="col-md-9" style="margin-top: -5px">
                                                                                                             <input class="form-control capitalize" name="ChapterName" type="text" required />
                                                                                                         </div><br /><br /><br />
-
                                                                                                         <div class="col-md-3 control-label">
                                                                                                             Year
                                                                                                         </div>
                                                                                                         <div class="col-md-2" style="margin-top: -5px">
                                                                                                             <input class="form-control onlyNum" name="ChapterYear" type="text" maxlength="4" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Address
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="AddressLine1" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            City, State Zip
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control capitalize" name="AddressLine2" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Latitude
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="Latitude" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Longitude
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="Longitude" type="text" required />
                                                                                                         </div><br /><br />
                                                                                                     </div>
                                                                                                 </div>
@@ -203,6 +226,7 @@
                                                                                         <tr>
                                                                                             <th>Name</th>
                                                                                             <th>Year</th>
+                                                                                            <th>Address</th>
                                                                                             <th>Current</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
@@ -213,6 +237,11 @@
                                                                                             <tr>
                                                                                                 <td class="text-nowrap"><strong style="color: #29AAE3">@item.ChapterName</strong></td>
                                                                                                 <td>@item.ChapterYear</td>
+                                                                                                <td>
+                                                                                                    @item.AddressLine1<span>,</span><br />
+                                                                                                    @item.AddressLine2<br />
+                                                                                                    @item.Latitude<span>, </span>@item.Longitude
+                                                                                                </td>
                                                                                                 @if (item.CurrentChapter == true)
                                                                                                 {
                                                                                                     <td style="color: #29AAE3"><strong>CURRENT</strong><i class="fa fa-check" style="margin-left: 5px"></i></td>

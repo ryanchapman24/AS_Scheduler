@@ -49,6 +49,34 @@
                                                 </div>
                                             </div><br />
                                             <div class="form-group">
+                                                <div class="control-label col-md-2">Address</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">City, State Zip</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control capitalize", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Latitude</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Longitude</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-10">
                                                     <input type="submit" value="Save" class="btn btn-default" />
                                                 </div>

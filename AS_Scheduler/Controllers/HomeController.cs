@@ -50,6 +50,13 @@ namespace Scheduler.Controllers
             ViewBag.Chapters = chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Photos = db.GalleryPhotos.Where(p => p.Published == true).OrderByDescending(n => n.Id).ToList();
             ViewBag.Announcements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(c => c.Id).ToList();
+            ViewBag.CurrentChapterName = currentChapter.ChapterName;
+            ViewBag.CurrentChapterYear = currentChapter.ChapterYear;
+            ViewBag.CurrentAddressLine1 = currentChapter.AddressLine1;
+            ViewBag.CurrentAddressLine2 = currentChapter.AddressLine2;
+            ViewBag.CurrentLatitude = currentChapter.Latitude;
+            ViewBag.CurrentLongitude = currentChapter.Longitude;
+            ViewBag.CurrentCenter = currentChapter.Latitude + "," + currentChapter.Longitude;
             return View();
         }
 
@@ -215,7 +222,7 @@ namespace Scheduler.Controllers
         // Post: CreateChapter
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public ActionResult CreateChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter")] Chapter chapter)
+        public ActionResult CreateChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter,AddressLine1,AddressLine2,Latitude,Longitude")] Chapter chapter)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
@@ -223,7 +230,8 @@ namespace Scheduler.Controllers
             db.SaveChanges();
             return RedirectToAction("Admin", "Home");
         }
-        // Post: CreateChapter
+
+        // Post: MakeCurrentChapter
         [Authorize(Roles = "Administrator")]
         public ActionResult MakeCurrentChapter(int id)
         {
@@ -257,13 +265,17 @@ namespace Scheduler.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter")] Chapter chapter)
+        public ActionResult EditChapter([Bind(Include = "Id,ChapterName,ChapterYear,CurrentChapter,AddressLine1,AddressLine2,Latitude,Longitude")] Chapter chapter)
         {
             if (ModelState.IsValid)
             {
                 db.Chapters.Attach(chapter);
                 db.Entry(chapter).Property("ChapterName").IsModified = true;
                 db.Entry(chapter).Property("ChapterYear").IsModified = true;
+                db.Entry(chapter).Property("AddressLine1").IsModified = true;
+                db.Entry(chapter).Property("AddressLine2").IsModified = true;
+                db.Entry(chapter).Property("Latitude").IsModified = true;
+                db.Entry(chapter).Property("Longitude").IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Admin", "Home");
             }
