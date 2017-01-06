@@ -655,6 +655,20 @@ namespace Scheduler.Controllers
             return RedirectToAction("Admin", "Home");
         }
 
+        public ActionResult MapAndVenue()
+        {
+            var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
+
+            ViewBag.CurrentChapterName = currentChapter.ChapterName;
+            ViewBag.CurrentChapterYear = currentChapter.ChapterYear;
+            ViewBag.CurrentAddressLine1 = currentChapter.AddressLine1;
+            ViewBag.CurrentAddressLine2 = currentChapter.AddressLine2;
+            ViewBag.CurrentLatitude = currentChapter.Latitude;
+            ViewBag.CurrentLongitude = currentChapter.Longitude;
+            ViewBag.CurrentCenter = currentChapter.Latitude + "," + currentChapter.Longitude;
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SendMessage(string name, string email, string subject, string message)

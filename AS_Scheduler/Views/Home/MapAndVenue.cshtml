@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "MapAndVenue";
+}
+
+
+@if (ViewBag.CurrentLatitude != null && ViewBag.CurrentLongitude != null)
+{
+    <div class="row vc_row-fluid vc_custom_1432886583047" style="">
+        <div class="cms-bg-overlay" style=""></div>
+        <div class="vc_col-sm-12 wpb_column vc_column_container ">
+            <div class="wpb_wrapper">
+                <div class="vc_custom_heading vc_custom_1433301571396 default">
+                    <div class="vc_custom_heading-wrap  row ">
+                        <div class="table-responsive">
+                            <div class="table">
+                                <div class="table-cell">
+                                    <h2>@ViewBag.CurrentChapterName (@ViewBag.CurrentChapterYear) Venue Location</h2>
+                                </div>
+                                <div class="table-cell">
+                                    @*<p>Say a word and we will respond as fast as possible</p>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-heading-driver default"></div>
+                </div>
+                <div class="cs_extra_map">
+                    <div id="google_map" style="width:100%; height:360px;"></div><!-- map container -->
+                </div>
+                <div class="cms-fancyboxes-wraper template-cms_fancybox--layout-1 content-align-default " id="cms-fancy-box-4">
+                    <div class="row cms-fancyboxes-body" style="padding-bottom: 30px">
+                        <div class="fancy-box-item col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-left: 15px; padding-right: 15px">
+                            <div class="fancy-box-item-wrap">
+                                <div class="fancy-box-icon">
+                                    <i class="fa fa-location-arrow"></i>
+                                </div>
+                                <div class="fancy-box-content">
+                                    <p>
+                                        @ViewBag.CurrentAddressLine1
+                                        <br /> @ViewBag.CurrentAddressLine2
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="fancy-box-item col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="fancy-box-item-wrap">
+                                    <div class="fancy-box-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div class="fancy-box-content">
+                                        <p> (866) 289-0101
+                                            <br /><span style="color: #f9f9f9">.</span>
+                                            <br /><span style="color: #f9f9f9">.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>*@
+                        @*<div class="fancy-box-item col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                                <div class="fancy-box-item-wrap">
+                                    <div class="fancy-box-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div class="fancy-box-content">
+                                        <p>info@bullettheme.com
+                                            <br /> www.ignitionthemes.eu
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+                @*<div role="form" class="wpcf7" id="wpcf7-f12331-p20-o2" lang="en-US" dir="ltr">
+                        <div class="screen-reader-response"></div>
+                        <form>
+                            <div class="contact-form-group">
+                                <div class="contact-form-item"> <span class="wpcf7-form-control-wrap name"><input type="text" name="name" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="First and Last Name" /></span></div>
+                                <div class="contact-form-item"><span class="wpcf7-form-control-wrap email"><input type="email" name="email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="E-mail" /></span></div>
+                                <div class="contact-form-item"><span class="wpcf7-form-control-wrap title"><input type="text" name="subject" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Subject" /></span></div>
+                            </div><br /><br /><br />
+                            <p> <span class="wpcf7-form-control-wrap your-message"><textarea name="your-message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Message..."></textarea></span> </p>
+                            <p>
+                                <input type="submit" value="Send Message" class="wpcf7-form-control wpcf7-submit" />
+                            </p>
+                            <div class="wpcf7-response-output wpcf7-display-none"></div>
+                        </form>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#venue-tab').addClass("current-menu-item");
+        });
+    </script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script>
+        var $ = jQuery.noConflict();
+
+        $(document).ready(function ($) {
+            "use strict";
+
+            /* ---------------------------------------------------------------------- */
+            /*  Contact Map
+            /* ---------------------------------------------------------------------- */
+
+            var latitude = "@ViewBag.CurrentLatitude";
+            var longitude = "@ViewBag.CurrentLongitude";
+            var center = "@ViewBag.CurrentCenter";
+            var myMarkers = {
+                "markers": [
+                    {
+                        "latitude": latitude,       // latitude
+                        "longitude": longitude,       // longitude
+                        "icon": "/assets/upload/map_pin_1.png"  // Pin icon
+                    }
+
+
+                    // Add As Plenty As u want
+                    // , {
+                    //     "latitude": "40.712785",
+                    //     "longitude":"-73.969708",
+                    //     "icon": "~/assets/upload/map_pin_1.png"
+                    // }
+
+
+                ]
+            };
+
+            try {
+                $("#google_map").mapmarker({
+                    zoom: 14,                          // Zoom
+                    center: center,        // Center of map
+                    type: "ROADMAP",                    // Map Type
+                    controls: "HORIZONTAL_BAR",         // Controls style
+                    dragging: 1,                         // Allow dragging?
+                    mousewheel: 0,                       // Allow zooming with mousewheel
+                    markers: myMarkers,
+                    styling: 0,                         // Bool - do you want to style the map?
+                    featureType: "all",
+                    visibility: "on",
+                    elementType: "geometry",
+                    hue: "#00AAFF",
+                    saturation: -100,
+                    lightness: 0,
+                    gamma: 1,
+                    navigation_control: 0
+                    /*
+                    To play with the map colors and styles you can try this tool right here http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
+                    */
+                });
+
+            } catch (err) {
+                //console.log(err);
+            }
+        });
+    </script>
+}
+
