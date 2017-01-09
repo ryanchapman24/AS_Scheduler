@@ -70,7 +70,7 @@
                                         <span style="white-space: nowrap"><i class="fa fa-clock-o"></i><strong id="showtime" style="font-size: 14px"></strong></span>
                                     </li>
                                     <li>
-                                        <span><i class="fa fa-user"></i><strong style="letter-spacing: 0.05em">@ViewBag.DisplayName.ToUpper()</strong></span>
+                                        <a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })" style="font-size: 13px; color: white"><span><i class="fa fa-user"></i><strong style="letter-spacing: 0.05em">@ViewBag.DisplayName.ToUpper()</strong></span></a>
                                     </li>
                                 </ul>
                             </div>
@@ -664,9 +664,6 @@
                 hideAllCaptionAtLilmit: 0,
                 startWithSlide: 0
             });
-
-
-
         }
     }); /*ready*/
 </script>

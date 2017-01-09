@@ -16,22 +16,22 @@
             </div>
         </div>   
         <div class="row">
-            <img class="col-md-offset-1 col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-08.png" />
-            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-09.png" />
-            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-10.png" style="margin-top: 4px"/>
-            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-11.png" style="margin-top: -3px"/>
-            <img class="col-md-2" src="~/assets/images/Anomaly_Sponsored_Wifi_page-12.png" style="margin-top: -3px"/>
+            <img class="col-md-offset-1 col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-08.png" />
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-09.png" />
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-10.png" style="margin-top: 4px"/>
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-11.png" style="margin-top: -3px"/>
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-12.png" style="margin-top: -3px"/>
         </div>
         <div class="col-md-offset-1 col-md-10" style="text-align: center; margin-top: 40px;">
-            <button class="btn-anomaly" style="width: 100%"><h2 style="margin-top: 5px; margin-bottom: 5px; font-size: 40px"><strong>REGISTER HERE</strong></h2></button>
+            <button id="registerBtn" onclick="location.href='/Account/Register'" class="btn-anomaly" style="width: 100%"><h2 style="margin-top: 5px; margin-bottom: 5px; font-size: 40px"><strong>REGISTER HERE</strong></h2></button>
         </div>
     </div>
-    <div class="col-md-4" style="background-color: white; height: 100%; padding-top: 6em">
+    <div id="login" class="col-md-4" style="background-color: white; height: 100%; padding-top: 6em">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h2 class="col-md-offset-2" style="padding-left: 15px">or login</h2>
+                <h2 class="col-md-offset-2" style="padding-left: 15px">login</h2>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -71,9 +71,9 @@
                     </p>*@
             }
         </section><br />
-        <section id="socialLoginForm" style="margin-top: 100px">
+        @*<section id="socialLoginForm" style="margin-top: 100px">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </section>*@
     </div>
 </div>
 
