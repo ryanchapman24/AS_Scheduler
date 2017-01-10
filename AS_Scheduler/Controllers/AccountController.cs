@@ -177,7 +177,6 @@ namespace Scheduler.Controllers
                 }
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, ProfilePic = pPic, JoinChapterId = joinChapter, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.FirstName + ' ' + model.LastName, Company = model.Company, JobTitle = model.JobTitle };
-                db.SaveChanges();
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -191,7 +190,6 @@ namespace Scheduler.Controllers
 
                     var helper = new UserRolesHelper(db);
                     helper.AddUserToRole(user.Id, "User");
-                    db.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }

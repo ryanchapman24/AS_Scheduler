@@ -17,7 +17,7 @@ using System.Web.Security;
 
 namespace Scheduler.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator, User")]
     public class HomeController : UserNames
     {
         private ApplicationDbContext db = new ApplicationDbContext();
