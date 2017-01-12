@@ -26,6 +26,34 @@
             <button id="registerBtn" onclick="location.href='/Account/Register'" class="btn-anomaly" style="width: 100%"><h2 style="margin-top: 5px; margin-bottom: 5px; font-size: 40px"><strong>REGISTER HERE</strong></h2></button>
         </div>
     </div>
+    <div class="modal fade" id="forgotpasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotpasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="margin-bottom: 15px">
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="forgotpasswordModalLabel" style="color: #29AAE3">Forgot Password?</h3>
+                </div>
+                @using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                        <div class="" style="">
+                            <div class="form-group">
+                                <p>Enter your e-mail address below to reset your password.</p>
+                                @*@Html.AntiForgeryToken()*@
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = " email", style="width: 80%" })                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
     <div id="login" class="col-md-4" style="background-color: white; height: 100%; padding-top: 6em">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -59,7 +87,7 @@
                         <button type="submit" class="btn btn-anomaly-sm" style="width: 100%"><h2 style="margin-bottom: 5px; margin-top: 5px; font-size: 20px;"><strong>LOGIN</strong></h2></button>
                     </div>
                     <div class="col-md-6">
-                        <span class="text-nowrap" style="line-height: 40px; text-decoration: none">@Html.ActionLink("Forgot your password?", "ForgotPassword")</span>
+                        <a data-toggle="modal" href="#forgotpasswordModal"><span class="text-nowrap" style="line-height: 40px; text-decoration: none; margin-left: 10px">Forgot Password?</span></a>
                     </div>
                 </div>
                 @*<p>

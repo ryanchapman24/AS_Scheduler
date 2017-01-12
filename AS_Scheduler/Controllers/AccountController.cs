@@ -215,11 +215,11 @@ namespace Scheduler.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult ForgotPassword()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Account/ForgotPassword
@@ -246,7 +246,7 @@ namespace Scheduler.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Login", "Account");
         }
 
         //
