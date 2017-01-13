@@ -10,7 +10,7 @@
         <div class="row" style="margin-top: 3em">
             <div class="col-md-offset-1 col-md-10">
                 <img src="~/assets/images/Anomaly_Sponsored_Wifi_page-07.png" style="width: 60%" />
-                <h1 style="color: white; margin-left: 40px; margin-top: 0px; margin-bottom: 0px">To the Anomaly Scheduler</h1>
+                <h1 style="color: white; margin-left: 40px; margin-top: 0px; margin-bottom: 0px">To the Anomaly Hub</h1>
                 <h3 style="color: white; margin-left: 40px; margin-top: 0px">It's a free tool to help you get around at the conference a little easier.</h3>
                 <h2><strong style="color: #29AAE3; margin-left: 40px">It includes:</strong></h2>
             </div>
@@ -61,17 +61,16 @@
                 @Html.AntiForgeryToken()
                 <h2 class="col-md-offset-2" style="padding-left: 15px">login</h2>
                 <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder=" email", style="width: 100%" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder=" email", style="width: 100%", required = "true" })
+                        @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
                     </div>
                 </div><br /><br />
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = " password", style = "width: 100%" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = " password", style = "width: 100%", required = "true" })
+                        @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
                     </div>
                 </div><br /><br /><br />
                 @*<div class="form-group">
@@ -90,13 +89,9 @@
                         <a data-toggle="modal" href="#forgotpasswordModal"><span class="text-nowrap" style="line-height: 40px; text-decoration: none; margin-left: 10px">Forgot Password?</span></a>
                     </div>
                 </div>
-                @*<p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>*@
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                <div class="col-md-offset-1 col-md-9">
+                    <span style="color: indianred">@Html.ValidationSummary("", new { @class = "text-danger" })</span>
+                </div>
             }
         </section><br />
         @*<section id="socialLoginForm" style="margin-top: 100px">
