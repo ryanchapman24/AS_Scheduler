@@ -378,6 +378,9 @@
     <Content Include="assets\images\sticky-note-texture.jpg" />
     <Content Include="assets\images\toggle_close.png" />
     <Content Include="assets\images\toggle_open.png" />
+    <Content Include="assets\images\wifi_slider_3.jpg" />
+    <Content Include="assets\images\wifi_slider_1.jpg" />
+    <Content Include="assets\images\wifi_slider_2.jpg" />
     <Content Include="assets\js\background.video.js" />
     <Content Include="assets\js\base64.js" />
     <Content Include="assets\js\bootstrap.min.js" />
