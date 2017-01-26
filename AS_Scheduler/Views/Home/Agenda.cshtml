@@ -65,9 +65,17 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="cms-fancyboxes-vertical-item-desc">
-                                                                                                                <h3>@item.Description</h3>
+                                                                                                                <h3>@item.Title</h3>
                                                                                                                 <div class="fancy-box-content">
                                                                                                                     <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                                    @if (item.Description != null)
+                                                                                                                    {
+                                                                                                                        <span style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Description" data-placement="right">OVERVIEW</span><br />
+                                                                                                                    }
+                                                                                                                    @if (item.Speakers != null)
+                                                                                                                    {
+                                                                                                                        <spanm style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Speakers" data-placement="right">SPEAKERS</spanm>
+                                                                                                                    }
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>                                                                                                                                                                                      
@@ -121,9 +129,17 @@
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div class="cms-fancyboxes-vertical-item-desc">
-                                                                                                                <h3>@item.Description</h3>
+                                                                                                                <h3>@item.Title</h3>
                                                                                                                 <div class="fancy-box-content">
                                                                                                                     <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                                    @if (item.Description != null)
+                                                                                                                    {
+                                                                                                                        <span style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Description" data-placement="right">OVERVIEW</span><br />
+                                                                                                                    }
+                                                                                                                    @if (item.Speakers != null)
+                                                                                                                    {
+                                                                                                                        <spanm style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Speakers" data-placement="right">SPEAKERS</spanm>
+                                                                                                                    }
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>

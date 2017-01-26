@@ -1,0 +1,137 @@
+﻿@model Scheduler.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>@ViewBag.Title</h2>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        @if (ViewBag.StatusMessage == "An error has occurred.")
+                                                        {
+                                                            <p style="color: indianred">@ViewBag.StatusMessage</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="color: forestgreen">@ViewBag.StatusMessage</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    <div>
+                                        <h4>Change your account settings</h4>
+                                        <hr />
+                                        <dl class="dl-horizontal">
+                                            <dt>Account Information:</dt>
+                                            <dd>
+                                                [ @Html.ActionLink("Update your account information", "UpdateInformation") ]
+                                            </dd>
+                                            <dt>Password:</dt>
+                                            <dd>
+                                                [
+                                                @if (Model.HasPassword)
+                                                {
+                                                    @Html.ActionLink("Change your password", "ChangePassword")
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Create", "SetPassword")
+                                                }
+                                                ]
+                                            </dd>
+                                            <dt>External Logins:</dt>
+                                            <dd>
+                                                @Model.Logins.Count [
+                                                @Html.ActionLink("Manage", "ManageLogins") ]
+                                            </dd>
+                                            @*
+                                                Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+                                                 See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                                    for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+                                                 Uncomment the following block after you have set up two-factor authentication
+                                            *@
+                                            @*
+                                                <dt>Phone Number:</dt>
+                                                <dd>
+                                                    @(Model.PhoneNumber ?? "None")
+                                                    @if (Model.PhoneNumber != null)
+                                                    {
+                                                        <br />
+                                                        <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                                                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                                                    }
+                                                </dd>
+                                            *@
+                                            <dt>Two-Factor Authentication:</dt>
+                                            <dd>
+                                                <p>
+                                                    There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                                    for details on setting up this ASP.NET application to support two-factor authentication.
+                                                </p>
+                                                @*@if (Model.TwoFactor)
+                                                    {
+                                                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <text>Enabled
+                                                            <input type="submit" value="Disable" class="btn btn-link" />
+                                                            </text>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <text>Disabled
+                                                            <input type="submit" value="Enable" class="btn btn-link" />
+                                                            </text>
+                                                        }
+                                                    }*@
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#profile-tab').addClass("current-menu-item");
+        });
+    </script>
+}

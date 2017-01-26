@@ -1,0 +1,80 @@
+﻿@model Scheduler.Models.Code_First.Note
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>Edit Note</h2>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-horizontal">
+                                            <h4>This note was created on <strong>@Model.Created.ToString("g")</strong> for <strong>@Model.Chapter.ChapterName (@Model.Chapter.ChapterYear)</strong></h4>
+                                            <hr />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.Id)
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control capitalize", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                <div class="col-md-10">
+                                                    <textarea class="form-control capitalize" name="Body" rows="5" required>@Model.Body</textarea>
+                                                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Save" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        </div><br /><br />
+                                    }
+                                    <div>
+                                        @Html.ActionLink("Back to Notes", "Notes")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $('#notes-tab').addClass("current-menu-item");
+    });
+    </script>
+}

@@ -1,0 +1,120 @@
+﻿@model Scheduler.Models.ManageLoginsViewModel
+@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Manage your external logins";
+}
+
+
+<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>@ViewBag.Title</h2>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                        @if (ViewBag.StatusMessage == "An error has occurred.")
+                                                        {
+                                                            <p style="color: indianred">@ViewBag.StatusMessage</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p style="color: forestgreen">@ViewBag.StatusMessage</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    <div>
+                                        @{
+                                            var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+                                            if (loginProviders.Count() == 0) {
+                                                <div>
+                                                    <p>
+                                                        There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+                                                        for details on setting up this ASP.NET application to support logging in via external services.
+                                                    </p>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                if (Model.CurrentLogins.Count > 0)
+                                                {
+                                                    <h4>Registered Logins</h4>
+                                                    <table class="table">
+                                                        <tbody>
+                                                            @foreach (var account in Model.CurrentLogins)
+                                                            {
+                                                                <tr>
+                                                                    <td>@account.LoginProvider</td>
+                                                                    <td>
+                                                                        @if (ViewBag.ShowRemoveButton)
+                                                                        {
+                                                                            using (Html.BeginForm("RemoveLogin", "Manage"))
+                                                                            {
+                                                                                @Html.AntiForgeryToken()
+                                                                                <div>
+                                                                                    @Html.Hidden("loginProvider", account.LoginProvider)
+                                                                                    @Html.Hidden("providerKey", account.ProviderKey)
+                                                                                    <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @: &nbsp;
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                }
+                                                if (Model.OtherLogins.Count > 0)
+                                                {
+                                                    using (Html.BeginForm("LinkLogin", "Manage"))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        <div id="socialLoginList">
+                                                        <p>
+                                                            @foreach (AuthenticationDescription p in Model.OtherLogins)
+                                                            {
+                                                                <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                                                            }
+                                                        </p>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#profile-tab').addClass("current-menu-item");
+        });
+    </script>
+}

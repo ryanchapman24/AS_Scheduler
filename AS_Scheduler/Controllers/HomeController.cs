@@ -400,7 +400,9 @@ namespace Scheduler.Controllers
                     myEvent.StartTime = eVent.StartTime;
                     myEvent.EndTime = eVent.EndTime;
                     myEvent.EventName = eVent.EventName;
+                    myEvent.Title = eVent.Title;
                     myEvent.Description = eVent.Description;
+                    myEvent.Speakers = eVent.Speakers;
                     db.MyEvents.Add(myEvent);
                     db.SaveChanges();
                 }
@@ -676,8 +678,8 @@ namespace Scheduler.Controllers
             object returnValue = null;
             try
             {
-                var mC = db.Users.FirstOrDefault(u => u.Id == "619856cf-24df-4ccf-bbba-1d38bab527a8");
-                var mA = db.Users.FirstOrDefault(u => u.Id == "dd1b1885-c104-4835-8c0a-19e75643d900");
+                var mC = db.Users.FirstOrDefault(u => u.Id == "74ab1b5e-4bcd-4272-80af-bd82a31e8fbd");
+                var mA = db.Users.FirstOrDefault(u => u.Id == "d3306f11-1fd5-4a4f-8f07-5d774cc590ca");
                 var userToNotify1 = await UserManager.FindByNameAsync(mC.Email);
                 var userToNotify2 = await UserManager.FindByNameAsync(mA.Email);
 

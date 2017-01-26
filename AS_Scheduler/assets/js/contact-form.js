@@ -7,6 +7,11 @@ $(document).ready(function($) {
     /*  Contact Form
     /* ---------------------------------------------------------------------- */
 
+	var res = {
+	    loader: $('<div />', { class: 'loader' }),
+        container: $('.ajaxContainer')
+	}
+
     var submitContact = $('#submit_contact'),
         message = $('#msg');
 
@@ -49,14 +54,17 @@ $(document).ready(function($) {
             dataType: 'json',
             cache: false,
             data: $('#contact-form').serialize(),
+            beforeSend: function () {
+                res.container.append(res.loader);
+            },
             success: function (data) {
-
                 if (data.Message === "Success! " + "<i class='fa fa-check'></i>") {
                     $this.parents('form').find('input[type=text],textarea,select').filter(':visible').val('');
                     message.hide().removeClass('success').removeClass('error').addClass('success').html(data.Message).fadeIn('slow').delay(5000).fadeOut('slow');
                 } else {
                     message.hide().removeClass('success').removeClass('error').addClass('error').html(data.Message).fadeIn('slow').delay(5000).fadeOut('slow');
                 }
+                res.container.find(res.loader).remove();
             }
         });
     });

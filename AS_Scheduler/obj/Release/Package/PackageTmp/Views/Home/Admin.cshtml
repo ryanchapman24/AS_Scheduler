@@ -1,0 +1,482 @@
+﻿<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>Administrator Panel</h2>
+                                                    </div>
+                                                    <div class="table-cell" style="text-align: right">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    <div class="vc_col-sm-12 wpb_column vc_column_container" style="margin-bottom: 30px">
+                                        <div class="wpb_wrapper">
+                                            <div class="wpb_tabs wpb_content_element" data-interval="0">
+                                                <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">
+                                                    <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                                                        <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Users" class="ui-tabs-anchor" role="presentation">Users</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Chapters" class="ui-tabs-anchor" role="presentation">Chapters</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Announcements" class="ui-tabs-anchor" role="presentation">Announcements</a></li>
+                                                        <li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Photos" class="ui-tabs-anchor" role="presentation">Unpublished Photos</a></li>
+                                                    </ul>
+                                                    <div id="Users" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <h3>Administrators</h3>
+                                                                            <div class="table-responsive">
+                                                                                <table id="datatable-basic-scrolling1" class="table table-hover datatable user-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Contact</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Admins)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Home", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <hr />
+                                                                            <h3>Users</h3>
+                                                                            <div class="table-responsive" style="margin-top: 30px">
+                                                                                <table id="datatable-basic-scrolling2" class="table table-hover datatable user-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Contact</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Users)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Home", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <hr />
+                                                                            <h3 style="margin-bottom: 5px">Blocked</h3>
+                                                                            <em style="color: #29AAE3; font-size: 12px">need user role for access</em>
+                                                                            <div class="table-responsive" style="margin-top: 30px">
+                                                                                <table id="datatable-basic-scrolling2" class="table table-hover datatable user-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>Company</th>
+                                                                                            <th>Contact</th>
+                                                                                            <th>Roles</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Blocked)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td>@item.user.FirstName<br />@item.user.LastName</td>
+                                                                                                <td style="white-space: nowrap"><strong style="color: #29AAE3">@item.user.Company</strong><br />@item.user.JobTitle</td>
+                                                                                                <td>@item.user.Email<br />@item.user.PhoneNumber</td>
+                                                                                                <td>
+                                                                                                    @foreach (var role in item.roles)
+                                                                                                    {
+                                                                                                        <strong style="color: #29AAE3">@role</strong><br />
+                                                                                                    }
+                                                                                                </td>
+                                                                                                <td style="white-space: nowrap">
+                                                                                                    <a href="@Url.Action("EditUserRoles", "Home", new { id = item.user.Id })"><i class="fa fa-lock" style="margin-right: 3px; font-size: 16px"></i> Roles</a><br />
+                                                                                                    <a href="@Url.Action("ProfilePage", "Home", new { id = item.user.Id })"><i class="fa fa-eye" style="margin-right: 3px; font-size: 16px"></i> Profile</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Chapters" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <button class="btn btn-theme btn-md pull-right" data-toggle="modal" data-target="#chapterModal" style="margin-top: -10px; margin-bottom: 20px">+ New Chapter</button>
+                                                                            <div class="modal fade" id="chapterModal" tabindex="-1" role="dialog" aria-labelledby="chapterModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header" style="margin-bottom: 15px">
+                                                                                            <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                            <h3 class="modal-title" id="chapterModalLabel" style="color: #29AAE3">Create New Chapter</h3>
+                                                                                        </div>
+                                                                                        @using (Html.BeginForm("CreateChapter", "Home", new { }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                                        {
+                                                                                            @Html.AntiForgeryToken()
+                                                                                            <div class="modal-body">
+                                                                                                <div class="" style="">
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Name
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control capitalize" name="ChapterName" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Year
+                                                                                                        </div>
+                                                                                                        <div class="col-md-2" style="margin-top: -5px">
+                                                                                                            <input class="form-control onlyNum" name="ChapterYear" type="text" maxlength="4" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Address
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="AddressLine1" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            City, State Zip
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control capitalize" name="AddressLine2" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Latitude
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="Latitude" type="text" required />
+                                                                                                        </div><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Longitude
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control" name="Longitude" type="text" required />
+                                                                                                        </div><br /><br />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-footer" style="margin-top: 20px">
+                                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                                <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                                                                                            </div>
+                                                                                        }
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="table-responsive">
+                                                                                <table id="datatable-basic-scrolling3" class="table table-hover datatable admin-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Name</th>
+                                                                                            <th>Year</th>
+                                                                                            <th>Address</th>
+                                                                                            <th>Current</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Chapters)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td class="text-nowrap"><strong style="color: #29AAE3">@item.ChapterName</strong></td>
+                                                                                                <td>@item.ChapterYear</td>
+                                                                                                <td>
+                                                                                                    @item.AddressLine1<span>,</span><br />
+                                                                                                    @item.AddressLine2<br />
+                                                                                                    @item.Latitude<span>, </span>@item.Longitude
+                                                                                                </td>
+                                                                                                @if (item.CurrentChapter == true)
+                                                                                                {
+                                                                                                    <td style="color: #29AAE3"><strong>CURRENT</strong><i class="fa fa-check" style="margin-left: 5px"></i></td>
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <td></td>
+                                                                                                }
+                                                                                                <td class="text-nowrap">
+                                                                                                    @if (item.CurrentChapter == false)
+                                                                                                    {
+                                                                                                        <a href="@Url.Action("MakeCurrentChapter", "Home", new { id = item.Id })"><i class="fa fa-calendar-check-o" style="margin-right: 3px; font-size: 16px"></i> Make Current</a><br />
+                                                                                                    }
+                                                                                                    <a href="@Url.Action("ChapterStats", "Home", new { id = item.Id })"><i class="fa fa-line-chart" style="margin-right: 3px; font-size: 16px"></i> Statistics</a><br />
+                                                                                                    <a href="@Url.Action("EditChapter", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
+                                                                                                    @*<a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>*@
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Announcements" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style=""></div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            <button class="btn btn-theme btn-md pull-right" data-toggle="modal" data-target="#announcementModal" style="margin-top: -10px; margin-bottom: 20px">+ New Announcement</button>
+                                                                            <div class="modal fade" id="announcementModal" tabindex="-1" role="dialog" aria-labelledby="announcementModalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header" style="margin-bottom: 15px">
+                                                                                            <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                            <h3 class="modal-title" id="announcementModalLabel" style="color: #29AAE3">Create New Announcement for @ViewBag.ChapterName (@ViewBag.ChapterYear)</h3>
+                                                                                        </div>
+                                                                                        @using (Html.BeginForm("CreateAnnouncement", "Home", new { }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                                                        {
+                                                                                            @Html.AntiForgeryToken()
+                                                                                            <div class="modal-body">
+                                                                                                <div class="" style="">
+                                                                                                    <div class="form-group">
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Title
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <input class="form-control capitalize" name="Title" type="text" required />
+                                                                                                        </div><br /><br /><br />
+
+                                                                                                        <div class="col-md-3 control-label">
+                                                                                                            Body
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9" style="margin-top: -5px">
+                                                                                                            <textarea rows="5" class="form-control capitalize" name="Body" required></textarea>
+                                                                                                        </div><br /><br /><br /><br /><br />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-footer" style="margin-top: 20px">
+                                                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                                <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                                                                                            </div>
+                                                                                        }
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="table-responsive">
+                                                                                <table id="datatable-basic-scrolling3" class="table table-hover datatable admin-tables">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Created</th>
+                                                                                            <th>Title</th>
+                                                                                            <th>Body</th>
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach (var item in ViewBag.Announcements)
+                                                                                        {
+                                                                                            <tr>
+                                                                                                <td class="text-nowrap" style="white-space: nowrap">
+                                                                                                    <strong style="color: #29AAE3">@item.Created.ToString("g")</strong><br />
+                                                                                                    by @item.Author.DisplayName<br />
+                                                                                                    for <strong>@item.Chapter.ChapterName (@item.Chapter.ChapterYear)</strong>
+                                                                                                </td>
+                                                                                                <td>@item.Title</td>
+                                                                                                <td>@item.Body</td>
+                                                                                                <td class="text-nowrap">
+                                                                                                    <a href="@Url.Action("EditAnnouncement", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
+                                                                                                    <a href="@Url.Action("DeleteAnnouncement", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        }
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Photos" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        @using (Html.BeginForm("Publish", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                        {
+                                                        @Html.AntiForgeryToken()
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">                                                                        
+                                                                            <div id="page-blog">
+                                                                                <div id="primary">
+                                                                                    <div id="blog-content" role="main">
+                                                                                        <div class="page-blog-1-column">
+                                                                                            <div class="page-wrapper" style="padding-left: 0px; padding-right: 0px">
+                                                                                                <div class="blog-items">
+                                                                                                    @foreach (var photo in ViewBag.UnpublishedPhotos)
+                                                                                                    {
+                                                                                                        <div class="post-item">
+                                                                                                            <article class="post-12831 post type-post status-publish format-link has-post-thumbnail hentry category-blog-1-column post_format-post-format-link" style="margin-bottom: 0px">
+                                                                                                                <div class="post-item-inner">
+                                                                                                                    <div class="post-media ">
+                                                                                                                        <div class="post-media-image pull-left">
+                                                                                                                            <div class="cms-grid-media has-thumbnail">
+                                                                                                                                <img style="min-height: 350px" src="@photo.File" class="attachment-medium-rectangle-1 wp-post-image"/>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <a class="cms-grid-portfolio-item-lightbox" href="@photo.File"><span class="post-format-icon"><i class="fa fa-search"></i></span></a>
+                                                                                                                    </div>
+                                                                                                                    <div class="post-content" style="height: inherit; min-height: 350px">
+                                                                                                                        <div class="post-media-extra">
+                                                                                                                            <div class="post-media-extra-item post-date">
+                                                                                                                                @photo.Created.ToString("g")
+                                                                                                                            </div>
+                                                                                                                            @*<div class="post-media-extra-item post-like">
+                                                                                                                                <span class="cms-post-like" data-id="12831"><span>7 </span><i class="fa fa-thumbs-o-up"></i></span>
+                                                                                                                            </div>*@
+                                                                                                                        </div>
+                                                                                                                        <br /><br />
+                                                                                                                        <div class="post-title">
+                                                                                                                            <h4 style="margin: 0px 0px 4px 0px">
+                                                                                                                                @if (photo.Caption != null)
+                                                                                                                                {
+                                                                                                                                    <em><strong>"@photo.Caption"</strong></em>
+                                                                                                                                }
+                                                                                                                                else
+                                                                                                                                {
+                                                                                                                                    <em><strong>No Caption</strong></em>
+                                                                                                                                }
+                                                                                                                            </h4>
+                                                                                                                            <p class="post-details" style="line-height: 15px">
+                                                                                                                                <em class="detail-comment">Posted by @photo.Author.DisplayName</em><br />
+                                                                                                                                <em class="detail-comment">for @photo.Chapter.ChapterName (@photo.Chapter.ChapterYear)</em>
+                                                                                                                            </p>
+                                                                                                                        </div>
+                                                                                                                        <div class="cms-driver">
+                                                                                                                        </div>
+                                                                                                                        <p style="margin-top: 30px">
+                                                                                                                            <input type="checkbox" name="Publish" value="@photo.Id" /> <span style="margin-right: 20px"> Publish</span>
+                                                                                                                            <input type="checkbox" name="Ignore" value="@photo.Id" /> <span> Ignore</span>
+                                                                                                                        </p>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </article>
+                                                                                                            <!-- #post -->
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                    @*<nav class="navigation paging-navigation" role="navigation">
+                                                                                                        <div class="pagination loop-pagination">
+                                                                                                            <span class='page-numbers current'>1</span>
+                                                                                                            <a class='page-numbers' href='#'>2</a>
+                                                                                                            <a class="next page-numbers" href="#">Next</a>
+                                                                                                        </div>
+                                                                                                        <!-- .pagination -->
+                                                                                                    </nav>*@
+                                                                                                    <!-- .navigation -->
+                                                                                                </div>      
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- #content -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        <button type="submit" class="btn btn-theme pull-right">Confirm</button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#home-tab').addClass("current-menu-item");
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.user-tables').DataTable({
+                "iDisplayLength": 50,
+                "bSort": false,
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+            });
+            $('.admin-tables').DataTable({
+                "iDisplayLength": 10,
+                "bSort": false,
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+            });
+        });
+    </script>
+}

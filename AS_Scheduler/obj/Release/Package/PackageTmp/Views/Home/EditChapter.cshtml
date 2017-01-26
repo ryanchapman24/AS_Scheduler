@@ -1,0 +1,112 @@
+﻿@model Scheduler.Models.Code_First.Chapter
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>Edit Chapter</h2>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-horizontal">
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.Id)
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Name</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.ChapterName, new { htmlAttributes = new { @class = "form-control capitalize", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.ChapterName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Year</div>
+                                                <div class="col-md-2">
+                                                    @Html.EditorFor(model => model.ChapterYear, new { htmlAttributes = new { @id = "year-field", @class = "form-control onlyNum", required = "true", maxlength = 4, minlength = 4 } })
+                                                    @Html.ValidationMessageFor(model => model.ChapterYear, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Address</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">City, State Zip</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control capitalize", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Latitude</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="control-label col-md-2">Longitude</div>
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                                    @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div><br />
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Save" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        </div><br /><br />
+                                    }
+                                    <div>
+                                        @Html.ActionLink("Back to Administrator Panel", "Admin")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $('#notes-tab').addClass("current-menu-item");
+    });
+    </script>
+    <script>
+        $('#year-field').keydown(function () {
+            //code to not allow any changes to be made to input field
+            return false;
+        });
+    </script>
+}

@@ -198,7 +198,7 @@
                         </nav>
                     </div>
                     <div class="sidebar-left header-left hidden-sm hidden-xs">
-                        <aside id="text-2" class="widget widget_text sidebar-left">
+                        <aside id="text-2" class="widget widget_text sidebar-left ajaxContainer">
                             <h3 class="widget-title widget-left">QUICK CONTACT FORM</h3>
                             <div class="textwidget">
                                 <div role="form" class="wpcf7" id="wpcf7-f12-o1" lang="en-US" dir="ltr">
@@ -238,7 +238,8 @@
                                     @*<li><i class="fa fa-envelope-o"></i><span>hello@anomalysquared.com</span></li>*@
                                 </ul>
                             </div>
-                        </aside>
+                            @*<div class="loader"></div>*@
+                        </aside>                    
                         <aside id="cms_social_widget-3" class="widget widget_cms_social_widget sidebar-left">
                             <h3 class="widget-title widget-left">SOCIALIZE WITH US</h3>
                             <ul class='cms-social social-circle text-left'>
@@ -250,7 +251,7 @@
                             </ul>
                         </aside>
                         <aside id="cs_recent_post_v2-2" class="widget widget_cs_recent_post_v2 sidebar-left" style="padding-left: 20px; padding-right: 20px">
-                            <h3 class="widget-title widget-left text-nowrap" style="white-space: nowrap">RECENT ANNOUNCEMENTS</h3>
+                            <h3 class="widget-title widget-left">RECENT ANNOUNCEMENTS</h3>
                             <div class="cs-recent-post">
                                 <div class="wpb_accordion wpb_content_element  not-column-inherit" data-collapsible="" data-vc-disable-keydown="false" data-active-tab="1">
                                     <div class="wpb_wrapper wpb_accordion_wrapper ui-accordion">
@@ -260,7 +261,7 @@
                                             foreach (var item in ViewBag.RecentAnnouncements)
                                             {
                                                 <div class="wpb_accordion_section group">
-                                                    <h3 class="wpb_accordion_header ui-accordion-header"><a href="#bulletproof" style="white-space: nowrap">@item.Created.ToString("g")</a></h3>
+                                                    <h3 class="wpb_accordion_header ui-accordion-header"><a href="#bulletproof">@item.Created.ToString("g")</a></h3>
                                                     <div class="ui-accordion-content vc_clearfix" style="padding-left: 15px; padding-top: 20px; padding-right: 5px">
                                                         <div class="wpb_text_column wpb_content_element ">
                                                             <div class="wpb_wrapper">
@@ -329,11 +330,11 @@
                                         </div>
                                     </li>
                                 </ul>*@
-                                @if (ViewBag.RecentAnnouncements.Count > 0)
+                                @*@if (ViewBag.RecentAnnouncements.Count > 0)
                                 {
                                     <hr />
                                     <div class="cs-recent-post-custom-link"><a href="#">ANNOUNCEMENT HUB</a></div>
-                                }                              
+                                }*@                              
                             </div>
                         </aside>
                         <aside id="text-4" class="widget widget_text sidebar-left">
@@ -462,7 +463,7 @@
                                                 </p>
                                             </form>
                                         </div>
-                                        We respect your privacy
+                                        <a href="http://anomalysquared.com/privacy-policy.html" target="_blank">We respect your privacy</a>
                                     </aside>
                                 </div>
                             </div>
@@ -517,11 +518,10 @@
 <script src="~/Multiselect PlugIn/js/jquery.quicksearch.js"></script>
 <script src="~/Scripts/MultiSelect.js"></script>
 @RenderSection("scripts", required: false)
-<script type="text/javascript">
+    <script type="text/javascript">
     /******************************************
-                        -   PREPARE PLACEHOLDER FOR SLIDER  -
-                    ******************************************/
-
+        -   PREPARE PLACEHOLDER FOR SLIDER  -
+    ******************************************/
 
     var setREVStartSize = function() {
         var tpopt = new Object();
@@ -725,6 +725,11 @@
         }
     });
 </script>*@
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("[rel='tooltip']").tooltip();
+    });
+</script>
 <script type="text/javascript">
         jQuery(function ($) {
         $(".onlyNum").keydown(function (e) {

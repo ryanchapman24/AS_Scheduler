@@ -1,0 +1,101 @@
+﻿@model Scheduler.Models.Code_First.GalleryPhoto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div id="page-default" class="clearfix">
+    <div id="primary">
+        <div id="content" role="main">
+            <div class="page-content">
+                <article id="post-20" class="post-20 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="row vc_row-fluid vc_custom_1432886500341" style="padding-left: 0px; padding-right: 0px">
+                            <div class="cms-bg-overlay" style=""></div>
+                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                <div class="wpb_wrapper" style="padding-bottom: 30px">
+                                    <div class="vc_custom_heading vc_custom_1433301510670 default">
+                                        <div class="vc_custom_heading-wrap  row ">
+                                            <div class="table-responsive">
+                                                <div class="table">
+                                                    <div class="table-cell">
+                                                        <h2>Delete Photo</h2>
+                                                    </div>
+                                                    <div class="table-cell">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-heading-driver default"></div>
+                                    </div>
+                                    <h4>Are you sure you want to delete this photo?</h4>
+                                    <div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Created
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Model.Created.ToString("g")
+                                            </div><br /><br />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Chapter
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.DisplayFor(model => model.Chapter.ChapterName) (@Model.Chapter.ChapterYear)
+                                            </div><br /><br />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Photo
+                                            </div>
+                                            <div class="col-md-10">
+                                                <img src="@Model.File" style="width: 400px; margin-bottom: 30px; border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                Caption
+                                            </div>
+                                            <div class="col-md-4">
+                                                @Html.DisplayFor(model => model.Caption)
+                                            </div>
+                                        </div>                                       
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-offset-2 col-md-4">
+                                                @using (Html.BeginForm())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="form-actions no-color">
+                                                        <input type="submit" value="Delete" class="btn btn-default" />
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <br /><br />
+                                        @Html.ActionLink("Back to Profile", "ProfilePage", new { id = Model.AuthorId })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $('#notes-tab').addClass("current-menu-item");
+    });
+    </script>
+}
+
+

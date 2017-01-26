@@ -98,9 +98,9 @@
 .owl-carousel.owl-hidden {
   opacity: 0;
 }
-.owl-carousel .owl-refresh .owl-item {
+/*.owl-carousel .owl-refresh .owl-item {
   display: none;
-}
+}*/
 .owl-carousel .owl-item {
   position: relative;
   min-height: 1px;

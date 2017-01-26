@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <a href="javascript:document.getElementById('logoutForm').submit()" style="padding-left: 0px; margin-left: 15px; margin-right: -15px; font-size: 13px; color: white"><i class="fa fa-lock" style="margin-right: 7px"></i><strong>LOGOUT</strong></a>
+    @*<ul class="nav navbar-nav navbar-right">
+        <li class="btn-group">
+            <button class="logout dropdown-toggle user-btn" data-toggle="dropdown" style="font-size: 14px; letter-spacing: 0.5px; margin-right: 0px; margin-top: 14px"><strong>@ViewBag.DisplayName</strong><span class="caret" style="margin-left: 8px"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="@Url.Action("ProfilePage","Home", new { id = User.Identity.GetUserId() })">My Profile</a></li>
+                <li><a href="@Url.Action("Index","Manage")">Manage Account</a></li>
+                <li class="divider"></li>
+                <li><a class="logout" id="log-out" href="javascript:document.getElementById('logoutForm').submit()" style="font-size: 14px; line-height: 30px">Logout<img id="wave" class="hidden animated wobble infinite fa fa-thumbs-up" src="~/assets/img/handwaving.png" style="width: 30px; margin-left: 20px" /></a></li>
+            </ul>
+        </li>
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+    </ul>*@
+    }
+}
+else
+{
+    @*<ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>*@
+}

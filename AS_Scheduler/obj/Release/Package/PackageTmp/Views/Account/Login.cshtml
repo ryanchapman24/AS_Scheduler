@@ -1,0 +1,105 @@
+﻿@using Scheduler.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/Login_Layout.cshtml";
+}
+
+<div class="row" style="height: 100%; margin-right: 0px">
+    <div class="col-md-8">
+        <div class="row" style="margin-top: 3em">
+            <div class="col-md-offset-1 col-md-10">
+                <img src="~/assets/images/Anomaly_Sponsored_Wifi_page-07.png" style="width: 60%" />
+                <h1 style="color: white; margin-left: 40px; margin-top: 0px; margin-bottom: 0px">To the Anomaly Hub</h1>
+                <h3 style="color: white; margin-left: 40px; margin-top: 0px">It's a free tool to help you get around at the conference a little easier.</h3>
+                <h2><strong style="color: #29AAE3; margin-left: 40px">It includes:</strong></h2>
+            </div>
+        </div>   
+        <div class="row">
+            <img class="col-md-offset-1 col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-08.png" />
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-09.png" />
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-10.png" style="margin-top: 4px"/>
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-11.png" style="margin-top: -3px"/>
+            <img class="col-md-2 col-sm-6 col-xs-6" src="~/assets/images/Anomaly_Sponsored_Wifi_page-12.png" style="margin-top: -3px"/>
+        </div>
+        <div class="col-md-offset-1 col-md-10" style="text-align: center; margin-top: 40px;">
+            <button id="registerBtn" onclick="location.href='/Account/Register'" class="btn-anomaly" style="width: 100%"><h2 style="margin-top: 5px; margin-bottom: 5px; font-size: 40px"><strong>REGISTER HERE</strong></h2></button>
+        </div>
+    </div>
+    <div class="modal fade" id="forgotpasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotpasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="margin-bottom: 15px">
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title" id="forgotpasswordModalLabel" style="color: #29AAE3">Forgot Password?</h3>
+                </div>
+                @using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                        <div class="" style="">
+                            <div class="form-group">
+                                <p>Enter your e-mail address below to reset your password.</p>
+                                @*@Html.AntiForgeryToken()*@
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = " email", style="width: 80%" })                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 20px">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div id="login" class="col-md-4" style="background-color: white; height: 100%; padding-top: 6em">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h2 class="col-md-offset-2" style="padding-left: 15px">login</h2>
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder=" email", style="width: 100%", required = "true" })
+                        @*@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
+                    </div>
+                </div><br /><br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = " password", style = "width: 100%", required = "true" })
+                        @*@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
+                    </div>
+                </div><br /><br /><br />
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>*@
+                <div class="form-group row">
+                    <div class="col-md-offset-2 col-md-4" style="padding-left: 25px">
+                        <button type="submit" class="btn btn-anomaly-sm" style="width: 100%"><h2 style="margin-bottom: 5px; margin-top: 5px; font-size: 20px;"><strong>LOGIN</strong></h2></button>
+                    </div>
+                    <div class="col-md-6">
+                        <a data-toggle="modal" href="#forgotpasswordModal"><span class="text-nowrap" style="line-height: 40px; text-decoration: none; margin-left: 10px">Forgot Password?</span></a>
+                    </div>
+                </div>
+                <div class="col-md-offset-1 col-md-9">
+                    <span style="color: indianred">@Html.ValidationSummary("", new { @class = "text-danger" })</span>
+                </div>
+            }
+        </section><br />
+        @*<section id="socialLoginForm" style="margin-top: 100px">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
+    </div>
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

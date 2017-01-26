@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Notes";
+}
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="margin-bottom: 15px">
+                <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="noteModalLabel" style="color: #29AAE3">Create New Note</h3>
+            </div>
+            @using (Html.BeginForm("CreateNote", "Home", new { }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="" style="">
+                        <div class="form-group">
+                            <div class="col-md-3 control-label">
+                                Title
+                            </div>
+                            <div class="col-md-9" style="margin-top: -5px">
+                                <input class="form-control capitalize" name="Title" type="text" required />
+                            </div><br /><br /><br />
+
+                            <div class="col-md-3 control-label">
+                                Body
+                            </div>
+                            <div class="col-md-9" style="margin-top: -5px">
+                                <textarea rows="5" class="form-control capitalize" name="Body" required></textarea>
+                            </div><br /><br /><br /><br /><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 20px">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="page-title" class="page-title">
+    <div id="page-title-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style='background:url(/assets/images/notes-wallpaper.jpg) no-repeat center'>
+        <h1 style="color: black !important">NOTES</h1>
+        <div class="page-title-driver">
+        </div>
+        <p class="page-sub-title" style="color: white">
+            Helping you grow one note at a time
+        </p>
+    </div>
+    
+    <div id="breadcrumb-text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2 style="padding-left: 30px; padding-right: 30px; padding-top: 12px"><span class="pull-left">@ViewBag.ChapterName.ToUpper() (@ViewBag.ChapterYear)</span><button class="btn btn-theme btn-md pull-right" data-toggle="modal" data-target="#noteModal" style="margin-top: -7px">+ New Note</button></h2>      
+        <br />
+        <hr style="margin-top: 3px; margin-left: 30px; margin-right: 30px"/>
+    </div>
+</div>
+<!-- #page-title -->
+@if (ViewBag.Notes.Count > 0)
+{
+    <div id="page-default" class="clearfix">
+        <div id="primary">
+            <div id="content" role="main">
+                <div class="page-content">
+                    <article id="post-31" class="post-31 page type-page status-publish hentry">
+                        <div class="entry-content">
+                            <div class="row vc_row-fluid vc_custom_1435184433002">
+                                <div class="cms-bg-overlay" style="">
+                                </div>
+                                <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                    <div class="wpb_wrapper">
+                                        <div class="cms-grid-wraper template-cms_grid--masonry " id="cms-grid">
+                                            <div class="cms-grid-filter">
+                                                <ul class="cms-filter-category">
+                                                    <li>
+                                                        <a class="active" href="#" data-group="all">All</a>
+                                                    </li>
+                                                    @foreach (var chapter in ViewBag.Chapters)
+                                                    {
+                                                        <li>
+                                                            <a href="#" data-group="@string.Format("{0}{1}{2}{3}{4}", chapter.ChapterName, "-", chapter.ChapterYear, "-", chapter.Id)">
+                                                                @chapter.ChapterName (@chapter.ChapterYear)
+                                                            </a>
+                                                        </li>
+                                                    }                                          
+                                                </ul>
+                                            </div>
+                                            <div class="row cms-grid cms-grid-portfolio cms-grid cms-grid-masonry">
+                                                @foreach (var note in ViewBag.Notes)
+                                                {
+                                                    <div class="cms-grid-item cms-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12" data-groups='["all",@string.Format("{0}{1}{2}{3}{4}{5}{6}", '"', note.Chapter.ChapterName, "-", note.Chapter.ChapterYear, "-", note.ChapterId, '"')]'>
+                                                        <div class="cms-grid-item-wrap">
+                                                            <div class="cms-grid-media has-thumbnail">
+                                                                @*<img src="~/assets/images/notepad.png" class="attachment-full wp-post-image" />*@
+                                                                <div style="padding-left: 15px; padding-top: 10px; padding-right: 15px; padding-bottom: 10px; /*background:url(/assets/images/sticky-note-texture.jpg) no-repeat center;*/ background-color: #f4f4f4; box-shadow: 3px 3px 5px #888888">
+                                                                    <span>@note.Created.ToString("g")<span class="pull-right"><a href="@Url.Action("EditNote", "Home", new { id = note.Id })" style="margin-right: 4px"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteNote", "Home", new { id = note.Id })"><i class="fa fa-trash"></i></a></span></span><br />
+                                                                    <hr style="margin-top: 0px; margin-bottom: 0px; border-top: 1px solid #696969"/>
+                                                                    <h3 style="color: #29AAE3">@note.Title</h3>
+                                                                    <h4>@note.Body</h4>
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="cms-grid-item-icon">
+                                                                <a class="cms-grid-portfolio-item-lightbox" href="~/assets/images/notepad.png"><i class="fa fa-search"></i></a>
+                                                                <a class="cms-grid-portfolio-item-link" href="#"><i class="fa fa-expand"></i></a>
+                                                            </div>
+                                                            <div class="cms-grid-item-overlay">
+                                                            </div>*@
+                                                        </div>
+                                                    </div>
+                                                }                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- .entry-content -->
+                    </article>
+                    <!-- #post -->
+                    <div id="comments" class="comments-area">
+                    </div>
+                    <!-- #comments .comments-area -->
+                </div>
+            </div>
+            <!-- #content -->
+        </div>
+        <!-- #primary -->
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $('#notes-tab').addClass("current-menu-item");
+    });
+    </script>
+}
+

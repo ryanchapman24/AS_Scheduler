@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -246,6 +247,7 @@
   <ItemGroup>
     <Content Include="assets\css\dataTables.min.css" />
     <Content Include="assets\css\table-responsive.css" />
+    <Content Include="assets\images\ajaxSpinner.gif" />
     <Content Include="assets\images\announcement-image.jpg" />
     <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
@@ -837,10 +839,6 @@
     <Content Include="assets\revslider\rs-plugin\font\revicons90c6.eot" />
     <Content Include="assets\revslider\rs-plugin\font\revicons90c6.ttf" />
     <Content Include="assets\revslider\rs-plugin\font\revicons90c6.woff" />
-    <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs" />
-    <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-2" />
-    <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-3" />
-    <Content Include="assets\upload\architecture-futuristic-nice-open-block-modern-glass-house-facade-architecture-design-in-grey-color-great-inspiration-of-home-facade-designs-4" />
     <Content Include="Multiselect PlugIn\.gitignore" />
     <Content Include="Multiselect PlugIn\css\multi-select.css" />
     <Content Include="Multiselect PlugIn\img\switch.png" />
@@ -875,6 +873,7 @@
     <Content Include="Multiselect PlugIn\multi-select.jquery.json" />
     <Content Include="Multiselect PlugIn\README.markdown" />
     <Content Include="Multiselect PlugIn\test\lib\jasmine-1.2.0\MIT.LICENSE" />
+    <None Include="Properties\PublishProfiles\Scheduler.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
