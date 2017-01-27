@@ -64,5 +64,6 @@ namespace Scheduler.Models
         public DbSet<Vote> Votes { get; set; }
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<AnnouncementImage> AnnouncementImages { get; set; }
     }
 }

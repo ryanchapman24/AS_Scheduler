@@ -225,6 +225,7 @@
     <Compile Include="Models\AdminUserListModels.cs" />
     <Compile Include="Models\AdminUserViewModels.cs" />
     <Compile Include="Models\Code First\Announcement.cs" />
+    <Compile Include="Models\Code First\AnnouncementImage.cs" />
     <Compile Include="Models\Code First\Chapter.cs" />
     <Compile Include="Models\Code First\Day.cs" />
     <Compile Include="Models\Code First\Event.cs" />
@@ -245,10 +246,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\announcementImages\announcement-image-coffee-laptop.jpg" />
     <Content Include="assets\css\dataTables.min.css" />
     <Content Include="assets\css\table-responsive.css" />
     <Content Include="assets\images\ajaxSpinner.gif" />
-    <Content Include="assets\images\announcement-image.jpg" />
     <Content Include="assets\images\Anom_Logo_Wifi-04.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-05.png" />
     <Content Include="assets\images\Anom_Logo_Wifi-06.png" />

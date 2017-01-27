@@ -160,6 +160,8 @@ namespace Scheduler.Controllers
             ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
             ViewBag.Announcements = db.Announcements.OrderByDescending(c => c.Id).ToList();
             ViewBag.UnpublishedPhotos = db.GalleryPhotos.Where(p => p.Published == false && p.Ignored == false).OrderBy(p => p.Id).ToList();
+            ViewBag.AnnouncementImageId = new SelectList(db.AnnouncementImages.OrderBy(i => i.ImageName), "Id", "ImageName");
+            ViewBag.AnnouncementImages = db.AnnouncementImages.OrderBy(i => i.ImageName).ToList();
             return View();
         }
 
@@ -285,7 +287,7 @@ namespace Scheduler.Controllers
         // Post: CreateAnnouncement
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public ActionResult CreateAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Announcement announcement)
+        public ActionResult CreateAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId,AnnouncementImageId")] Announcement announcement)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
             var currentChapter = db.Chapters.First(c => c.CurrentChapter == true);
@@ -294,6 +296,8 @@ namespace Scheduler.Controllers
             announcement.ChapterId = currentChapter.Id;
             db.Announcements.Add(announcement);
             db.SaveChanges();
+            ViewBag.AnnouncementImageId = new SelectList(db.AnnouncementImages.OrderBy(i => i.ImageName), "Id", "ImageName");
+            ViewBag.AnnouncementImages = db.AnnouncementImages.OrderBy(i => i.ImageName).ToList();
             return RedirectToAction("Admin", "Home");
         }
 
@@ -309,6 +313,8 @@ namespace Scheduler.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AnnouncementImageId = new SelectList(db.AnnouncementImages.OrderBy(i => i.ImageName), "Id", "ImageName", announcement.AnnouncementImageId);
+            ViewBag.AnnouncementImages = db.AnnouncementImages.OrderBy(i => i.ImageName).ToList();
             return View(announcement);
         }
 
@@ -317,16 +323,19 @@ namespace Scheduler.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId")] Announcement announcement)
+        public ActionResult EditAnnouncement([Bind(Include = "Id,AuthorId,Title,Body,Created,ChapterId,AnnouncementImageId")] Announcement announcement)
         {
             if (ModelState.IsValid)
             {
                 db.Announcements.Attach(announcement);
                 db.Entry(announcement).Property("Title").IsModified = true;
                 db.Entry(announcement).Property("Body").IsModified = true;
+                db.Entry(announcement).Property("AnnouncementImageId").IsModified = true;
                 db.SaveChanges();
                 return RedirectToAction("Admin", "Home");
             }
+            ViewBag.AnnouncementImages = db.AnnouncementImages.OrderBy(i => i.ImageName).ToList();
+            ViewBag.AnnouncementImageId = new SelectList(db.AnnouncementImages.OrderBy(i => i.ImageName), "Id", "ImageName", announcement.AnnouncementImageId);
             return View(announcement);
         }
 
