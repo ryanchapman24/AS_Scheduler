@@ -27,6 +27,27 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="App_Start/Startup.Auth.cs">
       <publishTime>12/14/2016 12:00:43</publishTime>
     </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-01.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-02.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-03.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-04.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-05.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-06.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
+    <File Include="assets/announcementImages/AnomHub_Announcement_Icons-07.png">
+      <publishTime>01/30/2017 15:26:25</publishTime>
+    </File>
     <File Include="assets/css/blank.html">
       <publishTime>12/14/2016 12:28:01</publishTime>
     </File>
@@ -136,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:28:01</publishTime>
     </File>
     <File Include="assets/css/owl.carousel.css">
-      <publishTime>12/14/2016 12:28:01</publishTime>
+      <publishTime>01/26/2017 12:05:39</publishTime>
     </File>
     <File Include="assets/css/presets-1.css">
       <publishTime>12/20/2016 16:55:33</publishTime>
@@ -160,10 +181,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:28:01</publishTime>
     </File>
     <File Include="assets/css/static.css">
-      <publishTime>01/03/2017 14:13:48</publishTime>
+      <publishTime>01/26/2017 10:12:39</publishTime>
     </File>
     <File Include="assets/css/style.css">
-      <publishTime>01/02/2017 17:31:22</publishTime>
+      <publishTime>01/26/2017 11:06:32</publishTime>
     </File>
     <File Include="assets/css/table-responsive.css">
       <publishTime>12/22/2016 16:41:49</publishTime>
@@ -233,6 +254,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="assets/images/ajax-loader.html">
       <publishTime>12/14/2016 12:28:51</publishTime>
+    </File>
+    <File Include="assets/images/ajaxSpinner.gif">
+      <publishTime>01/26/2017 11:08:28</publishTime>
     </File>
     <File Include="assets/images/announcement-image.jpg">
       <publishTime>12/29/2016 12:18:51</publishTime>
@@ -427,7 +451,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/30/2016 13:46:01</publishTime>
     </File>
     <File Include="assets/images/notes-wallpaper.jpg">
-      <publishTime>12/30/2016 14:11:26</publishTime>
+      <publishTime>01/31/2017 10:36:37</publishTime>
     </File>
     <File Include="assets/images/overlay.png">
       <publishTime>12/14/2016 12:28:49</publishTime>
@@ -517,13 +541,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:28:49</publishTime>
     </File>
     <File Include="assets/images/wifi_slider_1.png">
-      <publishTime>01/25/2017 12:12:04</publishTime>
+      <publishTime>01/30/2017 13:18:09</publishTime>
     </File>
     <File Include="assets/images/wifi_slider_2.png">
       <publishTime>01/25/2017 12:12:04</publishTime>
     </File>
     <File Include="assets/images/wifi_slider_3.png">
-      <publishTime>01/25/2017 12:12:04</publishTime>
+      <publishTime>01/31/2017 10:15:36</publishTime>
     </File>
     <File Include="assets/js/background.video.js">
       <publishTime>12/14/2016 12:29:08</publishTime>
@@ -544,7 +568,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:29:08</publishTime>
     </File>
     <File Include="assets/js/contact-form.js">
-      <publishTime>01/05/2017 16:36:22</publishTime>
+      <publishTime>01/26/2017 11:47:59</publishTime>
     </File>
     <File Include="assets/js/counter.cms.js">
       <publishTime>12/14/2016 12:29:08</publishTime>
@@ -676,7 +700,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:29:07</publishTime>
     </File>
     <File Include="assets/js/owl.carousel.min.js">
-      <publishTime>12/14/2016 12:29:07</publishTime>
+      <publishTime>01/26/2017 12:21:32</publishTime>
     </File>
     <File Include="assets/js/placeholders.min.js">
       <publishTime>12/14/2016 12:29:07</publishTime>
@@ -973,10 +997,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2016 15:57:05</publishTime>
     </File>
     <File Include="assets/team/img-staff-jerry-wass-gso.jpg">
-      <publishTime>12/20/2016 15:57:05</publishTime>
+      <publishTime>01/31/2017 14:43:30</publishTime>
     </File>
     <File Include="assets/team/img-staff-john-capes-gso.jpg">
-      <publishTime>12/20/2016 15:57:05</publishTime>
+      <publishTime>01/31/2017 14:43:30</publishTime>
     </File>
     <File Include="assets/team/img-staff-john-gum-ks.jpg">
       <publishTime>12/20/2016 15:57:05</publishTime>
@@ -985,7 +1009,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2016 15:57:05</publishTime>
     </File>
     <File Include="assets/team/img-staff-michael-ferree-ca.jpg">
-      <publishTime>12/20/2016 15:57:05</publishTime>
+      <publishTime>01/31/2017 14:43:30</publishTime>
     </File>
     <File Include="assets/team/img-staff-monica-lee-ks.jpg">
       <publishTime>12/20/2016 15:57:05</publishTime>
@@ -1009,7 +1033,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/20/2016 15:57:05</publishTime>
     </File>
     <File Include="assets/team/img-staff-taylor-edwards-gso.jpg">
-      <publishTime>12/20/2016 15:57:05</publishTime>
+      <publishTime>01/31/2017 14:43:30</publishTime>
     </File>
     <File Include="assets/team/img-staff-teresa-lanier-gso.jpg">
       <publishTime>12/20/2016 15:57:05</publishTime>
@@ -1924,7 +1948,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/27/2016 14:50:24</publishTime>
     </File>
     <File Include="bin/Scheduler.dll">
-      <publishTime>01/25/2017 14:15:52</publishTime>
+      <publishTime>02/01/2017 14:25:41</publishTime>
     </File>
     <File Include="bin/SendGrid.dll">
       <publishTime>12/15/2015 08:04:56</publishTime>
@@ -2058,6 +2082,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Models/Code First/Announcement.cs">
       <publishTime>01/03/2017 21:52:09</publishTime>
     </File>
+    <File Include="Models/Code First/AnnouncementImage.cs">
+      <publishTime>01/27/2017 10:35:11</publishTime>
+    </File>
     <File Include="Models/Code First/Chapter.cs">
       <publishTime>01/05/2017 16:53:24</publishTime>
     </File>
@@ -2164,7 +2191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/22/2016 15:02:07</publishTime>
     </File>
     <File Include="private.config">
-      <publishTime>12/21/2016 10:36:04</publishTime>
+      <publishTime>01/26/2017 10:17:06</publishTime>
     </File>
     <File Include="Project_Readme.html">
       <publishTime>12/14/2016 12:00:29</publishTime>
@@ -2383,16 +2410,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:00:44</publishTime>
     </File>
     <File Include="Views/Home/Admin.cshtml">
-      <publishTime>01/12/2017 09:52:28</publishTime>
+      <publishTime>01/27/2017 12:46:14</publishTime>
     </File>
     <File Include="Views/Home/Agenda.cshtml">
-      <publishTime>01/03/2017 11:49:55</publishTime>
+      <publishTime>01/30/2017 17:46:09</publishTime>
     </File>
     <File Include="Views/Home/ChapterStats.cshtml">
       <publishTime>01/04/2017 11:01:58</publishTime>
     </File>
     <File Include="Views/Home/DeleteAnnouncement.cshtml">
-      <publishTime>01/04/2017 13:31:23</publishTime>
+      <publishTime>01/27/2017 13:11:42</publishTime>
     </File>
     <File Include="Views/Home/DeleteNote.cshtml">
       <publishTime>01/04/2017 13:31:59</publishTime>
@@ -2401,7 +2428,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/04/2017 13:32:19</publishTime>
     </File>
     <File Include="Views/Home/EditAnnouncement.cshtml">
-      <publishTime>01/03/2017 22:21:47</publishTime>
+      <publishTime>01/27/2017 13:09:03</publishTime>
     </File>
     <File Include="Views/Home/EditChapter.cshtml">
       <publishTime>01/05/2017 18:34:38</publishTime>
@@ -2416,19 +2443,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2016 16:02:55</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>01/25/2017 12:15:20</publishTime>
+      <publishTime>01/31/2017 14:54:14</publishTime>
     </File>
     <File Include="Views/Home/MapAndVenue.cshtml">
       <publishTime>01/09/2017 12:42:03</publishTime>
     </File>
     <File Include="Views/Home/MySchedule.cshtml">
-      <publishTime>01/02/2017 13:02:08</publishTime>
+      <publishTime>01/30/2017 17:46:09</publishTime>
     </File>
     <File Include="Views/Home/Notes.cshtml">
-      <publishTime>01/03/2017 16:15:06</publishTime>
+      <publishTime>01/31/2017 13:00:18</publishTime>
     </File>
     <File Include="Views/Home/ProfilePage.cshtml">
-      <publishTime>01/04/2017 13:41:06</publishTime>
+      <publishTime>01/26/2017 15:01:37</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>12/19/2016 15:15:26</publishTime>
@@ -2437,7 +2464,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/06/2017 15:00:02</publishTime>
     </File>
     <File Include="Views/Manage/Index.cshtml">
-      <publishTime>01/02/2017 13:53:20</publishTime>
+      <publishTime>01/26/2017 14:02:28</publishTime>
     </File>
     <File Include="Views/Manage/ManageLogins.cshtml">
       <publishTime>12/20/2016 16:48:20</publishTime>
@@ -2476,7 +2503,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/15/2016 16:52:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/25/2017 14:46:45</publishTime>
+      <publishTime>02/01/2017 15:10:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

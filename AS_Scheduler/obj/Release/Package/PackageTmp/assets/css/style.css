@@ -246,6 +246,21 @@ body.photography-bg{background:url(../upload/03_Home-v2-Photography.jpg) repeat 
     bottom: -4%;
 }
 
+.ajaxContainer {
+    position: relative;
+    width: 270px;
+    height: 633px;
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(255, 255, 255, 0.8) url('../images/ajaxSpinner.gif') no-repeat 50%;
+}
+
 #ul_e266_0{width:200px;}
 #ul_e266_1{width:200px;}
 #ul_e266_2{width:200px;}

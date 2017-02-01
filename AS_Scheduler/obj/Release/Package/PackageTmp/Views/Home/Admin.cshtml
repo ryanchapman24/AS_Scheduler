@@ -214,7 +214,7 @@
                                                                                             </div>
                                                                                             <div class="modal-footer" style="margin-top: 20px">
                                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                                                <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                                                                                                <button id="" type="submit" class="btn btn-theme play">Save</button>
                                                                                             </div>
                                                                                         }
                                                                                     </div>
@@ -303,13 +303,28 @@
                                                                                                         </div>
                                                                                                         <div class="col-md-9" style="margin-top: -5px">
                                                                                                             <textarea rows="5" class="form-control capitalize" name="Body" required></textarea>
-                                                                                                        </div><br /><br /><br /><br /><br />
+                                                                                                        </div><br /><br /><br /><br /><br /><br />
+                                                                                                        <div class="col-md-3 control-label" style="margin-top: 5px">
+                                                                                                            Image
+                                                                                                        </div>
+                                                                                                        <div class="col-md-9">
+                                                                                                            @Html.DropDownList("AnnouncementImageId", null, "", htmlAttributes: new { @class = "form-control", required = "true" })
+                                                                                                        </div><br /><br />
+                                                                                                        <div class="row" style="margin-top: 25px; padding-left: 30px; padding-right: 30px; text-align: center">
+                                                                                                            @foreach (var image in ViewBag.AnnouncementImages)
+                                                                                                            {
+                                                                                                                <div class="col-md-3" style="margin-bottom: 25px">
+                                                                                                                    <img src="@image.File" style="width: 80px; margin-bottom: 5px; border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/><br />
+                                                                                                                    <span>@image.ImageName</span>
+                                                                                                                </div>                                                                                                     
+                                                                                                            }
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="modal-footer" style="margin-top: 20px">
                                                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                                                <button id="" type="submit" class="btn btn-theme play">Confirm</button>
+                                                                                                <button id="" type="submit" class="btn btn-theme play">Save</button>
                                                                                             </div>
                                                                                         }
                                                                                     </div>
@@ -322,6 +337,7 @@
                                                                                             <th>Created</th>
                                                                                             <th>Title</th>
                                                                                             <th>Body</th>
+                                                                                            <th>Image</th>
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -336,6 +352,7 @@
                                                                                                 </td>
                                                                                                 <td>@item.Title</td>
                                                                                                 <td>@item.Body</td>
+                                                                                                <td><img src="@item.AnnouncementImage.File" style="width: 60px"/></td>
                                                                                                 <td class="text-nowrap">
                                                                                                     <a href="@Url.Action("EditAnnouncement", "Home", new { id = item.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
                                                                                                     <a href="@Url.Action("DeleteAnnouncement", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>
@@ -440,9 +457,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <hr />
-                                                        <button type="submit" class="btn btn-theme pull-right">Confirm</button>
+                                                        if (ViewBag.UnpublishedPhotos.Count > 0)
+                                                        {
+                                                            <hr />
+                                                            <button type="submit" class="btn btn-theme pull-right">Confirm</button>
                                                         }
+                                                    }
                                                     </div>
                                                 </div>
                                             </div>
