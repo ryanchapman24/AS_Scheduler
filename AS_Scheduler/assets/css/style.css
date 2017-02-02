@@ -248,8 +248,8 @@ body.photography-bg{background:url(../upload/03_Home-v2-Photography.jpg) repeat 
 
 .ajaxContainer {
     position: relative;
-    width: 270px;
-    height: 633px;
+    /*width: 270px;
+    height: 633px;*/
 }
 
 .loader {

@@ -357,5 +357,30 @@
         });
     });
     </script>
+    <style type="text/css">
+        .login-white-height {
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            if ($(this).width() < 975) {
+                $('#register').removeClass('login-white-height');
+            } else {
+                $('#register').addClass('login-white-height');
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(window).resize(function () {
+                if ($(this).width() < 975) {
+                    $('#register').removeClass('login-white-height');
+                } else {
+                    $('#register').addClass('login-white-height');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

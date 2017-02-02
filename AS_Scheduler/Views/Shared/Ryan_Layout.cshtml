@@ -193,6 +193,14 @@
                                         </ul>*@
                                     </li>
                                     <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat no_group" data-depth="0"><a href="http://www.anomalysquared.com/" target="_blank"><span class="menu-title">About Anomaly</span></a></li>
+                                    <li id ="logout-tab" class="menu-item hidden-lg hidden-md" data-depth="0"><a href="javascript:document.getElementById('logoutForm2').submit()"><span class="menu-title">Logout</span></a></li>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm2" }))
+                                        {
+                                            @Html.AntiForgeryToken()                                               
+                                        }
+                                    }                                                                      
                                 </ul>
                             </div>
                         </nav>
@@ -233,7 +241,7 @@
                                     }
                                 </div>
                                 <ul>
-                                    <li><i class="fa fa-building"></i><span>Anomaly Squared<br />2nd Floor, 2 Centerview Dr<br />Greensboro, NC 27407</span></li>
+                                    <li style="white-space:nowrap"><i class="fa fa-building"></i><span>Anomaly Squared<br />2nd Floor, 2 Centerview Dr<br />Greensboro, NC 27407</span></li>
                                     <li><i class="fa fa-phone"></i><span>(866) 289-0101</span></li>
                                     @*<li><i class="fa fa-envelope-o"></i><span>hello@anomalysquared.com</span></li>*@
                                 </ul>

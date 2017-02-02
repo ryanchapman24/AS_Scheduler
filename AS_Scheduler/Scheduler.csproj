@@ -951,6 +951,7 @@
     <Content Include="Views\Home\DeleteAnnouncement.cshtml" />
     <Content Include="Views\Home\EditChapter.cshtml" />
     <Content Include="Views\Home\MapAndVenue.cshtml" />
+    <Content Include="Views\Home\UnpublishPhoto.cshtml" />
     <None Include="Views\Shared\Ryan_Layout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

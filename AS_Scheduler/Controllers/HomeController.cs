@@ -625,7 +625,7 @@ namespace Scheduler.Controllers
             return View(galleryPhoto);
         }
 
-        // POST: Home/DeleteNote/5
+        // POST: Home/DeletePhoto/5
         [HttpPost, ActionName("DeletePhoto")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePhotoConfirmed(int id)
@@ -663,6 +663,32 @@ namespace Scheduler.Controllers
                 }
             }
 
+            return RedirectToAction("Admin", "Home");
+        }
+
+        // GET: Home/UnpublishPhoto/5
+        public ActionResult UnpublishPhoto(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            GalleryPhoto galleryPhoto = db.GalleryPhotos.Find(id);
+            if (galleryPhoto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(galleryPhoto);
+        }
+
+        // POST: Home/UnpublishPhoto/5
+        [HttpPost, ActionName("UnpublishPhoto")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UnpublishPhotoConfirmed(int id)
+        {
+            GalleryPhoto galleryPhoto = db.GalleryPhotos.Find(id);
+            galleryPhoto.Published = false;
+            db.SaveChanges();
             return RedirectToAction("Admin", "Home");
         }
 
