@@ -1634,7 +1634,11 @@
                                                                 <img width="600" height="600" src="@photo.File" class="attachment-medium-square wp-post-image" alt="@photo.File" style="border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/>
                                                             </div>
                                                             <div class="cms-grid-item-icon">
-                                                                <a class="cms-grid-portfolio-item-lightbox" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted by @photo.Author.DisplayName on @photo.Created.ToString("G")</em>" href="@photo.File" style="margin-left: 0px"><i class="fa fa-search"></i></a>
+                                                                <a id="gallery-icon1" class="cms-grid-portfolio-item-lightbox" style="margin-left: 0px" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted by @photo.Author.DisplayName on @photo.Created.ToString("G")</em>" href="@photo.File"><i class="fa fa-search"></i></a>
+                                                                @if (User.IsInRole("Administrator"))
+                                                                {
+                                                                    <a class="cms-grid-portfolio-item-link" href="@Url.Action("UnpublishPhoto","Home", new {id = photo.Id })"><i class="fa fa-undo"></i></a>
+                                                                }
                                                             </div>
                                                             <div class="cms-grid-item-overlay">
                                                             </div>
@@ -1722,6 +1726,21 @@
             $('#home-tab').addClass("current-menu-item");
         });
     </script>
+    <style type="text/css">
+        .gallery-admin-icon1 {
+            margin-left: -20px !important;
+        }
+    </style>
+    @if (User.IsInRole("Administrator"))
+    {
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $(document).ready(function () {
+                    $('#gallery-icon1').addClass("gallery-admin-icon1");
+                });
+            });
+        </script>
+    }
     @*<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script>
         var $ = jQuery.noConflict();
