@@ -232,6 +232,33 @@
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
+                                                                                        <tr>
+                                                                                            <td class="text-nowrap"><strong style="color: #29AAE3">@ViewBag.CurrentChapter.ChapterName</strong></td>
+                                                                                            <td>@ViewBag.CurrentChapter.ChapterYear</td>
+                                                                                            <td>
+                                                                                                @ViewBag.CurrentChapter.AddressLine1<span>,</span><br />
+                                                                                                @ViewBag.CurrentChapter.AddressLine2<br />
+                                                                                                @ViewBag.CurrentChapter.Latitude<span>, </span>@ViewBag.CurrentChapter.Longitude
+                                                                                            </td>
+                                                                                            @if (ViewBag.CurrentChapter.CurrentChapter == true)
+                                                                                            {
+                                                                                                <td style="color: #29AAE3"><strong>CURRENT</strong><i class="fa fa-check" style="margin-left: 5px"></i></td>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <td></td>
+                                                                                            }
+                                                                                            <td class="text-nowrap">
+                                                                                                @if (ViewBag.CurrentChapter.CurrentChapter == false)
+                                                                                                {
+                                                                                                    <a href="@Url.Action("MakeCurrentChapter", "Home", new { id = ViewBag.CurrentChapter.Id })"><i class="fa fa-calendar-check-o" style="margin-right: 3px; font-size: 16px"></i> Make Current</a><br />
+                                                                                                }
+                                                                                                <a href="@Url.Action("ChapterStats", "Home", new { id = ViewBag.CurrentChapter.Id })"><i class="fa fa-line-chart" style="margin-right: 3px; font-size: 16px"></i> Statistics</a><br />
+                                                                                                <a href="@Url.Action("EditChapter", "Home", new { id = ViewBag.CurrentChapter.Id })"><i class="fa fa-edit" style="margin-right: 3px; font-size: 16px"></i> Edit</a><br />
+                                                                                                @*<a href="@Url.Action("DeleteChapter", "Home", new { id = item.Id })"><i class="fa fa-trash" style="margin-right: 3px; font-size: 16px"></i> Delete</a>*@
+                                                                                            </td>
+                                                                                        </tr>
+
                                                                                         @foreach (var item in ViewBag.Chapters)
                                                                                         {
                                                                                             <tr>

@@ -157,7 +157,8 @@ namespace Scheduler.Controllers
             ViewBag.Admins = adminUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Users = regularUsers.OrderBy(a => a.user.FirstName).ToList();
             ViewBag.Blocked = blockedUsers.OrderBy(a => a.user.FirstName).ToList();
-            ViewBag.Chapters = db.Chapters.OrderByDescending(c => c.Id).ToList();
+            ViewBag.CurrentChapter = currentChapter;
+            ViewBag.Chapters = db.Chapters.Where(c => c.Id != currentChapter.Id).OrderByDescending(c => c.Id).ToList();
             ViewBag.Announcements = db.Announcements.OrderByDescending(c => c.Id).ToList();
             ViewBag.UnpublishedPhotos = db.GalleryPhotos.Where(p => p.Published == false && p.Ignored == false).OrderBy(p => p.Id).ToList();
             ViewBag.AnnouncementImageId = new SelectList(db.AnnouncementImages.OrderBy(i => i.ImageName), "Id", "ImageName");
