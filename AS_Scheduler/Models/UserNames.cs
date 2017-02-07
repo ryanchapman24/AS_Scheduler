@@ -27,6 +27,7 @@ namespace Scheduler.Models
                 ViewBag.ChapterNameLayout = currentChapter.ChapterName;
                 ViewBag.ChapterYearLayout = currentChapter.ChapterYear;
                 ViewBag.RecentAnnouncements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(a => a.Id).ToList();
+                ViewBag.ServerHour = System.DateTime.Now.Hour;
 
                 base.OnActionExecuting(filterContext);
             }
