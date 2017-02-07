@@ -409,7 +409,7 @@
                                                                     <img width="600" height="600" src="@photo.File" class="attachment-medium-square wp-post-image" alt="@photo.File" style="border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/>
                                                                 </div>
                                                                 <div class="cms-grid-item-icon">
-                                                                    <a class="cms-grid-portfolio-item-lightbox" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted on @photo.Created.ToString("G")</em>" href="@photo.File" style="margin-left: -40px"><i class="fa fa-search"></i></a>
+                                                                    <a class="cms-grid-portfolio-item-lightbox" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted on @photo.Created.AddHours(ViewBag.UserHourConversion).ToString("G")</em>" href="@photo.File" style="margin-left: -40px"><i class="fa fa-search"></i></a>
                                                                     <a class="cms-grid-portfolio-item-link" href="@Url.Action("DeletePhoto","Home", new {id = photo.Id })" style="margin-left: 40px"><i class="fa fa-trash"></i></a>
                                                                     <a class="" href="@Url.Action("EditPhoto","Home", new {id = photo.Id })" ><i class="fa fa-edit"></i></a>
                                                                 </div>

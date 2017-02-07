@@ -18,6 +18,7 @@ namespace Scheduler.Models
         public string Company { get; set; }
         public string JobTitle { get; set; }
         public int JoinChapterId { get; set; }
+        public int? HourConversion { get; set; }
         public virtual Chapter JoinChapter { get; set; }
         public ApplicationUser()
         {

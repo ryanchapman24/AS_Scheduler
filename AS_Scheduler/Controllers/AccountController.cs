@@ -60,6 +60,7 @@ namespace Scheduler.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ServerHourLogin = System.DateTime.Now.Hour;
             return View();
         }
 
@@ -68,19 +69,24 @@ namespace Scheduler.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, int hourConversion)
         {
+            ViewBag.ServerHourLogin = System.DateTime.Now.Hour;
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
             // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            // To enable password failures to trigger account lockout, change to shouldLockout: true          
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
+                    var user = db.Users.First(u => u.Email == model.Email);
+                    user.HourConversion = hourConversion;
+                    db.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -141,6 +147,7 @@ namespace Scheduler.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.ServerHourRegister = System.DateTime.Now.Hour;
             return View();
         }
 
@@ -149,8 +156,9 @@ namespace Scheduler.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image, int hourConversion)
         {
+            ViewBag.ServerHourRegister = System.DateTime.Now.Hour;
             if (ModelState.IsValid)
             {
                 var joinChapter = db.Chapters.First(c => c.CurrentChapter == true).Id;
@@ -176,7 +184,7 @@ namespace Scheduler.Controllers
                     image.SaveAs(Path.Combine(Server.MapPath("~/ProfilePics/"), fileName + Path.GetExtension(image.FileName)));
                 }
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, ProfilePic = pPic, JoinChapterId = joinChapter, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.FirstName + ' ' + model.LastName, Company = model.Company, JobTitle = model.JobTitle };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, ProfilePic = pPic, JoinChapterId = joinChapter, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.FirstName + ' ' + model.LastName, Company = model.Company, JobTitle = model.JobTitle, HourConversion = hourConversion };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -269,7 +269,7 @@
                                             foreach (var item in ViewBag.RecentAnnouncements)
                                             {
                                                 <div class="wpb_accordion_section group">
-                                                    <h3 class="wpb_accordion_header ui-accordion-header"><a href="#bulletproof">@item.Created.ToString("g")</a></h3>
+                                                    <h3 class="wpb_accordion_header ui-accordion-header"><a href="#bulletproof">@item.Created.AddHours(ViewBag.UserHourConversion).ToString("g")</a></h3>
                                                     <div class="ui-accordion-content vc_clearfix" style="padding-left: 15px; padding-top: 20px; padding-right: 5px">
                                                         <div class="wpb_text_column wpb_content_element ">
                                                             <div class="wpb_wrapper">
@@ -408,7 +408,7 @@
                                                                         @announcement.Body
                                                                     </p>                                                             
                                                                     <p style="margin-top: 10px">
-                                                                        <strong style="color: #29AAE3">@announcement.Created.ToString("g")</strong>
+                                                                        <strong style="color: #29AAE3">@announcement.Created.AddHours(ViewBag.UserHourConversion).ToString("g")</strong>
                                                                     </p>
                                                                 </div>
                                                             </div>

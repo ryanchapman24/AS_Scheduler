@@ -1247,7 +1247,7 @@
                                                         </svg>
                                                     </div>
                                                     <div class="post-media-extra">
-                                                        <div class="post-date post-media-extra-item">@item.Created.ToString("g")</div>
+                                                        <div class="post-date post-media-extra-item">@item.Created.AddHours(ViewBag.UserHourConversion).ToString("g")</div>
                                                         @*<div class="post-like post-media-extra-item"><span class="post-number-likes">8</span><i class="fa fa-thumbs-o-up"></i></div>*@
                                                     </div>
                                                     @*<div class="cms-carouse-post-item-format">
@@ -1634,7 +1634,7 @@
                                                                 <img width="600" height="600" src="@photo.File" class="attachment-medium-square wp-post-image" alt="@photo.File" style="border: 1px solid #e5e5e5; box-shadow: 3px 3px 5px #888888 !important"/>
                                                             </div>
                                                             <div class="cms-grid-item-icon">
-                                                                <a id="gallery-icon1" class="cms-grid-portfolio-item-lightbox" style="margin-left: 0px" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted by @photo.Author.DisplayName on @photo.Created.ToString("G")</em>" href="@photo.File"><i class="fa fa-search"></i></a>
+                                                                <a id="gallery-icon1" class="cms-grid-portfolio-item-lightbox" style="margin-left: 0px" title="@if (photo.Caption != null){@photo.Caption <br />}<em>Posted by @photo.Author.DisplayName on @photo.Created.AddHours(ViewBag.UserHourConversion).ToString("G")</em>" href="@photo.File"><i class="fa fa-search"></i></a>
                                                                 @if (User.IsInRole("Administrator"))
                                                                 {
                                                                     <a class="cms-grid-portfolio-item-link" href="@Url.Action("UnpublishPhoto","Home", new {id = photo.Id })"><i class="fa fa-undo"></i></a>

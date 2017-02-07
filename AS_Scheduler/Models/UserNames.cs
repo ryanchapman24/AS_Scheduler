@@ -28,6 +28,14 @@ namespace Scheduler.Models
                 ViewBag.ChapterYearLayout = currentChapter.ChapterYear;
                 ViewBag.RecentAnnouncements = db.Announcements.Where(a => a.ChapterId == currentChapter.Id).OrderByDescending(a => a.Id).ToList();
                 ViewBag.ServerHour = System.DateTime.Now.Hour;
+                if (user.HourConversion == null)
+                {
+                    ViewBag.UserHourConversion = 0;
+                }
+                else
+                {
+                    ViewBag.UserHourConversion = user.HourConversion;
+                }
 
                 base.OnActionExecuting(filterContext);
             }

@@ -95,7 +95,7 @@
                                                             <div class="cms-grid-media has-thumbnail">
                                                                 @*<img src="~/assets/images/notepad.png" class="attachment-full wp-post-image" />*@
                                                                 <div style="padding-left: 15px; padding-top: 10px; padding-right: 15px; padding-bottom: 10px; /*background:url(/assets/images/sticky-note-texture.jpg) no-repeat center;*/ background-color: #f4f4f4; box-shadow: 3px 3px 5px #888888">
-                                                                    <span>@note.Created.ToString("g")<span class="pull-right"><a href="@Url.Action("EditNote", "Home", new { id = note.Id })" style="margin-right: 4px"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteNote", "Home", new { id = note.Id })"><i class="fa fa-trash"></i></a></span></span><br />
+                                                                    <span>@note.Created.AddHours(ViewBag.UserHourConversion).ToString("g")<span class="pull-right"><a href="@Url.Action("EditNote", "Home", new { id = note.Id })" style="margin-right: 4px"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteNote", "Home", new { id = note.Id })"><i class="fa fa-trash"></i></a></span></span><br />
                                                                     <hr style="margin-top: 0px; margin-bottom: 0px; border-top: 1px solid #696969"/>
                                                                     <h3 style="color: #29AAE3">@note.Title</h3>
                                                                     <h4>@note.Body</h4>

@@ -373,7 +373,7 @@
                                                                                         {
                                                                                             <tr>
                                                                                                 <td class="text-nowrap" style="white-space: nowrap">
-                                                                                                    <strong style="color: #29AAE3">@item.Created.ToString("g")</strong><br />
+                                                                                                    <strong style="color: #29AAE3">@item.Created.AddHours(ViewBag.UserHourConversion).ToString("g")</strong><br />
                                                                                                     by @item.Author.DisplayName<br />
                                                                                                     for <strong>@item.Chapter.ChapterName (@item.Chapter.ChapterYear)</strong>
                                                                                                 </td>
@@ -428,7 +428,7 @@
                                                                                                                     <div class="post-content" style="height: inherit; min-height: 350px">
                                                                                                                         <div class="post-media-extra">
                                                                                                                             <div class="post-media-extra-item post-date">
-                                                                                                                                @photo.Created.ToString("g")
+                                                                                                                                @photo.Created.AddHours(ViewBag.UserHourConversion).ToString("g")
                                                                                                                             </div>
                                                                                                                             @*<div class="post-media-extra-item post-like">
                                                                                                                                 <span class="cms-post-like" data-id="12831"><span>7 </span><i class="fa fa-thumbs-o-up"></i></span>
