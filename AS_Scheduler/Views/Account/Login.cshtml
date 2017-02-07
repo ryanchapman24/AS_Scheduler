@@ -115,7 +115,6 @@
                 var hrConversion = h - @ViewBag.ServerHourLogin;
                 $hour = $("#hourConversion");
                 $hour.val(hrConversion);
-                document.getElementById('test').innerHTML = h + ":" + m + ":" + s;
                 t = setTimeout(function () { getTime() }, 500);
             }
             getTime();
