@@ -69,9 +69,11 @@ namespace Scheduler.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, int hourConversion)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, int hourConversion, int serverTime)
         {
             ViewBag.ServerHourLogin = System.DateTime.Now.Hour;
+            var now = System.DateTime.Now.Hour;
+            var diff = Math.Abs(now - serverTime);
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -85,7 +87,7 @@ namespace Scheduler.Controllers
             {
                 case SignInStatus.Success:
                     var user = db.Users.First(u => u.Email == model.Email);
-                    user.HourConversion = hourConversion;
+                    user.HourConversion = hourConversion - diff;
                     db.SaveChanges();
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -156,9 +158,11 @@ namespace Scheduler.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image, int hourConversion)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image, int hourConversion, int serverTime)
         {
             ViewBag.ServerHourRegister = System.DateTime.Now.Hour;
+            var now = System.DateTime.Now.Hour;
+            var diff = Math.Abs(now - serverTime);
             if (ModelState.IsValid)
             {
                 var joinChapter = db.Chapters.First(c => c.CurrentChapter == true).Id;
@@ -184,7 +188,7 @@ namespace Scheduler.Controllers
                     image.SaveAs(Path.Combine(Server.MapPath("~/ProfilePics/"), fileName + Path.GetExtension(image.FileName)));
                 }
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, ProfilePic = pPic, JoinChapterId = joinChapter, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.FirstName + ' ' + model.LastName, Company = model.Company, JobTitle = model.JobTitle, HourConversion = hourConversion };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, ProfilePic = pPic, JoinChapterId = joinChapter, FirstName = model.FirstName, LastName = model.LastName, DisplayName = model.FirstName + ' ' + model.LastName, Company = model.Company, JobTitle = model.JobTitle, HourConversion = hourConversion - diff};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

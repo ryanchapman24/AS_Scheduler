@@ -32,6 +32,7 @@
                 @Html.AntiForgeryToken()
                 <h2 class="col-md-offset-2" style="padding-left: 15px">create account</h2>
                 <input id="hourConversion" name="hourConversion" type="hidden"/>
+                <input name="serverTime" type="hidden" value="@ViewBag.ServerHourRegister" />
                 <hr />               
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
