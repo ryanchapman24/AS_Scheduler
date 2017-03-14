@@ -372,8 +372,10 @@ namespace Scheduler.Controllers
             ViewBag.ChapterName = currentChapter.ChapterName;
             ViewBag.ChapterYear = currentChapter.ChapterYear;
 
-            ViewBag.Day1 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 1).OrderBy(e => e.StartTime).ToList();
-            ViewBag.Day2 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 2).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day1 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 3).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day2 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 4).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day3 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 5).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day4 = db.Events.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 6).OrderBy(e => e.StartTime).ToList();
 
             return View();
         }
@@ -385,8 +387,10 @@ namespace Scheduler.Controllers
             ViewBag.ChapterName = currentChapter.ChapterName;
             ViewBag.ChapterYear = currentChapter.ChapterYear;
 
-            ViewBag.Day1 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 1 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
-            ViewBag.Day2 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 2 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day1 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 3 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day2 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 4 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day3 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 5 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
+            ViewBag.Day4 = db.MyEvents.Where(e => e.ChapterId == currentChapter.Id && e.DayId == 6 && e.AuthorId == user.Id).OrderBy(e => e.StartTime).ToList();
 
             return View();
         }

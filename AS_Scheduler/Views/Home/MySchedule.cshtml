@@ -32,11 +32,14 @@
                                             <div class="wpb_tabs wpb_content_element" data-interval="0">
                                                 <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">
                                                     <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-                                                        <li id="tab1" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Day1" class="ui-tabs-anchor" role="presentation">February 6th</a></li>
-                                                        <li id="tab2" class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day2" class="ui-tabs-anchor" role="presentation">February 7th</a></li>
-                                                        @*<li class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day3" class="ui-tabs-anchor" role="presentation">Day 3</a></li>*@                                               
+                                                        <li id="tab1" class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" aria-selected="true" aria-expanded="true"><a href="#Day1" class="ui-tabs-anchor" role="presentation">March 19th</a></li>
+                                                        <li id="tab2" class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day2" class="ui-tabs-anchor" role="presentation">March 20th</a></li>
+                                                        <li id="tab3" class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day3" class="ui-tabs-anchor" role="presentation">March 21st</a></li>
+                                                        <li id="tab4" class="ui-state-default ui-corner-top" role="tab" aria-selected="false" aria-expanded="false"><a href="#Day4" class="ui-tabs-anchor" role="presentation">March 22nd</a></li>
                                                         <div id="btnGroup1" class="btn-group pull-right"><button id="markAllDay1" class="btn btn-default" type="button">Mark all</button><button id="unmarkAllDay1" class="btn btn-default" type="button"><i class="fa fa-undo"></i></button></div>
                                                         <div id="btnGroup2" class="btn-group pull-right hidden"><button id="markAllDay2" class="btn btn-default" type="button">Mark all</button><button id="unmarkAllDay2" class="btn btn-default" type="button"><i class="fa fa-undo"></i></button></div>
+                                                        <div id="btnGroup3" class="btn-group pull-right hidden"><button id="markAllDay3" class="btn btn-default" type="button">Mark all</button><button id="unmarkAllDay3" class="btn btn-default" type="button"><i class="fa fa-undo"></i></button></div>
+                                                        <div id="btnGroup4" class="btn-group pull-right hidden"><button id="markAllDay4" class="btn btn-default" type="button">Mark all</button><button id="unmarkAllDay4" class="btn btn-default" type="button"><i class="fa fa-undo"></i></button></div>
                                                     </ul>
                                                     <div id="Day1" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="false" style="display: block;">
                                                         <div class="row vc_row-fluid">
@@ -80,12 +83,12 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            <input class="schedulizeDay1" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">REMOVE</span>
+                                                                                            <input class="schedulizeDay1" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #696969; font-size: 10px; white-space: nowrap">REMOVE</span>
                                                                                         </div>
                                                                                     </div>
                                                                                     <hr />
                                                                                 }
-                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0)
+                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0 || ViewBag.Day3.Count > 0 || ViewBag.Day4.Count > 0)
                                                                             {
                                                                                 <button type="submit" class="btn btn-theme btn-md pull-right">Submit</button>
                                                                             }                                                                    
@@ -137,12 +140,12 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="vc_col-sm-2" style="padding-top: 10px">
-                                                                                            <input class="schedulizeDay2" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #29AAE3; font-size: 10px; white-space: nowrap">REMOVE</span>
+                                                                                            <input class="schedulizeDay2" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #696969; font-size: 10px; white-space: nowrap">REMOVE</span>
                                                                                         </div>
                                                                                     </div>
                                                                                     <hr />
                                                                                 }
-                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0)
+                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0 || ViewBag.Day3.Count > 0 || ViewBag.Day4.Count > 0)
                                                                             {
                                                                             <button type="submit" class="btn btn-theme btn-md pull-right">Submit</button>
                                                                             }
@@ -152,7 +155,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @*<div id="Day3" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                    <div id="Day3" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
                                                         <div class="row vc_row-fluid">
                                                             <div class="cms-bg-overlay" style="">
                                                             </div>
@@ -160,15 +163,112 @@
                                                                 <div class="wpb_wrapper">
                                                                     <div class="wpb_text_column wpb_content_element ">
                                                                         <div class="wpb_wrapper">
-                                                                            <p>
-                                                                                Day 3
-                                                                            </p>
+                                                                            @foreach (var item in ViewBag.Day3)
+                                                                            {
+                                                                                <div class="row vc_row-fluid" style="">
+                                                                                    <div class="cms-bg-overlay" style=""></div>
+                                                                                    <div class="vc_col-sm-10 wpb_column vc_column_container">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <div class="cms-fancyboxes-wraper template-cms_fancybox--vertical content-align-default container-fluid" id="cms-fancy-box-2">
+                                                                                                <div class="row cms-fancyboxes-body">
+                                                                                                    <div class="cms-fancyboxes-vertical-item clearfix" onclick="">
+                                                                                                        <div class="cms-fancyboxes-vertical-item-icon">
+                                                                                                            <div class="fancy-box-icon">
+                                                                                                                <i class="fa fa-calendar" style="color: #29AAE3"></i>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="cms-fancyboxes-vertical-item-desc">
+                                                                                                            <h3>@item.Title</h3>
+                                                                                                            <div class="fancy-box-content">
+                                                                                                                <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                                @if (item.Description != null)
+                                                                                                                {
+                                                                                                                    <span style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Description" data-placement="right">OVERVIEW</span><br />
+                                                                                                                }
+                                                                                                                @if (item.Speakers != null)
+                                                                                                                {
+                                                                                                                    <spanm style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Speakers" data-placement="right">SPEAKERS</spanm>
+                                                                                                                }
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="vc_col-sm-2" style="padding-top: 10px">
+                                                                                        <input class="schedulizeDay3" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #696969; font-size: 10px; white-space: nowrap">REMOVE</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                    <hr />
+                                                                            }
+                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0 || ViewBag.Day3.Count > 0 || ViewBag.Day4.Count > 0)
+                                                                            {
+                                                                                <button type="submit" class="btn btn-theme btn-md pull-right">Submit</button>
+                                                                            }
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>*@
+                                                    </div>
+                                                    <div id="Day4" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom" role="tabpanel" aria-hidden="true" style="display: none;">
+                                                        <div class="row vc_row-fluid">
+                                                            <div class="cms-bg-overlay" style="">
+                                                            </div>
+                                                            <div class="vc_col-sm-12 wpb_column vc_column_container ">
+                                                                <div class="wpb_wrapper">
+                                                                    <div class="wpb_text_column wpb_content_element ">
+                                                                        <div class="wpb_wrapper">
+                                                                            @foreach (var item in ViewBag.Day4)
+                                                                            {
+                                                                                <div class="row vc_row-fluid" style="">
+                                                                                    <div class="cms-bg-overlay" style=""></div>
+                                                                                    <div class="vc_col-sm-10 wpb_column vc_column_container">
+                                                                                        <div class="wpb_wrapper">
+                                                                                            <div class="cms-fancyboxes-wraper template-cms_fancybox--vertical content-align-default container-fluid" id="cms-fancy-box-2">
+                                                                                                <div class="row cms-fancyboxes-body">
+                                                                                                    <div class="cms-fancyboxes-vertical-item clearfix" onclick="">
+                                                                                                        <div class="cms-fancyboxes-vertical-item-icon">
+                                                                                                            <div class="fancy-box-icon">
+                                                                                                                <i class="fa fa-calendar" style="color: #29AAE3"></i>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="cms-fancyboxes-vertical-item-desc">
+                                                                                                            <h3>@item.Title</h3>
+                                                                                                            <div class="fancy-box-content">
+                                                                                                                <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                                                                @if (item.Description != null)
+                                                                                                                {
+                                                                                                                    <span style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Description" data-placement="right">OVERVIEW</span><br />
+                                                                                                                }
+                                                                                                                @if (item.Speakers != null)
+                                                                                                                {
+                                                                                                                    <spanm style="color: #29AAE3; font-size: 12px" rel="tooltip" title="@item.Speakers" data-placement="right">SPEAKERS</spanm>
+                                                                                                                }
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="vc_col-sm-2" style="padding-top: 10px">
+                                                                                        <input class="schedulizeDay4" type="checkbox" name="Remove" value="@item.Id" style="margin-right: 5px" /><br /><span style="color: #696969; font-size: 10px; white-space: nowrap">REMOVE</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                    <hr />
+                                                                            }
+                                                                            @if (ViewBag.Day1.Count > 0 || ViewBag.Day2.Count > 0 || ViewBag.Day3.Count > 0 || ViewBag.Day4.Count > 0)
+                                                                            {
+                                                                                <button type="submit" class="btn btn-theme btn-md pull-right">Submit</button>
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,14 +295,30 @@
             $(document).ready(function () {
                 $('#tab1').click(function () {
                     $('#btnGroup2').addClass('hidden');
+                    $('#btnGroup3').addClass('hidden');
+                    $('#btnGroup4').addClass('hidden');
                     $('#btnGroup1').removeClass('hidden');
                 });
                 $('#tab2').click(function () {
                     $('#btnGroup1').addClass('hidden');
+                    $('#btnGroup3').addClass('hidden');
+                    $('#btnGroup4').addClass('hidden');
                     $('#btnGroup2').removeClass('hidden');
                 });
+                $('#tab3').click(function () {
+                    $('#btnGroup1').addClass('hidden');
+                    $('#btnGroup2').addClass('hidden');
+                    $('#btnGroup4').addClass('hidden');
+                    $('#btnGroup3').removeClass('hidden');
+                });
+                $('#tab4').click(function () {
+                    $('#btnGroup1').addClass('hidden');
+                    $('#btnGroup2').addClass('hidden');
+                    $('#btnGroup3').addClass('hidden');
+                    $('#btnGroup4').removeClass('hidden');
+                });
                 $('#markAllDay1').click(function () {
-                    $('.schedulizeDay1').attr('checked','checked');
+                    $('.schedulizeDay1').attr('checked', 'checked');
                 });
                 $('#unmarkAllDay1').click(function () {
                     $('.schedulizeDay1').removeAttr('checked');
@@ -212,6 +328,12 @@
                 });
                 $('#unmarkAllDay2').click(function () {
                     $('.schedulizeDay2').removeAttr('checked');
+                });
+                $('#markAllDay3').click(function () {
+                    $('.schedulizeDay3').attr('checked', 'checked');
+                });
+                $('#unmarkAllDay4').click(function () {
+                    $('.schedulizeDay4').removeAttr('checked');
                 });
             });
     </script>

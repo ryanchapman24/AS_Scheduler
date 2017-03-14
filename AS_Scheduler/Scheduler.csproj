@@ -387,6 +387,7 @@
     <Content Include="assets\images\sticky-note-texture.jpg" />
     <Content Include="assets\images\toggle_close.png" />
     <Content Include="assets\images\toggle_open.png" />
+    <Content Include="assets\images\wifi_slider_4.jpg" />
     <Content Include="assets\images\wifi_slider_1.png" />
     <Content Include="assets\images\wifi_slider_2.png" />
     <Content Include="assets\images\wifi_slider_3.png" />
