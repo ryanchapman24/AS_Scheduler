@@ -117,7 +117,7 @@
                                                                     <div class="cms-fancyboxes-vertical-item-desc">
                                                                         <h4><strong>@item.Title.ToUpper()</strong></h4>
                                                                         <div class="fancy-box-content">
-                                                                            <p>@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
+                                                                            <p>@item.StartTime.ToString("dddd")<br />@item.StartTime.ToShortTimeString() - @item.EndTime.ToShortTimeString()</p>
                                                                         </div>
                                                                     </div>
                                                                     count++;
