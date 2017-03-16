@@ -31,6 +31,8 @@
             {
                 @Html.AntiForgeryToken()
                 <h2 class="col-md-offset-2" style="padding-left: 15px">create account</h2>
+                <input id="hourConversion" name="hourConversion" type="hidden"/>
+                <input name="serverTime" type="hidden" value="@ViewBag.ServerHourRegister" />
                 <hr />               
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-8">
@@ -170,6 +172,30 @@
     </div>
 }*@
 
-@*@section Scripts {
+@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}*@
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            function getTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                var hrConversion = h - @ViewBag.ServerHourRegister;
+                $hour = $("#hourConversion");
+                $hour.val(hrConversion);
+                t = setTimeout(function () { getTime() }, 500);
+            }
+            getTime();
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        });
+    </script>
+}

@@ -32,7 +32,7 @@
                                     {
                                         @Html.AntiForgeryToken()
                                         <div class="form-horizontal">
-                                            <h4>This note was created on <strong>@Model.Created.ToString("g")</strong> for <strong>@Model.Chapter.ChapterName (@Model.Chapter.ChapterYear)</strong></h4>
+                                            <h4>This note was created on <strong>@Model.Created.AddHours(ViewBag.UserHourConversion).ToString("g")</strong> for <strong>@Model.Chapter.ChapterName (@Model.Chapter.ChapterYear)</strong></h4>
                                             <hr />
                                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                             @Html.HiddenFor(model => model.Id)

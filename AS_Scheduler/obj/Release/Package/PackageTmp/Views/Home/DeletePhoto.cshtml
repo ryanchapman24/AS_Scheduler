@@ -36,7 +36,7 @@
                                                 Created
                                             </div>
                                             <div class="col-md-4">
-                                                @Model.Created.ToString("g")
+                                                @Model.Created.AddHours(ViewBag.UserHourConversion).ToString("g")
                                             </div><br /><br />
                                         </div>
                                         <div class="row">
