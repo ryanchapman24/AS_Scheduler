@@ -574,7 +574,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:29:08</publishTime>
     </File>
     <File Include="assets/js/contact-form.js">
-      <publishTime>02/01/2017 14:25:50</publishTime>
+      <publishTime>01/26/2017 11:47:59</publishTime>
     </File>
     <File Include="assets/js/counter.cms.js">
       <publishTime>12/14/2016 12:29:08</publishTime>
@@ -658,7 +658,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:29:07</publishTime>
     </File>
     <File Include="assets/js/main.js">
-      <publishTime>03/16/2017 14:42:41</publishTime>
+      <publishTime>02/03/2017 14:15:14</publishTime>
     </File>
     <File Include="assets/js/mapmarker.jquery.js">
       <publishTime>12/14/2016 12:29:07</publishTime>
@@ -706,7 +706,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/14/2016 12:29:07</publishTime>
     </File>
     <File Include="assets/js/owl.carousel.min.js">
-      <publishTime>02/01/2017 14:25:51</publishTime>
+      <publishTime>01/26/2017 12:21:32</publishTime>
     </File>
     <File Include="assets/js/placeholders.min.js">
       <publishTime>12/14/2016 12:29:07</publishTime>
@@ -2205,6 +2205,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Project_Readme.html">
       <publishTime>12/14/2016 12:00:29</publishTime>
     </File>
+    <File Include="Properties/AssemblyInfo.cs">
+      <publishTime>12/14/2016 12:00:29</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>12/15/2016 13:06:25</publishTime>
     </File>
@@ -2452,7 +2455,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/28/2016 16:02:55</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>02/03/2017 14:20:58</publishTime>
+      <publishTime>03/16/2017 12:35:58</publishTime>
     </File>
     <File Include="Views/Home/MapAndVenue.cshtml">
       <publishTime>03/15/2017 12:56:48</publishTime>
@@ -2515,7 +2518,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/15/2016 16:52:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/02/2017 12:21:14</publishTime>
+      <publishTime>03/16/2017 15:12:37</publishTime>
     </File>
   </ItemGroup>
 </Project>
